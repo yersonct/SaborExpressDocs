@@ -1,0 +1,1369 @@
+{
+  "info": {
+    "name": "SaborExpress — verificación inicial de API",
+    "description": "Catálogo parcial de endpoints verificados en controladores main; requiere ambiente y credenciales de test.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "POST /api/Auth/login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Auth",
+                "login"
+              ]
+            },
+            "description": "Autenticación — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "POST /api/Auth/logout",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Auth/logout",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Auth",
+                "logout"
+              ]
+            },
+            "description": "Cerrar sesión — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "POST /api/Auth/refresh-token",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Auth/refresh-token",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Auth",
+                "refresh-token"
+              ]
+            },
+            "description": "Renovar JWT — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "POST /api/Auth/forgot-password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Auth/forgot-password",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Auth",
+                "forgot-password"
+              ]
+            },
+            "description": "Solicitar recuperación — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "POST /api/Auth/verify-reset-code",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Auth/verify-reset-code",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Auth",
+                "verify-reset-code"
+              ]
+            },
+            "description": "Verificar código — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "POST /api/Auth/reset-password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Auth/reset-password",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Auth",
+                "reset-password"
+              ]
+            },
+            "description": "Cambiar contraseña — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "POST /api/Auth/confirm-email",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Auth/confirm-email",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Auth",
+                "confirm-email"
+              ]
+            },
+            "description": "Confirmar email — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "POST /api/Auth/resend-confirmation-code",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Auth/resend-confirmation-code",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Auth",
+                "resend-confirmation-code"
+              ]
+            },
+            "description": "Reenviar confirmación — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "POST /api/Auth/resend-activation-code",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Auth/resend-activation-code",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Auth",
+                "resend-activation-code"
+              ]
+            },
+            "description": "Reenviar activación — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "POST /api/Auth/activate-account",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Auth/activate-account",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Auth",
+                "activate-account"
+              ]
+            },
+            "description": "Activar cuenta — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Orders",
+      "item": [
+        {
+          "name": "POST /api/Orders",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Orders",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Orders"
+              ]
+            },
+            "description": "Crear pedido — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "GET /api/Orders",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Orders",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Orders"
+              ]
+            },
+            "description": "Consultar pedidos — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "GET /api/Orders/{id}",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Orders/{{{orderId}}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Orders",
+                "{{{orderId}}}"
+              ]
+            },
+            "description": "Detalle — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "GET /api/Orders/table/{tableId}",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Orders/table/{tableId}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Orders",
+                "table",
+                "{tableId}"
+              ]
+            },
+            "description": "Por mesa — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "GET /api/Orders/customer/{customerId}",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Orders/customer/{customerId}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Orders",
+                "customer",
+                "{customerId}"
+              ]
+            },
+            "description": "Por cliente — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "GET /api/Orders/branch/{branchId}",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Orders/branch/{{branchId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Orders",
+                "branch",
+                "{{branchId}}"
+              ]
+            },
+            "description": "Por sede — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "PUT /api/Orders/{id}",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Orders/{{{orderId}}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Orders",
+                "{{{orderId}}}"
+              ]
+            },
+            "description": "Actualizar — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "PATCH /api/Orders/{id}/status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Orders/{{{orderId}}}/status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Orders",
+                "{{{orderId}}}",
+                "status"
+              ]
+            },
+            "description": "Actualizar estado — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "PATCH /api/Orders/{id}/cancel-mine",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Orders/{{{orderId}}}/cancel-mine",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Orders",
+                "{{{orderId}}}",
+                "cancel-mine"
+              ]
+            },
+            "description": "Cancelar cliente — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "PATCH /api/Orders/{id}/cancel",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Orders/{{{orderId}}}/cancel",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Orders",
+                "{{{orderId}}}",
+                "cancel"
+              ]
+            },
+            "description": "Cancelar operación — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "GET /api/Products",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Products",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Products"
+              ]
+            },
+            "description": "Listar (público) — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "GET /api/Products/category/{categoryId}",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Products/category/{categoryId}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Products",
+                "category",
+                "{categoryId}"
+              ]
+            },
+            "description": "Por categoría (público) — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "GET /api/Products/{id}",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Products/{{{orderId}}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Products",
+                "{{{orderId}}}"
+              ]
+            },
+            "description": "Detalle — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "POST /api/Products",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Products",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Products"
+              ]
+            },
+            "description": "Crear — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "PUT /api/Products/{id}",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Products/{{{orderId}}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Products",
+                "{{{orderId}}}"
+              ]
+            },
+            "description": "Actualizar — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "DELETE /api/Products/{id}",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Products/{{{orderId}}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Products",
+                "{{{orderId}}}"
+              ]
+            },
+            "description": "Eliminar — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "PATCH /api/Products/{id}/status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Products/{{{orderId}}}/status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Products",
+                "{{{orderId}}}",
+                "status"
+              ]
+            },
+            "description": "Estado — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Payments",
+      "item": [
+        {
+          "name": "POST /api/Payments",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Payments",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Payments"
+              ]
+            },
+            "description": "Registrar pago — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "GET /api/Payments",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Payments",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Payments"
+              ]
+            },
+            "description": "Listar con filtros — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "GET /api/Payments/{id}",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Payments/{{{orderId}}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Payments",
+                "{{{orderId}}}"
+              ]
+            },
+            "description": "Detalle — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "GET /api/Payments/order/{orderId}",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Payments/order/{{orderId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Payments",
+                "order",
+                "{{orderId}}"
+              ]
+            },
+            "description": "Por pedido — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "GET /api/Payments/my-shift",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Payments/my-shift",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Payments",
+                "my-shift"
+              ]
+            },
+            "description": "Cierre de turno — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "PATCH /api/Payments/{id}/refund",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Payments/{{{orderId}}}/refund",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Payments",
+                "{{{orderId}}}",
+                "refund"
+              ]
+            },
+            "description": "Reembolso — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "POST /api/Payments/wompi/init",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Payments/wompi/init",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Payments",
+                "wompi",
+                "init"
+              ]
+            },
+            "description": "Wompi iniciar cliente — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "POST /api/Payments/wompi/cashier-init",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Payments/wompi/cashier-init",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Payments",
+                "wompi",
+                "cashier-init"
+              ]
+            },
+            "description": "Wompi QR cajero — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "POST /api/Payments/{id}/wompi-sync",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Payments/{{{orderId}}}/wompi-sync",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Payments",
+                "{{{orderId}}}",
+                "wompi-sync"
+              ]
+            },
+            "description": "Sincronizar transacción — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "POST /api/Payments/wompi/webhook",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Payments/wompi/webhook",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Payments",
+                "wompi",
+                "webhook"
+              ]
+            },
+            "description": "Webhook recibido — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Deliveries",
+      "item": [
+        {
+          "name": "POST /api/Deliveries",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Deliveries",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Deliveries"
+              ]
+            },
+            "description": "Registrar entrega — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "GET /api/Deliveries/order/{orderId}",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Deliveries/order/{{orderId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Deliveries",
+                "order",
+                "{{orderId}}"
+              ]
+            },
+            "description": "Por pedido — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "GET /api/Deliveries/employee/{deliveryPersonId}",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Deliveries/employee/{deliveryPersonId}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Deliveries",
+                "employee",
+                "{deliveryPersonId}"
+              ]
+            },
+            "description": "Por repartidor — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "GET /api/Deliveries/branch/{branchId}",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Deliveries/branch/{{branchId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Deliveries",
+                "branch",
+                "{{branchId}}"
+              ]
+            },
+            "description": "Por sede — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "GET /api/Deliveries/branch/{branchId}/delivery-persons",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Deliveries/branch/{{branchId}}/delivery-persons",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Deliveries",
+                "branch",
+                "{{branchId}}",
+                "delivery-persons"
+              ]
+            },
+            "description": "Repartidores disponibles — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "PATCH /api/Deliveries/{id}/status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Deliveries/{{{orderId}}}/status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Deliveries",
+                "{{{orderId}}}",
+                "status"
+              ]
+            },
+            "description": "Estado de entrega — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "POST /api/Deliveries/{id}/rating",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Deliveries/{{{orderId}}}/rating",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Deliveries",
+                "{{{orderId}}}",
+                "rating"
+              ]
+            },
+            "description": "Calificar — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Branches",
+      "item": [
+        {
+          "name": "GET /api/Branches",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Branches",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Branches"
+              ]
+            },
+            "description": "Listar — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "GET /api/Branches/mine",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Branches/mine",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Branches",
+                "mine"
+              ]
+            },
+            "description": "Mi sede — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "GET /api/Branches/{id}",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Branches/{{{orderId}}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Branches",
+                "{{{orderId}}}"
+              ]
+            },
+            "description": "Detalle — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "POST /api/Branches",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Branches",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Branches"
+              ]
+            },
+            "description": "Crear — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "PUT /api/Branches/{id}",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Branches/{{{orderId}}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Branches",
+                "{{{orderId}}}"
+              ]
+            },
+            "description": "Actualizar — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "DELETE /api/Branches/{id}",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Branches/{{{orderId}}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Branches",
+                "{{{orderId}}}"
+              ]
+            },
+            "description": "Eliminar — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "GET /api/Branches/public",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Branches/public",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Branches",
+                "public"
+              ]
+            },
+            "description": "Listado público según autorización de clase — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        },
+        {
+          "name": "GET /api/Branches/nearest",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Branches/nearest",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Branches",
+                "nearest"
+              ]
+            },
+            "description": "Proximidad; revisar autorización de clase — carga para acciones de escritura debe construirse desde DTO reales de Swagger."
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000"
+    },
+    {
+      "key": "jwt",
+      "value": "REEMPLAZAR_TOKEN_TEST"
+    },
+    {
+      "key": "orderId",
+      "value": "1"
+    },
+    {
+      "key": "branchId",
+      "value": "1"
+    }
+  ]
+}
