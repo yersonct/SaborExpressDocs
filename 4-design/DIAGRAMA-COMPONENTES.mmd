@@ -1,0 +1,10 @@
+flowchart LR
+    WEB[Web Next.js] --> API[ASP.NET Core 8 API]
+    MOB[Móvil React Native / Expo] --> API
+    API --> SERVICES[Servicios modulares]
+    SERVICES --> DATA[Entity Framework Core]
+    DATA --> DATABASE[(MySQL / PostgreSQL / SQL Server configurables)]
+    SERVICES --> WOMPI[Pasarela de pagos Wompi]
+    API --> SIGNALR[SignalR /hubs/notifications]
+    WEB --> SIGNALR
+    MOB --> SIGNALR
