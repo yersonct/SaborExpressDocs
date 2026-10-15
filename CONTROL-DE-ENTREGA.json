@@ -1,0 +1,16 @@
+{
+  "total_archivos": 129,
+  "docx": 38,
+  "pdf": 33,
+  "markdown": 41,
+  "articulos_cientificos": 2,
+  "referencias": 28,
+  "endpoints_controladores_examinados": 52,
+  "requisitos_funcionales": 25,
+  "requisitos_no_funcionales": 15,
+  "casos_prueba_propuestos": 27,
+  "evidencias_pruebas_ejecutadas": 0,
+  "archivos_de_tamano_cero": 0,
+  "version_documental": "2.0",
+  "corte": "2026-10-14"
+}
