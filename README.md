@@ -1,41 +1,44 @@
-# SaborExpress · Documentación técnica, funcional y de investigación
+# SaborExpress — Expediente de ingeniería de software y documentación académica
 
-**Versión documental 2.0 — 14 de octubre de 2026.** Este repositorio contiene documentación del backend ASP.NET Core 8, portal Next.js y aplicación Expo/React Native. Su organización integra las carpetas existentes y una colección `docs-SaborExpress/` con entregables homólogos a `docs/docs-SRD` del proyecto SRD.
+![Logo SaborExpress](docs-SaborExpress/recursos/SaborExpress_logo_transparente.png)
 
-**Fuentes de software:**
+**Integrante documentado:** Yerson Stiven Cuellar Rubiano  
+**Ficha:** 3145555  
+**Fecha de preparación:** 14 de octubre de 2026  
+**Versión documental:** 4.0 (estudio de caso con pruebas pendientes)
 
-- [Backend](https://github.com/yersonct/SaborExpressBack/tree/main) · API ASP.NET Core 8 / Entity Framework Core / JWT / SignalR
-- [Portal web](https://github.com/yersonct/SaborExpressWeb/tree/main) · Next.js 16 / React 19
-- [Aplicación móvil](https://github.com/yersonct/SaborExpressMovil/tree/main) · Expo 57 / React Native 0.86
-- [Referencia de entregables SRD](https://github.com/jsgh1/SRD-v1/tree/dev/docs/docs-SRD)
+## Resumen ejecutivo
 
-## Índice de entregables
+SaborExpress es una plataforma de apoyo a operaciones gastronómicas, organizada en backend ASP.NET Core 8, interfaz administrativa Next.js y aplicación React Native / Expo. Se identifican módulos de sedes, catálogo, personas, pedidos, pagos Wompi, repartos, cocina y notificaciones. El expediente reúne investigación, requisitos, análisis, propuesta, diseño, diccionario de datos, API, manuales, riesgos, protocolos de QA y ejemplos técnicos. Las cifras empíricas no observadas están marcadas como pendientes.
 
-| Carpeta | Material |
-|---|---|
-| `1-project-charter/` | Acta de proyecto; mantener PDF original institucional |
-| `2-requirements/` | SRS, matriz de requisitos y aceptación |
-| `3-analysis/` | Actores, casos de uso, excepciones y viabilidad |
-| `4-design/` | Arquitectura actual y diagramas |
-| `5-database/` | Diccionario de entidades e instrucciones para DDL real |
-| `6-api/` | Catálogo parcial verificado y colección Postman inicial |
-| `7-manuals/` | Instalación, técnico y usuario por rol |
-| `8-testing/` | Plan de pruebas (no ejecutadas) |
-| `9-traceability/` | Matriz requisito-evidencia-prueba y acciones de mejora |
-| `10-deliverables/` | Informe de cierre documental y presentación para adaptar |
-| `11-research/` | Artículos ES/EN, bibliografía y protocolo experimental |
-| `docs-SaborExpress/` | 14 entregables principales en Word, PDF y Markdown |
+## Organización del expediente
 
-## Estado responsable
+- `1-project-charter/`: definición, actores, alcance, entregables, riesgos y criterios de aceptación.
+- `2-requirements/`: requisitos funcionales/no funcionales y trazabilidad.
+- `3-analysis/`: negocio, casos de uso, reglas y flujo operativo.
+- `4-design/`: estructura modular, decisiones, diagramas y propuesta.
+- `5-database/`: diccionario y relaciones extraídos de modelos EF Core.
+- `6-api/`: controladores y colección Postman inicial.
+- `7-manuals/`: soporte técnico, instalación y uso por rol.
+- `8-testing/`: plan con criterios y evidencia por completar.
+- `9-traceability/`: mejoras, hallazgos y relación entre requisitos y pruebas.
+- `10-deliverables/`: informe documental y presentación de revisión.
+- `11-research/`: manuscritos científicos, bibliografía, metodología y protocolos.
+- `12-governance/`: riesgos, configuración, ética y privacidad.
+- `13-code-examples/`: comandos, SQL ilustrativo y escenarios de validación.
+- `docs-SaborExpress/`: carpeta espejo de entregables académicos de SRD, incluidos DOCX/PDF/MD.
+- `docs-SaborExpress/recursos/`: logotipo y 10 diagramas con código Graphviz editable.
 
-Se inspeccionaron repositorios y archivos principales; no se realizaron pruebas de la API, pagos reales, UX, seguridad ofensiva ni carga. Las capturas, firmas, fechas institucionales, datos de autoría y mediciones quedan por completar con evidencia. Los documentos *no* deben describirse como pruebas aprobadas. Para detalle leer [AUDITORIA-DOCUMENTAL.md](AUDITORIA-DOCUMENTAL.md).
+## Fuentes primarias
 
-## Advertencia de integración
+- Backend: https://github.com/yersonct/SaborExpressBack
+- Web: https://github.com/yersonct/SaborExpressWeb
+- Móvil: https://github.com/yersonct/SaborExpressMovil
+- Documentación: https://github.com/yersonct/SaborExpressDocs
+- Referencia de estructura: https://github.com/jsgh1/SRD-v1/tree/dev/docs/docs-SRD
 
-No eliminar ni sobrescribir sin revisión los cuatro PDF originales `SENA_*` ni `clean-architecture-guide.md`. En `git status` se pueden restaurar archivos eliminados con `git restore -- <rutas>`. La carpeta `docs-SaborExpress` complementa, no reemplaza, la documentación institucional preexistente.
+## Estado y limitaciones
 
-## Sugerencia de commit
+**Producción, autorización docente, tiempos de respuesta, ejecución de pruebas, seguridad certificada y migraciones multi-proveedor:** NO verificados en este proceso. La documentación describe el código consultado y lo separa de decisiones recomendadas. Los cuatro PDF históricos del repositorio deben conservarse, no eliminarse por sustitución automática.
 
-`docs: completar expediente técnico y artículos científicos de SaborExpress`
-
-Toda actualización futura debe anotar fecha, commit de código, responsable y evidencia.
+Para material de presentación consulte `MATRIZ-ENTREGA-PROFESIONAL.md`, `NORMAS-APA7-Y-ALCANCE.md` y `COMO-INTEGRAR-Y-SUBIR.md`. La autoría editorial debe revisarse si hubo más colaboradores; aquí se incluye el integrante informado por el usuario.
