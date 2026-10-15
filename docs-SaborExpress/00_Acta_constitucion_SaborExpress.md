@@ -1,6 +1,6 @@
 # Acta de constitución y alcance del proyecto
 
-**Proyecto:** SaborExpress  |  **Fecha de corte:** 14 de octubre de 2026  |  **Versión:** 2.0  |  **Tipo:** Documento técnico y académico
+**Proyecto:** SaborExpress | **Autor / integrante:** Yerson Stiven Cuellar Rubiano | **Ficha:** 3145555 | **Fecha:** 14 de octubre de 2026 | **Versión documental:** 4.0
 
 **Estado de la evidencia:** inspección documental y estática del código. Las pruebas de ejecución y los datos institucionales no aportados no se presumen realizados.
 
@@ -101,3 +101,24 @@ Se considerará éxito documental cuando: todos los documentos de la matriz teng
 - Referencia de presentación: https://github.com/jsgh1/SRD-v1/tree/dev/docs/docs-SRD
 
 **Control documental:** documento elaborado a partir del estado observado en octubre de 2026. Antes de entregar, verificar el commit exacto, responsable, revisión del instructor y cualquier cambio posterior del código.
+
+
+## 12. Identificación del proyecto y patrocinio académico
+
+**Responsable del documento y participante reportado:** Yerson Stiven Cuellar Rubiano, ficha 3145555. La denominación de programa, instructor, centro de formación, patrocinador, fecha de aprobación y firmas no fueron suministradas y no se sustituyen por datos imaginados. Se requieren registros auténticos para declarar el acta aprobada.
+
+**Necesidad de negocio identificada:** coordinación de la operación gastronómica en múltiples sedes y canales, evitando duplicidad en pedidos y falta de continuidad informativa entre caja, cocina, repartidores y administración. La investigación documental permite formular hipótesis sobre mejora operativa, pero no demostrar beneficios cuantificados sin una línea base de tiempos, fallas y satisfacción.
+
+**Resultados de proyecto:** especificación formal RF/RNF, diseño validable, API documentada, clientes web/móvil trazables, persistencia con migraciones, manuales de operación y calidad, casos de prueba y artículo de estudio de caso. Se define como cierre documental la entrega de evidencias verificables y la validación del instructor, no solamente el número de páginas.
+
+## 13. Restricciones, supuestos y criterios de decisión
+
+El trabajo toma como fuente tres repositorios: backend `SaborExpressBack`, frontend `SaborExpressWeb` y móvil `SaborExpressMovil`. Ningún repositorio demuestra por sí mismo pagos de producción, respaldos realizados, aceptación del usuario o un servidor desplegado. Se presupone acceso autorizado a un entorno de desarrollo para ejecutar QA en el futuro; la ejecución queda condicionada a credenciales y datos sintéticos.
+
+**Reglas de decisión:** aprobar un hito únicamente cuando existan artefactos versionados; evitar deuda de seguridad crítica abierta al publicar; no pasar de Wompi sandbox a productivo sin consentimiento y revisión; registrar riesgos por responsable y fecha; mantener trazabilidad desde requisitos hasta ejecución.
+
+
+![01_CONTEXT0](recursos/01_CONTEXT0.png)
+
+*Nota. Elaboración para el estudio de caso SaborExpress; las figuras no certifican operaciones desplegadas.*
+

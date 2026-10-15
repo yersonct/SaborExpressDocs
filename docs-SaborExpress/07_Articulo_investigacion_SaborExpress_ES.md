@@ -1,6 +1,6 @@
 # Arquitectura y trazabilidad de una plataforma web y móvil para procesos gastronómicos: estudio de caso documental de SaborExpress
 
-**Proyecto:** SaborExpress  |  **Fecha de corte:** 14 de octubre de 2026  |  **Versión:** 2.0  |  **Tipo:** Artículo científico — revisión dirigida y estudio de caso
+**Proyecto:** SaborExpress | **Autor / integrante:** Yerson Stiven Cuellar Rubiano | **Ficha:** 3145555 | **Fecha:** 14 de octubre de 2026 | **Versión documental:** 4.0
 
 **Estado de la evidencia:** inspección documental y estática del código. Las pruebas de ejecución y los datos institucionales no aportados no se presumen realizados.
 
@@ -256,4 +256,32 @@ Venkatesh, V., Morris, M. G., Davis, G. B., & Davis, F. D. (2003). User acceptan
 Wompi. (s. f.). *Documentación para desarrolladores*. https://docs.wompi.co/
 
 Yin, R. K. (2018). *Case study research and applications: Design and methods* (6th ed.). SAGE Publications. https://study.sagepub.com/yin6e
+
+
+
+## Anexo A. Figuras de arquitectura y trazabilidad del estudio de caso
+
+Los siguientes diagramas presentan una reconstrucción conceptual basada en contratos y modelos del repositorio. La primera figura evidencia la coexistencia de un backend ASP.NET Core y dos clientes diferenciados. La segunda representa relaciones entre entidades de dominio: no debe leerse como un DDL exportado. La tercera sitúa controles de autorización y pruebas de seguridad recomendados. Se incluyen para facilitar reproducibilidad de los hallazgos documentales, no para simular un experimento.
+
+
+![01_CONTEXT0](recursos/01_CONTEXT0.png)
+
+*Nota. Elaboración para el estudio de caso SaborExpress; las figuras no certifican operaciones desplegadas.*
+
+
+![06_MODELO_ER](recursos/06_MODELO_ER.png)
+
+*Nota. Elaboración para el estudio de caso SaborExpress; las figuras no certifican operaciones desplegadas.*
+
+
+![09_AISLAMIENTO_ROLES](recursos/09_AISLAMIENTO_ROLES.png)
+
+*Nota. Elaboración para el estudio de caso SaborExpress; las figuras no certifican operaciones desplegadas.*
+## Anexo B. Delimitación metodológica y amenazas a la validez
+
+**Validez de constructo:** observar una ruta HTTP no demuestra que todas las reglas del negocio se cumplan en producción. Se registran hallazgos de estructura y recomendaciones de verificación por separado. **Validez interna:** no se han ejecutado comparaciones antes/después ni asignación aleatoria; por tanto no se atribuye reducción de tiempos, incremento de ventas o mejor satisfacción al sistema. **Validez externa:** el estudio aborda un único proyecto y su arquitectura; las conclusiones no se extrapolan a todo el sector gastronómico colombiano. **Confiabilidad:** el procedimiento es reproducible conservando SHA de repositorios, rutas y criterios de codificación, sujeto a disponibilidad pública de archivos y versiones.
+
+**Protección de datos:** se emplean únicamente identificadores de rutas y modelos de software; no se extraen direcciones, cuentas, documentos ni transacciones reales. Se propone para investigación posterior un consentimiento informado si participan usuarios y tratamiento ético de registros de interacción.
+
+**Protocolo propuesto:** congelar versiones, habilitar entorno sintético, ejecutar contratos REST y pruebas de permiso, medir duración y tasa de error con carga declarada, comparar tareas con participantes autorizados, analizar resultados con intervalos y reportar también resultados negativos. Este plan no se reporta como ejecutado.
 

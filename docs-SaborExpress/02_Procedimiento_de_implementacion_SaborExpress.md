@@ -1,6 +1,6 @@
 # Procedimiento de implementación y liberación
 
-**Proyecto:** SaborExpress  |  **Fecha de corte:** 14 de octubre de 2026  |  **Versión:** 2.0  |  **Tipo:** Documento técnico y académico
+**Proyecto:** SaborExpress | **Autor / integrante:** Yerson Stiven Cuellar Rubiano | **Ficha:** 3145555 | **Fecha:** 14 de octubre de 2026 | **Versión documental:** 4.0
 
 **Estado de la evidencia:** inspección documental y estática del código. Las pruebas de ejecución y los datos institucionales no aportados no se presumen realizados.
 
@@ -116,3 +116,38 @@ Cada cambio que modifique una tabla, DTO, permiso, rol o flujo financiero debe a
 - Referencia de presentación: https://github.com/jsgh1/SRD-v1/tree/dev/docs/docs-SRD
 
 **Control documental:** documento elaborado a partir del estado observado en octubre de 2026. Antes de entregar, verificar el commit exacto, responsable, revisión del instructor y cualquier cambio posterior del código.
+
+
+## 14. Arquitectura y orden de arranque
+
+
+![07_DESPLIEGUE_PROPUESTO](recursos/07_DESPLIEGUE_PROPUESTO.png)
+
+*Nota. Elaboración para el estudio de caso SaborExpress; las figuras no certifican operaciones desplegadas.*
+Primero debe existir un motor relacional de prueba configurado, luego ejecutarse migraciones controladas y después iniciarse la API. Web y móvil necesitan una URL API alcanzable desde su propio entorno; un teléfono no puede usar `localhost` para referirse al servidor de la computadora. Para pruebas de pagos, Wompi utiliza credenciales y URLs sandbox separadas de producción.
+
+## 15. Comandos técnicos versionables y seguros
+
+```powershell
+# Ejecución en una terminal PowerShell con herramientas instaladas.
+git clone https://github.com/yersonct/SaborExpressBack.git
+cd SaborExpressBack
+git rev-parse HEAD
+dotnet restore
+dotnet build -c Release
+# dotnet run  # Ejecutar solo tras configurar DB, JWT y servicios externos.
+cd ..
+git clone https://github.com/yersonct/SaborExpressWeb.git
+cd SaborExpressWeb
+npm ci
+npm run build
+# npm run dev
+cd ..
+git clone https://github.com/yersonct/SaborExpressMovil.git
+cd SaborExpressMovil
+npm ci
+# npm start
+```
+
+**Criterio:** el ejemplo es una guía para reproducir, no una transcripción de comandos ejecutados con éxito. `dotnet ef migrations script` puede generar DDL, pero debe ejecutarse con proveedor correcto y revisar el resultado antes de publicarlo.
+

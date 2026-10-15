@@ -1,6 +1,6 @@
 # Informe final de ingeniería — versión documental
 
-**Proyecto:** SaborExpress  |  **Fecha de corte:** 14 de octubre de 2026  |  **Versión:** 2.0  |  **Tipo:** Documento técnico y académico
+**Proyecto:** SaborExpress | **Autor / integrante:** Yerson Stiven Cuellar Rubiano | **Ficha:** 3145555 | **Fecha:** 14 de octubre de 2026 | **Versión documental:** 4.0
 
 **Estado de la evidencia:** inspección documental y estática del código. Las pruebas de ejecución y los datos institucionales no aportados no se presumen realizados.
 
@@ -121,3 +121,28 @@ Este documento constituye un **informe final de caracterización documental y pr
 - Referencia de presentación: https://github.com/jsgh1/SRD-v1/tree/dev/docs/docs-SRD
 
 **Control documental:** documento elaborado a partir del estado observado en octubre de 2026. Antes de entregar, verificar el commit exacto, responsable, revisión del instructor y cualquier cambio posterior del código.
+
+
+## 12. Entrega académica y anexos del expediente
+
+La entrega se organiza en carpeta 1–11 y carpeta espejo `docs-SaborExpress`, con versiones Markdown editables, DOCX y PDF, diagramas fuente DOT/PNG, colecciones de API y ejemplos operativos. El repositorio de aplicaciones permanece fuera del expediente para evitar mezcla entre documentación y binarios. Las versiones existentes en Git deben preservarse mediante control de cambios y comparación de SHA.
+
+## 13. Resultado documental verificable y pendientes de evidencia
+
+El resultado objetivo de esta entrega es un expediente más completo y navegable, no una calificación de funcionamiento del software. La inspección documenta ASP.NET Core 8, EF Core, JWT, SignalR, Next.js y Expo; entidades, rutas y flujos de alto nivel. Permanecen por validar las mediciones de desempeño, pruebas de pagos, exportación del esquema físico, compilaciones en equipos concretos, usabilidad con participantes y aprobaciones institucionales.
+
+## 14. Diagrama general del sistema
+
+
+![01_CONTEXT0](recursos/01_CONTEXT0.png)
+
+*Nota. Elaboración para el estudio de caso SaborExpress; las figuras no certifican operaciones desplegadas.*
+
+
+![02_COMPONENTES](recursos/02_COMPONENTES.png)
+
+*Nota. Elaboración para el estudio de caso SaborExpress; las figuras no certifican operaciones desplegadas.*
+## 15. Recomendaciones de cierre
+
+1. Congelar SHAs revisados. 2. Acordar motor de datos oficial. 3. Actualizar Swagger contra una compilación. 4. Ejecutar batería funcional y de seguridad. 5. Obtener capturas anonimizadas. 6. Revisar referencias y enlaces DOI. 7. Firmar carátulas y actas solo con personas reales. 8. Presentar resultados medidos y limitaciones en la sustentación.
+

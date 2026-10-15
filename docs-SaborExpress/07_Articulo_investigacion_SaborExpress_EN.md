@@ -1,6 +1,6 @@
 # Architecture and Traceability of a Web and Mobile Platform for Restaurant Operations: A Documentary Case Study of SaborExpress
 
-**Proyecto:** SaborExpress  |  **Fecha de corte:** 14 de octubre de 2026  |  **Versión:** 2.0  |  **Tipo:** Scientific manuscript in English
+**Proyecto:** SaborExpress | **Autor / integrante:** Yerson Stiven Cuellar Rubiano | **Ficha:** 3145555 | **Fecha:** 14 de octubre de 2026 | **Versión documental:** 4.0
 
 **Estado de la evidencia:** inspección documental y estática del código. Las pruebas de ejecución y los datos institucionales no aportados no se presumen realizados.
 
@@ -193,4 +193,30 @@ Venkatesh, V., Morris, M. G., Davis, G. B., & Davis, F. D. (2003). User acceptan
 Wompi. (s. f.). *Documentación para desarrolladores*. https://docs.wompi.co/
 
 Yin, R. K. (2018). *Case study research and applications: Design and methods* (6th ed.). SAGE Publications. https://study.sagepub.com/yin6e
+
+
+
+## Appendix A. Architecture figures and traceable evidence
+
+The following diagrams reconstruct architecture and domain relationships from the project repositories. They are illustrations of source-code inspection, not empirical evidence that the system has been deployed successfully or that business outcomes improved.
+
+
+![01_CONTEXT0](recursos/01_CONTEXT0.png)
+
+*Nota. Elaboración para el estudio de caso SaborExpress; las figuras no certifican operaciones desplegadas.*
+
+
+![06_MODELO_ER](recursos/06_MODELO_ER.png)
+
+*Nota. Elaboración para el estudio de caso SaborExpress; las figuras no certifican operaciones desplegadas.*
+
+
+![09_AISLAMIENTO_ROLES](recursos/09_AISLAMIENTO_ROLES.png)
+
+*Nota. Elaboración para el estudio de caso SaborExpress; las figuras no certifican operaciones desplegadas.*
+## Appendix B. Methodological limitations and future validation
+
+**Construct validity:** an HTTP route documents an application entry point but does not prove complete business behavior. **Internal validity:** no before/after comparison, controlled experiment or field measurement was available, so causal claims about delivery times or customer satisfaction are excluded. **External validity:** findings are limited to this software case and are not generalized to all restaurants. **Reliability:** future researchers can repeat the inspection by freezing repository commits and applying the same evidence classification scheme.
+
+The proposed validation protocol calls for synthetic data, controlled Wompi sandbox transactions, security regression tests, load testing with documented virtual users and latency percentiles, and supervised usability observations with informed consent. Results should be reported only after such tests have actually been carried out.
 

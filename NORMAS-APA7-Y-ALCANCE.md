@@ -1,8 +1,11 @@
-# Normalización APA 7 y límites de la entrega
+# Aplicación de estilo APA 7 y control del alcance
 
-- **Estilo:** Times New Roman 12 puntos para texto académico, márgenes de 2,54 cm, doble espacio en párrafos y referencias, número de página en encabezado. Las tablas se permiten en interlineado sencillo para legibilidad; títulos jerárquicos y pies de figuras se mantienen normalizados.
-- **Referencias:** orden alfabético y sangría francesa; DOI/URL comprobables. Citas autor-año en cuerpo. Existen citas a documentación de software con fecha «s. f.» cuando el sitio no publica una fecha precisa.
-- **Portadas:** se identifica proyecto/fecha; no se inventan nombres de estudiantes, institución, tutor ni código de curso.
-- **Criterio de evidencia:** código inspeccionado = capacidad documental observada; prueba diseñada ≠ prueba ejecutada; bibliografía publicada ≠ resultado propio.
-- **Pendiente de personalización:** completar autores y filiaciones reales, validación de tablas físicas por proveedor SQL, capturas de interfaces reales y pruebas en un ambiente de ejecución. El contenido no equivale a una revisión por pares de una revista ni certificación de software.
-- **Formato de revista:** una plantilla editorial puede exigir columnas, límites de palabras o referencias diferentes; APA 7 se emplea aquí como estilo académico general y la revista de ejemplo es referencia estructural, no plantilla idéntica.
+**Integrante:** Yerson Stiven Cuellar Rubiano · **Ficha:** 3145555 · **Corte:** 14 de octubre de 2026.
+
+Se aplican criterios de presentación académica del modelo APA 7: papel carta, márgenes de 2,54 cm, Times New Roman 12 puntos, interlineado doble en texto de desarrollo académico, paginación, jerarquía de títulos, citas autor–año y lista de referencias con sangría francesa. Tablas y figuras llevan rótulo y nota de origen. Para código y tablas técnicas se usa espaciado compacto por legibilidad; APA no es una norma de diseño de API o bases de datos.
+
+La plantilla de **artículo para revista científica** puede exigir reglas editoriales distintas (dos columnas, extensión máxima, palabras clave específicas y declaración de contribuciones). Por eso estos archivos cumplen el objetivo de expediente académico estilo APA, no la aprobación ni plantilla particular de una revista.
+
+Algunas afiliaciones no fueron proporcionadas (centro, programa, instructor, curso, contacto, ORCID), por lo que no se inventan. En la portada se muestra autor y ficha; completar el resto únicamente con datos reales.
+
+Fuentes de presentación: https://owl.purdue.edu/owl/owl_en_espanol/estilo_APA_7/formato_general.html y https://owl.purdue.edu/owl/research_and_citation/apa_style/apa_formatting_and_style_guide/reference_list_basic_rules.html .

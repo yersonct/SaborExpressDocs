@@ -1,6 +1,6 @@
 # Manual técnico y operación del sistema
 
-**Proyecto:** SaborExpress  |  **Fecha de corte:** 14 de octubre de 2026  |  **Versión:** 2.0  |  **Tipo:** Documento técnico y académico
+**Proyecto:** SaborExpress | **Autor / integrante:** Yerson Stiven Cuellar Rubiano | **Ficha:** 3145555 | **Fecha:** 14 de octubre de 2026 | **Versión documental:** 4.0
 
 **Estado de la evidencia:** inspección documental y estática del código. Las pruebas de ejecución y los datos institucionales no aportados no se presumen realizados.
 
@@ -331,3 +331,63 @@ Los directorios siguientes fueron identificados bajo `Modules/` en el backend. L
 - Referencia de presentación: https://github.com/jsgh1/SRD-v1/tree/dev/docs/docs-SRD
 
 **Control documental:** documento elaborado a partir del estado observado en octubre de 2026. Antes de entregar, verificar el commit exacto, responsable, revisión del instructor y cualquier cambio posterior del código.
+
+
+## 14. Extractos de código verificados y explicación de responsabilidades
+
+### 14.1 Configuración del motor relacional (extracto de archivo real)
+
+El repositorio declara un selector de proveedor que conecta Entity Framework Core con el motor elegido. El fragmento siguiente sintetiza las ramas observadas en `Configuration/DatabaseConfiguration.cs`:
+
+```csharp
+switch (dbProvider)
+{
+    case "MySQL": ConfigurarMySql(options, configuration); break;
+    case "SqlServer": ConfigurarSqlServer(options, configuration); break;
+    case "PostgreSQL": ConfigurarPostgres(options, configuration); break;
+    default: throw new InvalidOperationException(
+        $"Proveedor de base de datos no soportado: {dbProvider}");
+}
+```
+
+Este selector no prueba por sí mismo que las migraciones del proyecto sean portables entre tres motores; esa afirmación exige ejecutar migraciones y CRUD en cada combinación de versiones.
+
+### 14.2 Capa HTTP y dominio de pedidos (fragmento de controlador)
+
+```csharp
+[Authorize]
+[Authorize(Policy = "ActiveShift")]
+[ApiController]
+[Route("api/Orders")]
+public class OrdersController : ControllerBase
+{
+    // POST /api/Orders delega la operación a IOrderService.
+}
+```
+
+Una autorización global por controlador no reemplaza comprobaciones de propiedad de pedido o pertenencia a sucursal. El `OrderService` debe administrar el cálculo final y la consistencia de detalles.
+
+### 14.3 Realtime y tareas en segundo plano
+
+`Program.cs` registra `AddSignalR()` y mapea `NotificationHub` a `/hubs/notifications`. También registra servicios `ShiftReminderBackgroundService`, `KitchenLinkNotifierBackgroundService`, `RoleExpirationBackgroundService` y `WompiPendingPaymentsSyncService`. No debe asumirse entrega garantizada por el solo hecho de emitir un mensaje SignalR. Se requiere reconciliación mediante consulta REST tras reconexión y pruebas de persistencia de notificaciones.
+
+## 15. Diagramas para soporte y mantenimiento
+
+
+![02_COMPONENTES](recursos/02_COMPONENTES.png)
+
+*Nota. Elaboración para el estudio de caso SaborExpress; las figuras no certifican operaciones desplegadas.*
+
+
+![05_SEQUENCE_PAYMENT](recursos/05_SEQUENCE_PAYMENT.png)
+
+*Nota. Elaboración para el estudio de caso SaborExpress; las figuras no certifican operaciones desplegadas.*
+
+
+![09_AISLAMIENTO_ROLES](recursos/09_AISLAMIENTO_ROLES.png)
+
+*Nota. Elaboración para el estudio de caso SaborExpress; las figuras no certifican operaciones desplegadas.*
+## 16. Cuaderno de diagnóstico y despliegue
+
+1. Registrar SHA y entorno. 2. Verificar base de datos con credenciales de mínimo privilegio. 3. Confirmar servicio ASP.NET y configuración de `AllowedOrigins`. 4. Consultar Swagger y logs sin secretos. 5. Verificar 401 y 403 en rutas protegidas. 6. Revisar notificaciones con dos clientes conectados. 7. Verificar Wompi sandbox con referencia y checksum. 8. Registrar incidentes y plan de reversión. Estos pasos son una lista de operación, no resultados de una intervención realizada.
+

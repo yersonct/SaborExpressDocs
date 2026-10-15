@@ -1,24 +1,44 @@
-# SaborExpress — Expediente profesional y académico APA 7
+# SaborExpress — Expediente de ingeniería de software y documentación académica
 
-**Fecha de corte:** 14 de octubre de 2026. **Versión documental:** 3.1. **Base:** `SaborExpressBack`, `SaborExpressWeb`, `SaborExpressMovil` en sus ramas `main` consultadas y estructura modelo `SRD-v1/dev/docs/docs-SRD`.
+![Logo SaborExpress](docs-SaborExpress/recursos/SaborExpress_logo_transparente.png)
 
-## Carpetas
+**Integrante documentado:** Yerson Stiven Cuellar Rubiano  
+**Ficha:** 3145555  
+**Fecha de preparación:** 14 de octubre de 2026  
+**Versión documental:** 4.0 (estudio de caso con pruebas pendientes)
 
-1. `1-project-charter`: acta, objetivos, alcance y gobernanza.
-2. `2-requirements`: SRS, requisitos funcionales/no funcionales y aceptación.
-3. `3-analysis`: actores, flujos y análisis de dominio.
-4. `4-design`: arquitectura actual, decisiones técnicas y diagramas.
-5. `5-database`: diccionario de datos basado en clases y modelo conceptual; SQL físico requiere extracción.
-6. `6-api`: contrato REST inspeccionado y colección Postman inicial.
-7. `7-manuals`: instalación, manual técnico y manual por roles.
-8. `8-testing`: casos de prueba diseñados, sin resultados inventados.
-9. `9-traceability`: matriz, brechas, acciones correctivas y preventivas.
-10. `10-deliverables`: informe y presentación de sustentación.
-11. `11-research`: bibliografía y protocolo de estudio.
-12. `docs-SaborExpress`: serie canónica numerada en Word, PDF y Markdown, siguiendo el ejemplo SRD.
+## Resumen ejecutivo
 
-## Uso correcto de evidencias
+SaborExpress es una plataforma de apoyo a operaciones gastronómicas, organizada en backend ASP.NET Core 8, interfaz administrativa Next.js y aplicación React Native / Expo. Se identifican módulos de sedes, catálogo, personas, pedidos, pagos Wompi, repartos, cocina y notificaciones. El expediente reúne investigación, requisitos, análisis, propuesta, diseño, diccionario de datos, API, manuales, riesgos, protocolos de QA y ejemplos técnicos. Las cifras empíricas no observadas están marcadas como pendientes.
 
-**Observado en código:** ruta/controlador/modelo/paquete identificado. **Propuesto:** mejora, métrica o prueba pendiente. **No demostrado:** despliegue, rendimiento, validación con usuarios, seguridad certificada, aceptación del instructor y conformidad de revista.
+## Organización del expediente
 
-Consulta `NORMAS-APA7-Y-ALCANCE.md`, `MATRIZ-ENTREGA-PROFESIONAL.md` y `COMO-INTEGRAR-Y-SUBIR.md` antes de un commit.
+- `1-project-charter/`: definición, actores, alcance, entregables, riesgos y criterios de aceptación.
+- `2-requirements/`: requisitos funcionales/no funcionales y trazabilidad.
+- `3-analysis/`: negocio, casos de uso, reglas y flujo operativo.
+- `4-design/`: estructura modular, decisiones, diagramas y propuesta.
+- `5-database/`: diccionario y relaciones extraídos de modelos EF Core.
+- `6-api/`: controladores y colección Postman inicial.
+- `7-manuals/`: soporte técnico, instalación y uso por rol.
+- `8-testing/`: plan con criterios y evidencia por completar.
+- `9-traceability/`: mejoras, hallazgos y relación entre requisitos y pruebas.
+- `10-deliverables/`: informe documental y presentación de revisión.
+- `11-research/`: manuscritos científicos, bibliografía, metodología y protocolos.
+- `12-governance/`: riesgos, configuración, ética y privacidad.
+- `13-code-examples/`: comandos, SQL ilustrativo y escenarios de validación.
+- `docs-SaborExpress/`: carpeta espejo de entregables académicos de SRD, incluidos DOCX/PDF/MD.
+- `docs-SaborExpress/recursos/`: logotipo y 10 diagramas con código Graphviz editable.
+
+## Fuentes primarias
+
+- Backend: https://github.com/yersonct/SaborExpressBack
+- Web: https://github.com/yersonct/SaborExpressWeb
+- Móvil: https://github.com/yersonct/SaborExpressMovil
+- Documentación: https://github.com/yersonct/SaborExpressDocs
+- Referencia de estructura: https://github.com/jsgh1/SRD-v1/tree/dev/docs/docs-SRD
+
+## Estado y limitaciones
+
+**Producción, autorización docente, tiempos de respuesta, ejecución de pruebas, seguridad certificada y migraciones multi-proveedor:** NO verificados en este proceso. La documentación describe el código consultado y lo separa de decisiones recomendadas. Los cuatro PDF históricos del repositorio deben conservarse, no eliminarse por sustitución automática.
+
+Para material de presentación consulte `MATRIZ-ENTREGA-PROFESIONAL.md`, `NORMAS-APA7-Y-ALCANCE.md` y `COMO-INTEGRAR-Y-SUBIR.md`. La autoría editorial debe revisarse si hubo más colaboradores; aquí se incluye el integrante informado por el usuario.

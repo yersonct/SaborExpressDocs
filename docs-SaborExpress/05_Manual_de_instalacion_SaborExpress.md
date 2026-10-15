@@ -1,6 +1,6 @@
 # Manual de instalación y configuración
 
-**Proyecto:** SaborExpress  |  **Fecha de corte:** 14 de octubre de 2026  |  **Versión:** 2.0  |  **Tipo:** Documento técnico y académico
+**Proyecto:** SaborExpress | **Autor / integrante:** Yerson Stiven Cuellar Rubiano | **Ficha:** 3145555 | **Fecha:** 14 de octubre de 2026 | **Versión documental:** 4.0
 
 **Estado de la evidencia:** inspección documental y estática del código. Las pruebas de ejecución y los datos institucionales no aportados no se presumen realizados.
 
@@ -190,3 +190,27 @@ Los comandos de ejecución se dejan comentados por seguridad hasta configurar un
 - Referencia de presentación: https://github.com/jsgh1/SRD-v1/tree/dev/docs/docs-SRD
 
 **Control documental:** documento elaborado a partir del estado observado en octubre de 2026. Antes de entregar, verificar el commit exacto, responsable, revisión del instructor y cualquier cambio posterior del código.
+
+
+## 12. Topología y requisitos técnicos
+
+
+![07_DESPLIEGUE_PROPUESTO](recursos/07_DESPLIEGUE_PROPUESTO.png)
+
+*Nota. Elaboración para el estudio de caso SaborExpress; las figuras no certifican operaciones desplegadas.*
+### 12.1 Requisitos por subsistema
+
+**Backend:** SDK .NET 8 para compilación y runtime compatible para ejecución, motor de base de datos relacional habilitado, proveedor elegido en `DatabaseProvider`, cadenas de conexión, claves JWT y permisos de migración restringidos. **Web:** Node.js compatible con Next.js 16, administrador `npm`, acceso al backend y parámetros de ambiente. **Móvil:** Node.js, Expo SDK 57, entorno Android/iOS o development build cuando módulos nativos no funcionen en Expo Go. Validar compatibilidad exacta con los lockfiles; no se certifica soporte en equipos no ensayados.
+
+### 12.2 Verificación posterior
+
+No considerar instalación terminada por ver la consola encendida. Ejecutar autenticación con usuario sintético, consulta catálogo, pedido de prueba no financiero, lectura de detalle por rol, notificación de cambio, consulta de historial y validación de políticas entre sedes. Mantener registros de resultado por paso y nunca habilitar credenciales de pagos reales durante esa verificación.
+
+### 12.3 Problemas frecuentes y acciones
+
+- **Fallo de migración:** comprobar motor seleccionado, versión y permisos; restaurar snapshot de ensayo antes de reintentar.
+- **CORS:** identificar origen real del navegador, exigir política estrecha en producción y no usar `AllowAnyOrigin` con credenciales.
+- **Token vencido:** revisar sincronización horaria y proceso de renovación; no desactivar `Authorize`.
+- **Móvil sin red:** la URL `localhost` de PC no es alcanzable desde el teléfono; configurar hostname/IP y TLS adecuados.
+- **Notificación ausente:** comprobar Hub, proxy websockets, permisos de evento y mecanismo REST de reconciliación.
+

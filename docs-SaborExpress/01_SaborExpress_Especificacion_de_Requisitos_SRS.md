@@ -1,6 +1,6 @@
 # Especificación de requisitos de software (SRS)
 
-**Proyecto:** SaborExpress  |  **Fecha de corte:** 14 de octubre de 2026  |  **Versión:** 2.0  |  **Tipo:** Basada en ISO/IEC/IEEE 29148:2018
+**Proyecto:** SaborExpress | **Autor / integrante:** Yerson Stiven Cuellar Rubiano | **Ficha:** 3145555 | **Fecha:** 14 de octubre de 2026 | **Versión documental:** 4.0
 
 **Estado de la evidencia:** inspección documental y estática del código. Las pruebas de ejecución y los datos institucionales no aportados no se presumen realizados.
 
@@ -616,3 +616,40 @@ La línea base debe identificar hash de cada repositorio, versión de esta SRS, 
 - Referencia de presentación: https://github.com/jsgh1/SRD-v1/tree/dev/docs/docs-SRD
 
 **Control documental:** documento elaborado a partir del estado observado en octubre de 2026. Antes de entregar, verificar el commit exacto, responsable, revisión del instructor y cualquier cambio posterior del código.
+
+
+## 13. Restricciones externas, dependencias y atributos verificables
+
+La aplicación opera con un backend central de ASP.NET Core 8. Las interfaces deben recibir y mostrar el estado real provisto por la API; los clientes no deben asignar importes finales ni autorizar operaciones mediante estados locales. Para una sede, `BranchId` define ámbito operativo y requiere prueba de autorización a nivel de objeto. Un rol válido por sí solo no habilita acceder a pedidos de terceros.
+
+**Interfaces:** JSON sobre HTTP; autenticación bearer para áreas protegidas; canal SignalR identificado en `/hubs/notifications`; proveedor de pagos Wompi; persistencia EF Core; aplicación Next.js y Expo. Si cambian rutas, DTOs o estados, se actualiza simultáneamente OpenAPI, manual técnico, clientes y matriz RF↔prueba.
+
+## 14. Matriz de operaciones / roles para verificar
+
+| Operación | Cliente | Cajero | Cocinero | Repartidor | Gerente / administrador | Consideraciones |
+|---|---|---|---|---|---|---|
+| Ver catálogo público | Permitido según ruta pública | Sí | Sí | Sí | Sí | `GET /api/Products` admite anónimo |
+| Crear un pedido | Propio | Según turno | Según autorización | No previsto | Según permisos | `OrdersController` aplica JWT y política ActiveShift |
+| Cancelar pedido propio | Sí con restricciones | No por la ruta `cancel-mine` | No | No | Gestión separada | Requiere prueba de propiedad y estado |
+| Registrar cobro | No por operación de caja | Sí según backend | No | No | Según permisos | Validar su rol exacto en servicio |
+| Calificar entrega | Solo asociado al reparto | No | No | No | No | Endpoint marcado Cliente |
+| Crear producto | No | No | No | No | Gerente y Administrador | Restricción declarativa en controlador |
+| Crear sede | No | No | No | No | Gerente | `BranchesController` lo limita a Gerente |
+
+*Nota.* Esta tabla es una **matriz de verificación**, no una certificación de autorización. Algunos roles deben contrastarse con `RoleNames` y pruebas de integración.
+
+## 15. Diagramas de alcance funcional
+
+
+![08_CASOS_USO](recursos/08_CASOS_USO.png)
+
+*Nota. Elaboración para el estudio de caso SaborExpress; las figuras no certifican operaciones desplegadas.*
+
+
+![09_AISLAMIENTO_ROLES](recursos/09_AISLAMIENTO_ROLES.png)
+
+*Nota. Elaboración para el estudio de caso SaborExpress; las figuras no certifican operaciones desplegadas.*
+## 16. Plantilla de aceptación por requisito
+
+Cada RF contiene identificador único, definición inequívoca, actor, precondición, disparador, flujo alterno, regla de negocio, dato protegido, dependencia, origen de evidencia, prueba positiva, prueba negativa, prioridad y estado real de validación. Cada RNF requiere atributo medible, ambiente, herramienta, conjunto de datos y umbral que apruebe el responsable. Los criterios que todavía no tienen umbrales acordados se declaran **por definir**, nunca se reemplazan por números arbitrarios.
+

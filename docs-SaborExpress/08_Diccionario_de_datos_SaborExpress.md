@@ -1,6 +1,6 @@
 # Diccionario de datos y modelo relacional
 
-**Proyecto:** SaborExpress  |  **Fecha de corte:** 14 de octubre de 2026  |  **Versión:** 2.0  |  **Tipo:** Documento técnico y académico
+**Proyecto:** SaborExpress | **Autor / integrante:** Yerson Stiven Cuellar Rubiano | **Ficha:** 3145555 | **Fecha:** 14 de octubre de 2026 | **Versión documental:** 4.0
 
 **Estado de la evidencia:** inspección documental y estática del código. Las pruebas de ejecución y los datos institucionales no aportados no se presumen realizados.
 
@@ -312,3 +312,33 @@ La investigación final debe agregar para cada una: descripción, campos y tipos
 - Referencia de presentación: https://github.com/jsgh1/SRD-v1/tree/dev/docs/docs-SRD
 
 **Control documental:** documento elaborado a partir del estado observado en octubre de 2026. Antes de entregar, verificar el commit exacto, responsable, revisión del instructor y cualquier cambio posterior del código.
+
+
+## 12. Relación entre entidades y normas de integridad
+
+
+![06_MODELO_ER](recursos/06_MODELO_ER.png)
+
+*Nota. Elaboración para el estudio de caso SaborExpress; las figuras no certifican operaciones desplegadas.*
+La relación `Order`–`OrderDetail` es uno a muchos; la relación `Order`–`Payment` también es uno a muchos; `Order`–`Delivery` debe revisar cardinalidad real en la configuración EF (no presumir unicidad sin índices). `Product.BranchId` nullable determina alcance global o sede, según interpretación documental de su clase. El importe monetario usa `decimal` en los modelos; el nivel físico de precisión y restricciones se determina desde configuraciones y migraciones, no solo desde el tipo C#.
+
+### 12.1 Controles de datos propuestos
+
+- Índices de consulta: órdenes por `(BranchId, CreatedAt)`, pagos por `(OrderId, Status)` y referencias externas Wompi según patrones medidos. Son **candidatos**, no inventario de índices presentes.
+- Integridad: claves foráneas de detalles, pagos y entregas, unicidad de claves de proveedor de pago donde corresponda, verificación de valores `Quantity > 0`, montos no negativos, estado y transición permitida.
+- Privacidad: documentar retención de `Document`, `Phone`, `Address`, ubicación y CV del empleado; limitar copia de dumps y ejecutar destrucción segura según política.
+- Migraciones: se deben generar desde EF Core con el motor oficial y contrastar el DDL exportado con la BD operativa antes de aprobar un esquema físico.
+
+### 12.2 Ejemplo ilustrativo SQL, NO migración confirmada
+
+```sql
+-- EJEMPLO DIDÁCTICO, NO EJECUTAR SOBRE LA BD EXISTENTE
+-- Nombre real de tablas, comillas, precisión e índices dependen
+-- del proveedor EF y de sus configuraciones actuales.
+SELECT o."Id", o."BranchId", o."Status", o."Total"
+FROM "Orders" AS o
+WHERE o."BranchId" = :branch_id;
+```
+
+La consulta usa una convención PostgreSQL solo como ilustración. No constituye un script portable ni validado para los tres motores declarados.
+

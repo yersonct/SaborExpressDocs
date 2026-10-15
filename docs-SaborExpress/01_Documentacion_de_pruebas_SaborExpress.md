@@ -1,6 +1,6 @@
 # Plan de pruebas, evidencias y aceptación
 
-**Proyecto:** SaborExpress  |  **Fecha de corte:** 14 de octubre de 2026  |  **Versión:** 2.0  |  **Tipo:** Documento técnico y académico
+**Proyecto:** SaborExpress | **Autor / integrante:** Yerson Stiven Cuellar Rubiano | **Ficha:** 3145555 | **Fecha:** 14 de octubre de 2026 | **Versión documental:** 4.0
 
 **Estado de la evidencia:** inspección documental y estática del código. Las pruebas de ejecución y los datos institucionales no aportados no se presumen realizados.
 
@@ -406,3 +406,50 @@ Los pasos detallados convierten el catálogo sintético en una guía reproducibl
 - Referencia de presentación: https://github.com/jsgh1/SRD-v1/tree/dev/docs/docs-SRD
 
 **Control documental:** documento elaborado a partir del estado observado en octubre de 2026. Antes de entregar, verificar el commit exacto, responsable, revisión del instructor y cualquier cambio posterior del código.
+
+
+## 13. Casos críticos con criterio de aceptación y evidencia
+
+| ID | Entrada / contexto | Resultado esperado | Riesgo cubierto | Estado |
+|---|---|---|---|---|
+| QA-SEC-01 | JWT ausente en `POST /api/Orders` | 401 y sin escritura | autenticación | PENDIENTE |
+| QA-SEC-02 | Cliente A lee pedido de cliente B | respuesta negada | BOLA OWASP API1 | PENDIENTE |
+| QA-SEC-03 | Administrador consulta reparto de otra sede | 403 | separación de sedes | PENDIENTE |
+| QA-PAY-01 | Webhook con checksum incorrecto | rechazo y pago intacto | evento falsificado | PENDIENTE |
+| QA-PAY-02 | Webhook válido repetido dos veces | una sola imputación | idempotencia | PENDIENTE |
+| QA-PAY-03 | Wompi pendiente reciente y confirmación manual | operación bloqueada según regla | carrera de cobro | PENDIENTE |
+| QA-ORD-01 | Dos confirmaciones simultáneas de carrito | ausencia de duplicados no deseados | carrera | PENDIENTE |
+| QA-ORD-02 | Precio del catálogo cambia durante el checkout | importe del servidor consistente | manipulación de montos | PENDIENTE |
+| QA-MOV-01 | Interrupción de red al despachar | reintento seguro y estado recuperable | duplicidad por reconexión | PENDIENTE |
+| QA-DB-01 | Migraciones repetidas en motor oficial | persistencia consistente | despliegue | PENDIENTE |
+
+## 14. Ejemplo de ejecución controlada (PowerShell)
+
+```powershell
+# EJEMPLO: entorno sintético; cambie la URL según la API local.
+$BaseUrl = 'http://localhost:5000'
+# Solo consultar un endpoint publico, NO enviar datos reales.
+Invoke-RestMethod -Uri "$BaseUrl/api/Products" -Method Get
+# Para rutas protegidas, obtener primero un JWT de usuario de prueba.
+# No incluir credenciales en archivos ni capturas del instructor.
+```
+
+## 15. Cómo se debe documentar una prueba real
+
+Para cada ejecución registrar fecha UTC y hora local, SHA del backend, web y móvil, sistema operativo, DB y migración, versión del paquete, datos sintéticos usados, pasos exactos, resultado real, HTTP status, duración medida si aplica, evidencia anonimizada, nombre del evaluador y condición PASÓ/NO PASÓ/BLOQUEADO. Mientras estos datos no existan, el resultado es **PENDIENTE** y la cobertura real es **no determinada**.
+
+## 16. Diagramas de integración y control de calidad
+
+
+![10_CICLO_QA](recursos/10_CICLO_QA.png)
+
+*Nota. Elaboración para el estudio de caso SaborExpress; las figuras no certifican operaciones desplegadas.*
+
+
+![09_AISLAMIENTO_ROLES](recursos/09_AISLAMIENTO_ROLES.png)
+
+*Nota. Elaboración para el estudio de caso SaborExpress; las figuras no certifican operaciones desplegadas.*
+## 17. Estrategia para riesgos no funcionales
+
+Se recomienda medir percentiles HTTP p50/p95 bajo una carga explícitamente definida (usuarios virtuales, duración, tamaño de dataset), y documentar tasas de error. Los escenarios de pagos requieren Wompi sandbox, firma comprobable, eventos duplicados y escenarios fuera de orden. Accesibilidad requiere revisión de teclado, etiquetas y contraste; móvil requiere ensayos en dispositivos y emuladores reales. Ninguno de esos resultados se declara alcanzado en esta entrega documental.
+

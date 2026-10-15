@@ -1,6 +1,6 @@
 # Propuesta técnica y plan de solución
 
-**Proyecto:** SaborExpress  |  **Fecha de corte:** 14 de octubre de 2026  |  **Versión:** 2.0  |  **Tipo:** Documento técnico y académico
+**Proyecto:** SaborExpress | **Autor / integrante:** Yerson Stiven Cuellar Rubiano | **Ficha:** 3145555 | **Fecha:** 14 de octubre de 2026 | **Versión documental:** 4.0
 
 **Estado de la evidencia:** inspección documental y estática del código. Las pruebas de ejecución y los datos institucionales no aportados no se presumen realizados.
 
@@ -174,3 +174,26 @@ Los riesgos principales son dependencia de un integrador de pagos, cambios contr
 - Referencia de presentación: https://github.com/jsgh1/SRD-v1/tree/dev/docs/docs-SRD
 
 **Control documental:** documento elaborado a partir del estado observado en octubre de 2026. Antes de entregar, verificar el commit exacto, responsable, revisión del instructor y cualquier cambio posterior del código.
+
+
+## 17. Topología recomendada y decisiones justificadas
+
+La arquitectura identificada es un **backend modular**; no hay evidencia de que sea una arquitectura de microservicios desplegados por separado. Mantenerla permite aprovechar controladores, módulos y contexto de EF Core sin una migración de alto costo. Se recomienda aislar las dependencias externas detrás de interfaces, practicar autorización por operación y entidad, centralizar contratos OpenAPI y efectuar migraciones de manera controlada.
+
+**Despliegue sugerido:** cliente web Next.js, API .NET 8, motor relacional privado, terminación TLS, backup probado, logs centralizados y servicio Wompi externo. No se fija región, presupuesto ni proveedor sin cotizaciones y decisión formal. Para Node y Expo se recomienda una matriz de versiones derivada de package-lock y herramientas realmente instaladas.
+
+## 18. Diagramas de soluciones
+
+
+![02_COMPONENTES](recursos/02_COMPONENTES.png)
+
+*Nota. Elaboración para el estudio de caso SaborExpress; las figuras no certifican operaciones desplegadas.*
+
+
+![07_DESPLIEGUE_PROPUESTO](recursos/07_DESPLIEGUE_PROPUESTO.png)
+
+*Nota. Elaboración para el estudio de caso SaborExpress; las figuras no certifican operaciones desplegadas.*
+## 19. Criterios de adquisición y costo total de propiedad
+
+Las ofertas de hosting se comparan por disponibilidad, costo de renovación, ancho de banda, soporte TLS, backups, residencia de datos, recursos de CPU/RAM, latencia, costo por transacción de pagos y soporte requerido. El costo total de propiedad incluye licencias si aplican, horas de ingeniería, monitoreo, incidentes, backups, dominio y cambios regulatorios. Las tarifas de proveedores fluctúan: una captura de precio no es presupuesto vigente.
+

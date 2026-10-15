@@ -1,6 +1,6 @@
 # Catálogo de API y contratos de integración
 
-**Proyecto:** SaborExpress  |  **Fecha de corte:** 14 de octubre de 2026  |  **Versión:** 2.0  |  **Tipo:** Documento técnico y académico
+**Proyecto:** SaborExpress | **Autor / integrante:** Yerson Stiven Cuellar Rubiano | **Ficha:** 3145555 | **Fecha:** 14 de octubre de 2026 | **Versión documental:** 4.0
 
 **Estado de la evidencia:** inspección documental y estática del código. Las pruebas de ejecución y los datos institucionales no aportados no se presumen realizados.
 
@@ -751,3 +751,42 @@ Los ejemplos ilustran rutas y headers, no prueban que el backend acepte esos cue
 - Referencia de presentación: https://github.com/jsgh1/SRD-v1/tree/dev/docs/docs-SRD
 
 **Control documental:** documento elaborado a partir del estado observado en octubre de 2026. Antes de entregar, verificar el commit exacto, responsable, revisión del instructor y cualquier cambio posterior del código.
+
+
+## 12. Ejemplos de integración por cliente y controles esperados
+
+### 12.1 Consulta de productos públicos
+
+```bash
+# API local ilustrativa: el puerto se obtiene de la consola real.
+curl -i 'http://localhost:5000/api/Products?branchId=1'
+```
+
+El controlador permite consulta anónima, con filtro opcional por sede. Requiere verificar que la respuesta no filtre campos administrativos sensibles y que la sede exista.
+
+### 12.2 Creación autenticada de pedido
+
+```http
+POST /api/Orders HTTP/1.1
+Host: localhost:5000
+Authorization: Bearer {TOKEN_DE_PRUEBA}
+Content-Type: application/json
+
+{ "EJEMPLO_DE_CONTRATO": "El cuerpo debe obtenerse desde CreateOrderDto del SHA revisado" }
+```
+
+El cuerpo anterior **no es un payload funcional**: documenta la necesidad de consultar `Modules/Orders/DTOs/CreateOrderDto.cs` antes de enviar solicitudes reales. No se inventan nombres de propiedades ni casos aprobados.
+
+### 12.3 Inicio y confirmación Wompi
+
+`POST /api/Payments/wompi/init` solicita inicialización; `POST /api/Payments/wompi/webhook` recibe un evento externo e incluye lectura de cuerpo crudo y `X-Event-Checksum`; `POST /api/Payments/{id}/wompi-sync` admite reconciliación. No publicar códigos 200 como éxito de transacción si el servicio aún no ha verificado integridad, referencia y monto. En Postman se deben usar **sandbox y datos sintéticos**.
+
+## 13. Reglas del catálogo profesional
+
+Cada endpoint debe conservar: método, URL, versión, descripción, actor, permisos, DTO request, ejemplo auténtico, response, tabla de códigos HTTP, errores de dominio, idempotencia, limitaciones de seguridad, evento emitido, caso QA y estado de ejecución. El controlador no basta para completar todos los esquemas de DTO; se requiere exportación Swagger versionada.
+
+
+![05_SEQUENCE_PAYMENT](recursos/05_SEQUENCE_PAYMENT.png)
+
+*Nota. Elaboración para el estudio de caso SaborExpress; las figuras no certifican operaciones desplegadas.*
+

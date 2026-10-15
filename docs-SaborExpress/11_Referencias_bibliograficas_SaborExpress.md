@@ -1,5 +1,7 @@
 # Referencias bibliográficas verificadas — SaborExpress
 
+**Integrante:** Yerson Stiven Cuellar Rubiano · **Ficha:** 3145555 · **Fecha:** 14 de octubre de 2026.
+
 **Sistema de citación:** APA 7. Las referencias se ordenan alfabéticamente; los DOI y URL se vinculan a fuentes originales. Fecha de corte: 14 de octubre de 2026.
 
 Davis, F. D. (1989). Perceived usefulness, perceived ease of use, and user acceptance of information technology. *MIS Quarterly, 13*(3), 319–340. https://doi.org/10.2307/249008
@@ -61,3 +63,11 @@ Yin, R. K. (2018). *Case study research and applications: Design and methods* (6
 ## Nota sobre alcance
 
 Las referencias proporcionan sustento teórico/metodológico y normativo; sus hallazgos no son métricas generadas por SaborExpress. La revisión bibliográfica es dirigida, no una revisión sistemática PRISMA.
+
+
+## Criterios de calidad de las fuentes
+
+**Literatura académica:** utilizar DOI y metadatos de revista verificables y evitar citas inventadas. **Normas técnicas:** citar la versión y fecha exacta, por ejemplo ISO/IEC/IEEE 29148:2018 e ISO/IEC 25010:2023. **Fuentes primarias:** los repositorios SaborExpress son materiales de estudio, no evidencia de uso productivo. **Metadatos pendientes:** donde no se conozcan todos los autores, se indica por revisar y se evita presentarlo como una ficha APA definitivamente validada. **APA 7:** cada cita textual o parafraseada debe corresponder a una entrada bibliográfica con URL persistente, DOI cuando exista y sangría francesa.
+
+Normas de consulta contrastadas: https://owl.purdue.edu/owl/owl_en_espanol/estilo_APA_7/formato_general.html ; https://www.iso.org/standard/72089.html ; https://www.iso.org/standard/78176.html ; https://api-security.owasp.org/editions/2023/en/0x00-header/ .
+

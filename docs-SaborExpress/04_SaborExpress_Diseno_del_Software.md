@@ -1,6 +1,6 @@
 # Diseño y arquitectura del software
 
-**Proyecto:** SaborExpress  |  **Fecha de corte:** 14 de octubre de 2026  |  **Versión:** 2.0  |  **Tipo:** Documento técnico y académico
+**Proyecto:** SaborExpress | **Autor / integrante:** Yerson Stiven Cuellar Rubiano | **Ficha:** 3145555 | **Fecha:** 14 de octubre de 2026 | **Versión documental:** 4.0
 
 **Estado de la evidencia:** inspección documental y estática del código. Las pruebas de ejecución y los datos institucionales no aportados no se presumen realizados.
 
@@ -160,3 +160,52 @@ Topología de desarrollo o producción propuesta: reverse proxy HTTPS; frontend 
 - Referencia de presentación: https://github.com/jsgh1/SRD-v1/tree/dev/docs/docs-SRD
 
 **Control documental:** documento elaborado a partir del estado observado en octubre de 2026. Antes de entregar, verificar el commit exacto, responsable, revisión del instructor y cualquier cambio posterior del código.
+
+
+## 15. Diagramas de diseño arquitectónico
+
+
+![02_COMPONENTES](recursos/02_COMPONENTES.png)
+
+*Nota. Elaboración para el estudio de caso SaborExpress; las figuras no certifican operaciones desplegadas.*
+
+
+![06_MODELO_ER](recursos/06_MODELO_ER.png)
+
+*Nota. Elaboración para el estudio de caso SaborExpress; las figuras no certifican operaciones desplegadas.*
+
+
+![04_SEQUENCE_ORDER](recursos/04_SEQUENCE_ORDER.png)
+
+*Nota. Elaboración para el estudio de caso SaborExpress; las figuras no certifican operaciones desplegadas.*
+
+
+![05_SEQUENCE_PAYMENT](recursos/05_SEQUENCE_PAYMENT.png)
+
+*Nota. Elaboración para el estudio de caso SaborExpress; las figuras no certifican operaciones desplegadas.*
+
+
+![09_AISLAMIENTO_ROLES](recursos/09_AISLAMIENTO_ROLES.png)
+
+*Nota. Elaboración para el estudio de caso SaborExpress; las figuras no certifican operaciones desplegadas.*
+## 16. Patrones de diseño y justificación
+
+**Arquitectura modular en capas:** ASP.NET Core recibe solicitudes en Controllers; las interfaces y Services gestionan reglas de negocio; Repositories y `DbContext` encapsulan consultas y cambios persistentes. Esta división permite pruebas unitarias sobre servicios con repositorios simulados y pruebas de integración sobre EF Core real. Es incorrecto caracterizar toda la aplicación como microservicios si solo hay un ejecutable API.
+
+**DTO y validadores:** los mensajes externos no deberían exponer todas las propiedades persistentes. `CreateOrderDto`, `UpdateOrderStatusDto` y `InitWompiPaymentDto` son contratos con escenarios de validación diferenciados. El cliente transmite intención; el backend calcula montos y verifica permisos. En particular, el DTO de entrada no debe ser confiable para fijar el importe final.
+
+**Consistencia:** operaciones compuestas pedido–detalle, pago–pedido y asignación–reparto pueden requerir transacciones. Las señales SignalR se publican después de persistir, o con un mecanismo de salida confiable si la operación lo requiere. La presencia de SignalR en Program.cs no equivale a un bus de eventos confiable.
+
+**Arquitectura evolutiva:** exportar OpenAPI en pipeline CI, agregar versiones explícitas a eventos de notificaciones, registrar cambios incompatibles y garantizar convivencia de móviles que tardan en actualizarse.
+
+## 17. Atributos de calidad y decisiones
+
+| Calidad | Decisión | Evidencia de verificación que falta |
+|---|---|---|
+| Seguridad | Verificación JWT+rol+recurso+turno | Pruebas 401/403, acceso entre sedes |
+| Confiabilidad | Persistir antes de notificar | Falla de red durante la transacción |
+| Mantenibilidad | Separar HTTP, servicios y datos | Cobertura de pruebas y métricas |
+| Rendimiento | Paginación e índices por sede/fecha | EXPLAIN y cargas reales |
+| Compatibilidad | Contratos estables para web y móvil | Pactos de API y pruebas regresión |
+| Observabilidad | Correlación de solicitud y evento Wompi | Dashboard y trazas de integración |
+

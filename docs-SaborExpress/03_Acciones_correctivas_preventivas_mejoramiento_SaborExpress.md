@@ -1,6 +1,6 @@
 # Acciones correctivas, preventivas y plan de mejoramiento
 
-**Proyecto:** SaborExpress  |  **Fecha de corte:** 14 de octubre de 2026  |  **Versión:** 2.0  |  **Tipo:** Documento técnico y académico
+**Proyecto:** SaborExpress | **Autor / integrante:** Yerson Stiven Cuellar Rubiano | **Ficha:** 3145555 | **Fecha:** 14 de octubre de 2026 | **Versión documental:** 4.0
 
 **Estado de la evidencia:** inspección documental y estática del código. Las pruebas de ejecución y los datos institucionales no aportados no se presumen realizados.
 
@@ -155,3 +155,27 @@ Documentar decisiones arquitectónicas por SHA; automatizar validación del inve
 - Referencia de presentación: https://github.com/jsgh1/SRD-v1/tree/dev/docs/docs-SRD
 
 **Control documental:** documento elaborado a partir del estado observado en octubre de 2026. Antes de entregar, verificar el commit exacto, responsable, revisión del instructor y cualquier cambio posterior del código.
+
+
+## 14. Registro de problemas, acciones y responsables por asignar
+
+| ID | Hallazgo derivado de inspección | Acción correctiva/preventiva | Evidencia de cierre esperada | Estado |
+|---|---|---|---|---|
+| AC-01 | README anterior describe Supabase como backend | Actualizar arquitectura a ASP.NET Core 8 + EF | README y manual técnico consistentes | DOCUMENTAL |
+| AC-02 | No hay evidencia de pruebas automatizadas en inventario revisado | Crear suite de contrato e integración | CI con reportes verificables | PENDIENTE |
+| AC-03 | Webhook accesible anónimamente por diseño | Verificar integridad del evento, referencia y monto | suite Wompi sandbox adversarial | PENDIENTE |
+| AC-04 | `MigrateAsync` ocurre en arranque de API | Separar migración controlada en producción | despliegue y restauración ensayados | PENDIENTE |
+| AC-05 | Proveedores DB configurables | Formalizar motor primario y compatibilidad | matriz CRUD/migración por motor | PENDIENTE |
+| AC-06 | Distintos clientes consumen misma API | Control de versiones de contratos | pruebas de compatibilidad | PENDIENTE |
+| AC-07 | Datos geográficos y de entrega | Evaluar privacidad y retención | política aprobada y prueba acceso | PENDIENTE |
+| AC-08 | Documentación anterior contenía archivos vacíos | Conservar expedientes desarrollados y originales | inventario sin vacíos ni bajas no revisadas | DOCUMENTAL |
+
+## 15. Análisis de causa raíz y verificación de eficacia
+
+Toda no conformidad debe registrar fecha, identificador, evidencia y riesgo de continuidad. Usar los cinco porqués o diagrama causal con participantes reales, documentando hechos y no suposiciones. La acción correctiva debe demostrar que la causa fue tratada (por ejemplo, pruebas idempotentes de doble webhook), mientras una acción preventiva verifica que otras rutas del mismo dominio cumplen la regla. Sin test de regresión y aprobación, el caso sigue abierto.
+
+
+![10_CICLO_QA](recursos/10_CICLO_QA.png)
+
+*Nota. Elaboración para el estudio de caso SaborExpress; las figuras no certifican operaciones desplegadas.*
+

@@ -1,6 +1,6 @@
 # Manual de usuario final por rol
 
-**Proyecto:** SaborExpress  |  **Fecha de corte:** 14 de octubre de 2026  |  **Versión:** 2.0  |  **Tipo:** Documento técnico y académico
+**Proyecto:** SaborExpress | **Autor / integrante:** Yerson Stiven Cuellar Rubiano | **Ficha:** 3145555 | **Fecha:** 14 de octubre de 2026 | **Versión documental:** 4.0
 
 **Estado de la evidencia:** inspección documental y estática del código. Las pruebas de ejecución y los datos institucionales no aportados no se presumen realizados.
 
@@ -270,3 +270,27 @@ Cierre sesión en dispositivos compartidos. No fotografíe claves, códigos de r
 - Referencia de presentación: https://github.com/jsgh1/SRD-v1/tree/dev/docs/docs-SRD
 
 **Control documental:** documento elaborado a partir del estado observado en octubre de 2026. Antes de entregar, verificar el commit exacto, responsable, revisión del instructor y cualquier cambio posterior del código.
+
+
+## 13. Guía de tareas por perfil y controles de errores
+
+**Cliente:** entrar al catálogo, escoger sede, revisar productos y precios, confirmar unidades y tipo de pedido, revisar dirección de entrega si procede, consultar el importe antes de confirmar y esperar respuesta con identificador. Si se presenta fallo de red, consultar historial antes de intentar otra compra para no crear duplicados. Para pago Wompi, no compartir claves ni repetir el enlace indiscriminadamente; la confirmación de la pasarela debe reflejarse en el estado que entrega el sistema.
+
+**Cajero:** iniciar sesión y comprobar turno vigente cuando corresponda, consultar pedidos activos, registrar cobro permitido, verificar estado y comprobante, no marcar manualmente como pagado un pedido con intento Wompi pendiente y revisar resumen de turno. Ante pago dudoso, escalar a gerente, no alterar valores en el cliente.
+
+**Cocina:** visualizar tablero asociado a sede, seleccionar pedido, comprobar estado de detalle, registrar preparación según permisos y revisar que no existan duplicados del mismo pedido. Ante una desconexión, reabrir estado persistente antes de repetir una acción.
+
+**Repartidor:** consultar asignaciones visibles, confirmar dirección autorizada, actualizar únicamente entregas propias, respetar los estados disponibles y solicitar apoyo si la información de pedido no coincide con la asignación. La ubicación, cuando se utilice, se trata conforme a la política de privacidad de la institución.
+
+**Gerente/administrador:** ingresar al panel web, administrar sedes, productos y empleados según rol, aplicar cambios fuera de horarios críticos, revisar avisos de cambios y garantizar que los permisos concedidos sean mínimos. No registrar datos personales de producción durante demostraciones.
+
+## 14. Mapa visual de tareas
+
+
+![08_CASOS_USO](recursos/08_CASOS_USO.png)
+
+*Nota. Elaboración para el estudio de caso SaborExpress; las figuras no certifican operaciones desplegadas.*
+## 15. Guía de accesibilidad y ayuda
+
+En tareas importantes, presentar mensajes claros y recuperables, evitar depender exclusivamente de color, confirmar acciones irreversibles, disponer navegación táctil accesible y mantener tamaño de texto apropiado. La guía describe el comportamiento deseado de la interfaz; se requiere contraste con pantallas reales para afirmar que cada criterio se cumple.
+

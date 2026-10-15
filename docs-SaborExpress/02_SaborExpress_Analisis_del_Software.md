@@ -1,6 +1,6 @@
 # Análisis del software SaborExpress
 
-**Proyecto:** SaborExpress  |  **Fecha de corte:** 14 de octubre de 2026  |  **Versión:** 2.0  |  **Tipo:** Documento técnico y académico
+**Proyecto:** SaborExpress | **Autor / integrante:** Yerson Stiven Cuellar Rubiano | **Ficha:** 3145555 | **Fecha:** 14 de octubre de 2026 | **Versión documental:** 4.0
 
 **Estado de la evidencia:** inspección documental y estática del código. Las pruebas de ejecución y los datos institucionales no aportados no se presumen realizados.
 
@@ -269,3 +269,39 @@ La viabilidad técnica se fundamenta en proyectos existentes con tecnologías de
 - Referencia de presentación: https://github.com/jsgh1/SRD-v1/tree/dev/docs/docs-SRD
 
 **Control documental:** documento elaborado a partir del estado observado en octubre de 2026. Antes de entregar, verificar el commit exacto, responsable, revisión del instructor y cualquier cambio posterior del código.
+
+
+## 14. Contexto, actores y reglas de colaboración
+
+Se identifican cinco grupos operativos y un proveedor de pagos. Cliente efectúa exploración y pedido; personal de caja realiza pagos y cierres; cocina necesita un tablero de preparación que permanezca consistente con los estados; repartidor consulta asignaciones permitidas; gerente/administrador mantiene recursos y personal por sucursal. La pasarela externa no sustituye el registro financiero local: responde a los intentos iniciados por la API y notifica estados cuya procedencia debe validarse.
+
+El análisis diferencia los canales **consumo en mesa**, **recogida** y **entrega a domicilio** inferidos de `OrderType`, campos opcionales de dirección y mesa, y notas del modelo. Los valores precisos del enum deben revisarse antes de publicar pantallas o flujos que dependan de nombres literales.
+
+## 15. Casos de uso desarrollados: compra, cobro y despacho
+
+**CU-01 Crear pedido:** actor cliente/cajero. Entrada: artículos existentes, unidades positivas, sede seleccionada y canal. Camino básico: seleccionar sede, consultar productos permitidos, conformar carrito, revisar dirección o mesa, enviar DTO y mostrar identificador. Alternos: producto fuera de catálogo, dirección faltante para domicilio, sesión vencida, turno inactivo, doble clic de confirmación. Postcondición: pedido único con detalle coherente y estado inicial recuperable mediante API. Riesgo a cubrir: carrera de precio entre consulta y compra.
+
+**CU-02 Pago digital:** actor cliente y servicio externo Wompi. Precondición: pedido y monto validado en backend. Camino: inicialización de referencia y transacción, interacción segura con pasarela, recepción del evento, verificación de integridad, conciliación con monto y referencia, modificación transaccional del pago y estado visible. Alternos: cancelación externa, expiración, webhook duplicado, diferencia de monto, falla de conexión, resincronización. Postcondición: ningún pago duplicado por repetir el evento.
+
+**CU-03 Reparto:** actor administrador y repartidor. Precondición: pedido apto para entregar y repartidor disponible. Camino: asignación controlada, consulta del envío correspondiente, cambio autorizado de estado, registro de entrega y calificación de cliente. Alternos: otro repartidor intenta operar, cambio de sede, ruta desactualizada, anulación y reconexión del dispositivo. Postcondición: la historia del pedido y del reparto permanecen consistentes.
+
+## 16. Diagramas de casos de uso y transición
+
+
+![01_CONTEXT0](recursos/01_CONTEXT0.png)
+
+*Nota. Elaboración para el estudio de caso SaborExpress; las figuras no certifican operaciones desplegadas.*
+
+
+![08_CASOS_USO](recursos/08_CASOS_USO.png)
+
+*Nota. Elaboración para el estudio de caso SaborExpress; las figuras no certifican operaciones desplegadas.*
+
+
+![03_FLUJO_PEDIDO](recursos/03_FLUJO_PEDIDO.png)
+
+*Nota. Elaboración para el estudio de caso SaborExpress; las figuras no certifican operaciones desplegadas.*
+## 17. Políticas analíticas para los flujos críticos
+
+Se recomienda definir por escrito los invariantes operativos: un `OrderDetail` pertenece a exactamente un `Order`; un `Payment` pertenece a un pedido determinado; una `Delivery` referencia orden, dirección y empleado; un producto global (BranchId nulo) tiene semántica diferente de uno ligado a sede. Cada cambio financiero requiere correlación inequívoca con referencia externa e identidad interna. La limpieza o modificación histórica no debe destruir trazabilidad necesaria para auditoría.
+

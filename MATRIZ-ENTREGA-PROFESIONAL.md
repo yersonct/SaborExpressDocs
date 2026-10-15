@@ -1,31 +1,26 @@
-# Matriz de entrega profesional — SaborExpress
+# Matriz de entregables SaborExpress
 
-**Corte documental:** 14-10-2026. **Versión:** 3.0. **Límites:** revisión estática de repositorios y referencias oficiales; no se adjuntan datos de producción ni resultados experimentales ficticios.
+**Autor:** Yerson Stiven Cuellar Rubiano; ficha 3145555; 14 de octubre de 2026.
 
-## Alcance y documentación
+| Entregable | Archivo fuente | Formatos | Estado del documento | Pendiente de sistema |
+|---|---|---|---|---|
+| 00 Acta constitucion SaborExpress | `docs-SaborExpress/00_Acta_constitucion_SaborExpress.md` | MD, DOCX, PDF | redacción y edición académica | validar evidencia práctica cuando proceda |
+| 01 SaborExpress Especificacion de Requisitos SRS | `docs-SaborExpress/01_SaborExpress_Especificacion_de_Requisitos_SRS.md` | MD, DOCX, PDF | redacción y edición académica | validar evidencia práctica cuando proceda |
+| 02 SaborExpress Analisis del Software | `docs-SaborExpress/02_SaborExpress_Analisis_del_Software.md` | MD, DOCX, PDF | redacción y edición académica | validar evidencia práctica cuando proceda |
+| 03 SaborExpress Propuesta Tecnica | `docs-SaborExpress/03_SaborExpress_Propuesta_Tecnica.md` | MD, DOCX, PDF | redacción y edición académica | validar evidencia práctica cuando proceda |
+| 04 SaborExpress Diseno del Software | `docs-SaborExpress/04_SaborExpress_Diseno_del_Software.md` | MD, DOCX, PDF | redacción y edición académica | validar evidencia práctica cuando proceda |
+| 01 Documentacion de pruebas SaborExpress | `docs-SaborExpress/01_Documentacion_de_pruebas_SaborExpress.md` | MD, DOCX, PDF | redacción y edición académica | validar evidencia práctica cuando proceda |
+| 02 Procedimiento de implementacion SaborExpress | `docs-SaborExpress/02_Procedimiento_de_implementacion_SaborExpress.md` | MD, DOCX, PDF | redacción y edición académica | validar evidencia práctica cuando proceda |
+| 03 Acciones correctivas preventivas mejoramiento SaborExpress | `docs-SaborExpress/03_Acciones_correctivas_preventivas_mejoramiento_SaborExpress.md` | MD, DOCX, PDF | redacción y edición académica | validar evidencia práctica cuando proceda |
+| 04 Manual tecnico SaborExpress | `docs-SaborExpress/04_Manual_tecnico_SaborExpress.md` | MD, DOCX, PDF | redacción y edición académica | validar evidencia práctica cuando proceda |
+| 05 Manual de instalacion SaborExpress | `docs-SaborExpress/05_Manual_de_instalacion_SaborExpress.md` | MD, DOCX, PDF | redacción y edición académica | validar evidencia práctica cuando proceda |
+| 06 Manual de usuario final SaborExpress | `docs-SaborExpress/06_Manual_de_usuario_final_SaborExpress.md` | MD, DOCX, PDF | redacción y edición académica | validar evidencia práctica cuando proceda |
+| 07 Articulo investigacion SaborExpress ES | `docs-SaborExpress/07_Articulo_investigacion_SaborExpress_ES.md` | MD, DOCX, PDF | redacción y edición académica | validar evidencia práctica cuando proceda |
+| 07 Articulo investigacion SaborExpress EN | `docs-SaborExpress/07_Articulo_investigacion_SaborExpress_EN.md` | MD, DOCX, PDF | redacción y edición académica | validar evidencia práctica cuando proceda |
+| 08 Diccionario de datos SaborExpress | `docs-SaborExpress/08_Diccionario_de_datos_SaborExpress.md` | MD, DOCX, PDF | redacción y edición académica | validar evidencia práctica cuando proceda |
+| 09 Catalogo de API SaborExpress | `docs-SaborExpress/09_Catalogo_de_API_SaborExpress.md` | MD, DOCX, PDF | redacción y edición académica | validar evidencia práctica cuando proceda |
+| 10 Informe final SaborExpress | `docs-SaborExpress/10_Informe_final_SaborExpress.md` | MD, DOCX, PDF | redacción y edición académica | validar evidencia práctica cuando proceda |
+| 11 Referencias bibliograficas SaborExpress | `docs-SaborExpress/11_Referencias_bibliograficas_SaborExpress.md` | MD, DOCX, PDF | redacción y edición académica | validar evidencia práctica cuando proceda |
+| 12 Atlas de diagramas SaborExpress | `docs-SaborExpress/12_Atlas_de_diagramas_SaborExpress.md` | MD, DOCX, PDF | redacción y edición académica | validar evidencia práctica cuando proceda |
 
-| Expediente | Contenido sustancial | Evidencia / estado |
-|---|---|---|
-| Acta de constitución | alcance, límites, interesados, hitos, éxito, aceptación | requisitos nominativos por firmar |
-| SRS | 25 RF individualizados; 15 RNF; criterios, negativos, trazabilidad | criterios propuestos / pruebas pendientes |
-| Análisis | 14 CU completos; roles, reglas, escenarios excepcionales, viabilidad | derivado de puntos de entrada conocidos |
-| Propuesta técnica | alternativas, fases, costos por cotizar, matriz de riesgos | sin presupuesto arbitrario |
-| Diseño | 5 vistas, 6 ADR, secuencias, seguridad, despliegue propuesto | plano de producción pendiente |
-| Diccionario de datos | 8 entidades inspeccionadas y 16 relaciones; guía de extracción física | DDL física pendiente |
-| API | 52 operaciones inspeccionadas y sus fichas; tokens y Wompi | OpenAPI exportado pendiente |
-| QA | 38 pruebas descritas, plan de observabilidad, criterios de cierre | **ninguna prueba marcada aprobada** |
-| Implementación | pasos, matrices de compatibilidad, preflight, reversión | ejecución pendiente |
-| Manuales | 16 guías por rol, instalación por componente, soporte técnico | capturas de pantallas pendientes |
-| CAPA | 10 riesgos y acciones, prevención, seguimiento | revisión y ejecución pendientes |
-| Investigación | artículo español e inglés con metodología, resultados documentales, discusión | necesita autoría, evaluación editorial y posible investigación de campo |
-
-## Convenciones de evidencia
-
-- **Observado en código:** un archivo, modelo, ruta o dependencia está presente en el repo inspeccionado.
-- **Derivado:** una consecuencia lógica de una estructura o operación; debe confirmarse en ejecución.
-- **Propuesto:** un protocolo, umbral, mejora o planificación; no se atribuye al producto como capacidad probada.
-- **Pendiente:** falta certificado, ensayo, captura, fecha, aprobador, métricas o DDL.
-
-## Seguridad de la integración Git
-
-Conservar PDF históricos originales del repositorio. Copiar solo los archivos de este ZIP a la raíz del clon local, revisar `git status` y `git diff --cached --name-status` antes de un commit. El ZIP no crea commits ni altera el origen.
+**QA:** no se afirma ejecución de pruebas. **Autoría:** pendiente validar colaboradores/firmas institucionales. **Bibliografía:** revisar metadatos editoriales incompletos antes de publicar en revista. **PDF anteriores:** conservar los archivos históricos SENA en la rama Git.
