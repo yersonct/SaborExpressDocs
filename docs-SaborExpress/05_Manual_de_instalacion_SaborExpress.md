@@ -82,6 +82,106 @@ Usar ambiente sandbox y llaves de prueba; validar firmas de eventos mediante el 
 
 Detener procesos; respaldar BD y archivos según política; eliminar instalaciones de prueba después de garantizar recuperabilidad. Nunca ejecutar eliminación de volúmenes o base productiva como procedimiento genérico.
 
+
+## 8. Instalación reproducible por componente
+
+| Etapa | Comando o actividad | Resultado esperado |
+| --- | --- | --- |
+| Comprobar herramientas | `dotnet --info`; `node --version`; `npm --version`; `git --version` | Revisar versión SDK .NET 8, Node compatible con Next.js 16, Git y herramientas móviles. |
+| Obtener repositorios | `git clone https://github.com/yersonct/SaborExpressBack.git` y sus equivalentes Web/Movil | Guardar SHA reproducible con git rev-parse HEAD. |
+| Restaurar API | `cd SaborExpressBack`; `dotnet restore SaborExpress.csproj` | Sin requerir conexión a BD para restaurar paquetes. |
+| Compilar API | `dotnet build SaborExpress.csproj -c Release` | Compilación sin errores; no equivale a prueba funcional. |
+| Preparar base de datos | crear BD/usuario con privilegios mínimos e inyectar ConnectionStrings | Proveedor oficial de desarrollo debe coincidir con DatabaseProvider. |
+| Ejecutar API | `dotnet run --project SaborExpress.csproj` | Consultar URL y puerto de consola, abrir Swagger en raíz si configuración lo permite. |
+| Restaurar web | `cd SaborExpressWeb`; `npm ci` | Dependencias iguales a package-lock. |
+| Compilar web | `npm run build` | Validar variables de API y route protection. |
+| Iniciar web | `npm run dev` | Url mostrada por consola; por defecto Next suele utilizar localhost:3000, verificar. |
+| Restaurar móvil | `cd SaborExpressMovil`; `npm ci` | Acordar Node/SDK con versiones Expo declaradas. |
+| Iniciar móvil | `npm start` o `npx expo start` | Elegir emulador/dispositivo según SDK requerido; URL API accesible. |
+| Verificar funcionalidad | inspeccionar Swagger, crear cliente sintético y consultar catálogo | No usar datos ni pagos de producción en prueba. |
+
+
+## 9. Configuración de ambiente de forma segura
+
+**API:** seleccionar proveedor `DatabaseProvider` (`MySQL`, `SqlServer` o `PostgreSQL`) y la cadena correspondiente (`MySQLConnection`, `SqlServerConnection`, `PostgresConnection`). Revisar además configuración JWT, orígenes permitidos CORS, correo, geocodificación y Wompi antes de levantar el proceso. Los nombres de claves secundarios deben derivarse de `appsettings.json` y settings de clases, sin inventar valores concretos.
+
+**Secretos:** almacenar credenciales mediante User Secrets de .NET o variables del orquestador en desarrollo, y gestor de secretos en producción. No reutilizar `appsettings.json` sensible, `google-services.json` ni credenciales cargadas por compañeros como ejemplos públicos.
+
+**Web:** identificar variable que configura la URL de API leyendo `src/config` y servicios antes de modificar. Next.js expone al navegador variables con `NEXT_PUBLIC_`: nunca colocar claves privadas en ellas.
+
+**Móvil:** para teléfono físico, localhost apunta al teléfono y no a la PC. Usar URL accesible en la red de desarrollo, TLS apropiado y evitar tunnels públicos con información real. Expo Go puede carecer de módulos nativos que exijan development build; verificar condiciones de Expo 57.
+
+**Datos de semilla:** Program.cs puede aplicar migraciones y seeders al arrancar. Antes de la primera ejecución, comprobar que el seeder inicial no incluya una contraseña fija en código o configuración distribuida.
+
+
+## 10. Procedimiento Windows PowerShell (ejemplo reproducible)
+
+```powershell
+# En un directorio de trabajo seguro, con Git, .NET 8 y Node instalados
+git clone https://github.com/yersonct/SaborExpressBack.git
+git clone https://github.com/yersonct/SaborExpressWeb.git
+git clone https://github.com/yersonct/SaborExpressMovil.git
+
+cd SaborExpressBack
+git rev-parse HEAD
+dotnet restore .
+dotnet build . -c Release
+# Configurar cadena de conexión y secretos ANTES de ejecutar
+# dotnet run --project SaborExpress.csproj
+
+cd ..\SaborExpressWeb
+npm ci
+npm run build
+# npm run dev
+
+cd ..\SaborExpressMovil
+npm ci
+# npm start
+```
+
+Los comandos de ejecución se dejan comentados por seguridad hasta configurar un motor de datos de prueba y variables apropiadas. El SDK y los puertos definitivos se documentan después de instalar en el equipo destino.
+
+
+## 11. Preparación de despliegue y puesta en marcha
+
+**Preflight:** comprobar compatibilidad de SO y arquitectura, IP/dominio, puertos, proxy y TLS, archivos de configuración, migraciones pendientes, estado de dependencias, permisos del usuario de DB, espacio disponible, sincronización horaria y acceso Wompi sandbox.
+
+**Paso controlado:** generar backup → compilar backend y web con SHA aprobado → exportar migración revisada → aplicar en staging → ejecutar pruebas humo de Auth/Products/Orders/Payments → habilitar entorno → monitorizar y conservar artefactos del despliegue.
+
+**Plan de reversión:** mantener binarios previos, export de esquema y respaldo. Ante migración no reversible, restaurar BD en nueva instancia validada antes de apuntar clientes; no usar `database update 0` ni revertir migraciones indiscriminadamente sobre producción.
+
+**Separación de ambientes:** DEV usa datos sintéticos y Wompi sandbox; STAGING replica configuración sin datos personales; PROD necesita secretos productivos, TLS real, backups, monitoreo y procedimientos firmados. No mezclar URL ni clave Wompi de test/prod.
+
+
+## 12. Diagnóstico de instalación
+
+| Error | Causa probable | Validación | Solución prudente |
+| --- | --- | --- | --- |
+| dotnet restore falla | red o versión SDK incompatible | dotnet --info; NuGet | revisar SDK net8.0 |
+| Migration failed | cadena incorrecta, falta DB o permisos | logs sin secretos; provider EF | reparar BD, repetir en sandbox |
+| next build falla | Node o variable obligatoria | npm run build, package.json | alinear versión y dependencias |
+| app móvil no conecta | localhost erróneo o red bloqueada | ping y URL accesible desde teléfono | usar IP red o túnel protegido |
+| 401 login | JWT/config de usuario | logs sanitizados y claims | revisar Auth/seeders |
+| WebSocket no conecta | proxy, CORS o credenciales | Network tab y servidor | proxy websocket/cors seguros |
+| Webhook no llega | HTTPS o URL mal configurada | panel Wompi sandbox | URL pública HTTPS solo sandbox |
+
+
+## 13. Lista de aceptación de instalación
+
+- [ ] API compila y publica su versión y SHA.
+- [ ] DB seleccionada soporta migraciones nuevas en base efímera.
+- [ ] Swagger accesible únicamente conforme al ambiente y su política.
+- [ ] Web compila y consulta API de prueba.
+- [ ] Móvil permite una sesión de prueba en el entorno objetivo.
+- [ ] Inicio/cierre de sesión y lectura del catálogo probados.
+- [ ] Datos de prueba aislados de producción.
+- [ ] Firma Wompi sandbox y evento duplicado ensayados.
+- [ ] Copia/restauración de DB simulada.
+- [ ] Responsable firma acta, versión y evidencias.
+
+**Estado de esta lista:** no ejecutada; debe diligenciarla el responsable que despliegue.
+
+
 ## Fuentes primarias de implementación
 
 - API: https://github.com/yersonct/SaborExpressBack/tree/main
