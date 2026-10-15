@@ -59,6 +59,99 @@ La pasarela puede confirmar asíncronamente. El webhook `POST /api/Payments/womp
 
 Autorización de objeto: validar propietario y sede para cada ID proporcionado. Webhook: firma y replay protection. Datos: proteger contraseñas BCrypt, tokens y documentos; jamás registrar bodies sensibles completos. CORS: acotar orígenes al ambiente. Migraciones: respaldo y rollback antes de producción. Imágenes: límites MIME/tamaño, sanitización y rutas no predecibles. Evaluar riesgos según OWASP API Security Top 10 2023.
 
+
+## 8. Vistas arquitectónicas profesionales
+
+Se sigue el principio de varias vistas complementarias propuesto por Kruchten (1995), sin confundir vista de código con evidencia del despliegue real.
+
+
+### 8.1. Contexto
+
+Clientes, colaboradores y gerencia consumen clientes móvil y web. La API intermedia identidad, catálogos, órdenes, pagos y notificaciones. Wompi envía eventos de pago al servidor.
+
+**Relación con objetivos de calidad:** separar acceso, reglas y persistencia facilita revisión, pruebas y trazabilidad. Las cualidades de seguridad y disponibilidad se verifican mediante ensayos, no por la sola separación de carpetas.
+
+
+### 8.2. Lógica
+
+Controllers constituyen límites HTTP, Modules agrupaciones de dominio, Services reglas de negocio, Repositories persistencia, DTOs contratos; AppDbContext agrega DbSet y configuraciones EF.
+
+**Relación con objetivos de calidad:** separar acceso, reglas y persistencia facilita revisión, pruebas y trazabilidad. Las cualidades de seguridad y disponibilidad se verifican mediante ensayos, no por la sola separación de carpetas.
+
+
+### 8.3. Desarrollo
+
+Tres repositorios separados: SaborExpressBack (.NET), SaborExpressWeb (Next.js) y SaborExpressMovil (Expo). La documentación es cuarto repositorio. Sin evidencia de monorepo.
+
+**Relación con objetivos de calidad:** separar acceso, reglas y persistencia facilita revisión, pruebas y trazabilidad. Las cualidades de seguridad y disponibilidad se verifican mediante ensayos, no por la sola separación de carpetas.
+
+
+### 8.4. Procesos
+
+ASP.NET recibe peticiones síncronas; hospeda tareas WompiPendingPaymentsSyncService, KitchenLinkNotifierBackgroundService, ShiftReminderBackgroundService y RoleExpirationBackgroundService. SignalR gestiona eventos conectados.
+
+**Relación con objetivos de calidad:** separar acceso, reglas y persistencia facilita revisión, pruebas y trazabilidad. Las cualidades de seguridad y disponibilidad se verifican mediante ensayos, no por la sola separación de carpetas.
+
+
+### 8.5. Despliegue
+
+Topología de desarrollo o producción propuesta: reverse proxy HTTPS; frontend Next.js; API ASP.NET Core; motor de BD; almacenamiento; secretos; supervisión y copias. Ninguna topología de nube se declara desplegada.
+
+**Relación con objetivos de calidad:** separar acceso, reglas y persistencia facilita revisión, pruebas y trazabilidad. Las cualidades de seguridad y disponibilidad se verifican mediante ensayos, no por la sola separación de carpetas.
+
+
+## 9. Decisiones arquitectónicas (ADR) y alternativas
+
+| ADR | Decisión observada | Justificación técnica | Riesgo y acción |
+| --- | --- | --- | --- |
+| ADR-01 | API modular ASP.NET Core 8 | Conserva contratos y un punto de entrada para web/móvil | Acoplamiento entre módulos; vigilar referencias circulares |
+| ADR-02 | EF Core con tres proveedores configurables | Interfaz homogénea de acceso relacional | Migraciones SQL pueden diferir; pruebas por proveedor |
+| ADR-03 | JWT Bearer y roles | Identidad propagable entre clientes | Expiración, revocación y BOLA; pruebas negativas |
+| ADR-04 | SignalR para notificaciones | Actualización reactiva de vistas | Reconciliar tras desconexión; no garantiza entrega |
+| ADR-05 | Wompi webhook + sincronización | Separar intención de pago de resultado financiero | Validación checksum e idempotencia |
+| ADR-06 | Tres repositorios independientes | Ciclos de entrega por plataforma | Versionado cruzado y compatibilidad de API |
+
+
+## 10. Flujos de secuencia y estados
+
+**Pedido:** Cliente → catálogo → validación de sede → POST Orders → Service → Repository → BD → respuesta. El servidor debería recalcular precios y tasas vigentes al persistir, y el frontend debe mostrar la respuesta, no recalcular una verdad monetaria paralela.
+
+**Cobro externo:** Cliente/Cajero → Payments/Wompi init → referencia única → página/QR Wompi → transacción externa → evento POST webhook → verificación de firma → consulta de estado persistente → transición de pago y pedido → publicación de evento. Se debe demostrar que eventos duplicados no generan pagos duplicados.
+
+**Entregas:** Gerente crea asignación Delivery; repartidor consulta sus entregas; informa eventos de estado; cliente visualiza resultado y puede calificar cuando la entrega sea válida. La API debe autorizar cada solicitud con propiedad, rol y sede; ocultar botones no constituye un control de seguridad.
+
+**Notificaciones:** Registro del evento de negocio → hub SignalR → suscripciones autorizadas → cliente. Si se pierde la conexión, un GET del estado actual debe actuar como fuente de verdad.
+
+**Máquinas de estados:** los conjuntos exactos de enum se deben extraer de `Modules/Orders/Enum`, `Modules/Payments/Enum` y `Modules/Deliveries/Enum` antes de aprobar el diagrama definitivo. No se inventan estados no extraídos.
+
+
+## 11. Despliegue, seguridad y observabilidad previstos
+
+**Segmentación:** limitar la base de datos a red privada; no publicar puertos de administración directamente; configurar proxy HTTPS y CORS con orígenes de producción explícitos, retirando permisividad prevista para localhost/devtunnels/red local.
+
+**Gestión de secretos:** configuración segura fuera del repositorio para cadenas de conexión, claves JWT, credenciales de correo, token Wompi y claves de evento. Escanear historiales Git; rotar los secretos expuestos sin publicarlos en documentación.
+
+**Logs y trazas:** incluir correlation-id por petición, id de pedido, referencia de pago ofuscada, tiempos de operaciones y excepciones sin contraseñas, direcciones ni tokens. Alerta ante errores de webhook, fallos de migración, retrasos de confirmación y desconexiones repetidas.
+
+**Disponibilidad:** preparar backups cifrados, restauración ensayada, procedimiento de actualización y vuelta atrás por versión. Acordar RPO/RTO con el dueño del sistema antes de fijar compromisos.
+
+**Diagrama de contexto, componentes y secuencias:** ver archivos `.mmd` y `.png` asociados; son modelos técnicos de análisis, no planos certificados de infraestructura desplegada.
+
+
+## 12. Riesgos de diseño y controles
+
+| Riesgo | Amenaza | Control sugerido | Verificación |
+| --- | --- | --- | --- |
+| SEC-01 | IDOR sobre recursos de cliente o sede | autorización a nivel objeto en servicio | cliente A consulta ID de cliente B |
+| SEC-02 | Webhook Wompi falsificado | checksum según documentación Wompi | firma adulterada rechazada |
+| SEC-03 | Evento duplicado | unicidad por transacción + transacción BD | repetir mismo payload dos veces |
+| SEC-04 | Errores de startup por migraciones | migrar en paso controlado | arranque BD vacía y rollback |
+| SEC-05 | CORS permisivo en despliegue | lista controlada por ambiente | intento con origin externo |
+| SEC-06 | Fuga de JWT o datos personales | secretos/PII fuera de logs | escaneo automatizado y revisión |
+| SEC-07 | Desincronización móvil | reconciliación REST y errores offline | corte/reconexión de red |
+| SEC-08 | Compatibilidad proveedor DB | CI por motor soportado | migraciones y queries reales |
+
+
 ## Fuentes primarias de implementación
 
 - API: https://github.com/yersonct/SaborExpressBack/tree/main
