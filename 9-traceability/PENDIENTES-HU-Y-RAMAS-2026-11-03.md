@@ -4,7 +4,7 @@
 
 | Repositorio | Rama activa | SHA publicado | PR | Integración |
 |---|---|---|---|---|
-| [Backend](https://github.com/yersonct/SaborExpressBack) | [`hu-cierre-backend`](https://github.com/yersonct/SaborExpressBack/tree/hu-cierre-backend) | `7116551b4b564bfb8ffa3e3ff1d9e358b53f2597` | [#86](https://github.com/yersonct/SaborExpressBack/pull/86), borrador | Sigue sin merge. PR incremental sobre la rama de integración existente; PR #85 queda intacto. |
+| [Backend](https://github.com/yersonct/SaborExpressBack) | [`hu-cierre-backend`](https://github.com/yersonct/SaborExpressBack/tree/hu-cierre-backend) | `7d515ff1be30e4561b2135450f55a296e6945054` | [#86](https://github.com/yersonct/SaborExpressBack/pull/86), borrador | Sigue sin merge. PR incremental sobre la rama de integración existente; PR #85 queda intacto. |
 | [Web](https://github.com/yersonct/SaborExpressWeb) | [`hu-cierre-web`](https://github.com/yersonct/SaborExpressWeb/tree/hu-cierre-web) | `7d1cd20dae022454c70483f78c621a2285c9eaff` | [#43](https://github.com/yersonct/SaborExpressWeb/pull/43), borrador | Sigue sin merge. |
 | [Móvil](https://github.com/yersonct/SaborExpressMovil) | [`hu-cierre-movil`](https://github.com/yersonct/SaborExpressMovil/tree/hu-cierre-movil) | `cbb461dd774b2f239f1d28f4c54a8bc9b91d37a8` | [#32](https://github.com/yersonct/SaborExpressMovil/pull/32), borrador | Sigue sin merge. |
 | [Docs](https://github.com/yersonct/SaborExpressDocs) | [`hu-cierre-docs`](https://github.com/yersonct/SaborExpressDocs/tree/hu-cierre-docs) | HEAD de [PR #9](https://github.com/yersonct/SaborExpressDocs/pull/9) | [#9](https://github.com/yersonct/SaborExpressDocs/pull/9), borrador | Scan y GitGuardian pasaron en `1a14b87`; los commits posteriores requieren observar sus nuevos runs. Rama sin merge. |
@@ -13,13 +13,13 @@ Los PR borrador permiten ejecutar CI y revisar los cambios sin integrarlos. No s
 
 ## Backend
 
-Rama `hu-cierre-backend`; matriz local de 7 roles por sede/recurso incorporada. Security 58/58, QA 62/62, Invoice PDF 11/11 y build Release (0 warnings/errores). OpenAPI actualizado en Docs. El SHA `7116551` se publicó; sus checks remotos aún no se han observado.
+Rama `hu-cierre-backend`; matriz local de 7 roles por sede/recurso incorporada. Security 60/60, QA 62/62, Invoice PDF 11/11 y build Release (0 warnings/errores). OpenAPI actualizado en Docs. El SHA `7d515ff` se publicó; sus checks remotos aún no se han observado.
 
 | HUs | Pendiente restante |
 |---|---|
 | 01–02 | Acceso a proveedores para revocar/rotar credenciales; respaldo privado, coordinación operativa y decisión segura sobre historial. No modificar proveedor ni historia compartida sin esos pasos. |
-| 03, 07 | CI y `Secret scan` pasaron para el SHA anterior `7d8c184`; comprobar los runs de `b48e014` y `7116551`. Falta evidencia de HU-07 en `main`. Web/Móvil pasaron scan en sus SHAs publicados y Docs en su SHA previo. La prueba negativa local con secreto artificial detectó un hallazgo. Cualquier hallazgo histórico sigue el proceso seguro. |
-| 05 | Probar todos los recursos/endpoints con dos sedes y datos integrados; la matriz local incluye sede, pedidos, resúmenes, pagos, historial, mutaciones de pedidos y notificaciones administrativas por sede. |
+| 03, 07 | CI y `Secret scan` pasaron para el SHA anterior `7d8c184`; comprobar los runs de `b48e014`, `7116551` y `7d515ff`. Falta evidencia de HU-07 en `main`. Web/Móvil pasaron scan en sus SHAs publicados y Docs en su SHA previo. La prueba negativa local con secreto artificial detectó un hallazgo. Cualquier hallazgo histórico sigue el proceso seguro. |
+| 05 | Probar todos los recursos/endpoints con dos sedes y datos integrados; la matriz local incluye sede, pedidos, resúmenes, pagos, historial, mutaciones por sede, notificaciones, estados de mesa y liberación administrativa. |
 | 06, 09 | CI del SHA anterior `7d8c184` pasó; resultados para SHA posteriores y revisión independiente pendientes. Protección de rama ausente. PR #86 sigue en borrador, sin merge. |
 | 10–13 | Smoke limpio `/health`/readiness sin resultado verificable; staging, reversión, migración aplicada en DB aislada y backup/restore medidos pendientes. El daemon Docker no estaba disponible. |
 | 15–17 | OpenAPI y comparación estática parcial listos; falta contrato en ejecución para errores/archivos y matriz completa CORS/JWT/privacidad en staging. |
