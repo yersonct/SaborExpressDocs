@@ -8,16 +8,16 @@ Esta matriz separa la existencia del código, la ejecución de suites y la acept
 
 ## Líneas base y PR
 
-Los códigos B/W/M/D usados en la matriz remiten a estas líneas base publicadas. Las ramas y PR siguen abiertas; no se hizo merge.
+Los códigos B/W/M/D remiten a los candidatos probados. Actualización: Web, Móvil y Docs quedaron incluidos en `main` y sus PR #43, #32 y #9 están cerrados. Backend permanece separado de `main`; su último candidato es `17a8ce474832818c9216f00cd6c1174074a2d442`. La inclusión en `main` no acredita por sí sola producción ni aceptación de todas las HU.
 
 | Clave | Repositorio / rama | SHA candidato publicado | PR | Checks observados |
 |---|---|---|---|---|
-| B | [Backend · `hu-cierre-backend`](https://github.com/yersonct/SaborExpressBack/tree/hu-cierre-backend) | `7e6950f009380927ef950402ecb46a5cf5393b9e` | [#86](https://github.com/yersonct/SaborExpressBack/pull/86), draft | `verify`, `scan`, GitGuardian: success en este SHA. |
-| W | [Web · `hu-cierre-web`](https://github.com/yersonct/SaborExpressWeb/tree/hu-cierre-web) | `aa5cb8d04d5af03e91e250bee227ea9c7c190e13` | [#43](https://github.com/yersonct/SaborExpressWeb/pull/43), draft | Web quality, secret scan, GitGuardian y Preview Comments: success en este SHA. |
-| M | [Móvil · `hu-cierre-movil`](https://github.com/yersonct/SaborExpressMovil/tree/hu-cierre-movil) | `af52bbaf184404bb9f660b9dfa63c66958768bb4` | [#32](https://github.com/yersonct/SaborExpressMovil/pull/32), draft | Mobile quality, secret scan y GitGuardian: success en este SHA. El build remoto no es APK de producción. `app.json` quedó fuera del commit. |
-| D | [Docs · `hu-cierre-docs`](https://github.com/yersonct/SaborExpressDocs/tree/hu-cierre-docs) | HEAD de [PR #9](https://github.com/yersonct/SaborExpressDocs/pull/9); candidato anterior a esta matriz: `8533b438cdae2acb5d756a4b20c685a7578dd5a3` | [#9](https://github.com/yersonct/SaborExpressDocs/pull/9), draft | `Secret scan` del candidato anterior: success. El SHA que contiene esta actualización se verifica luego del push. |
+| B | [Backend · `hu-cierre-backend`](https://github.com/yersonct/SaborExpressBack/tree/hu-cierre-backend) | `17a8ce474832818c9216f00cd6c1174074a2d442` | [#86](https://github.com/yersonct/SaborExpressBack/pull/86), cerrado en rama de integración; [#85](https://github.com/yersonct/SaborExpressBack/pull/85) abierto con head `codex/*` | `verify`, `scan`, GitGuardian pasaron en `7e6950f`; `17a8ce4` pasó build y pruebas locales, pero no tiene check remoto visible. Crear PR a `main` devolvió 403. |
+| W | [Web · `hu-cierre-web`](https://github.com/yersonct/SaborExpressWeb/tree/hu-cierre-web) | `aa5cb8d04d5af03e91e250bee227ea9c7c190e13`; incluido en `main` `f807d414585015fac454c6d597096382d28aeb08` | [#43](https://github.com/yersonct/SaborExpressWeb/pull/43), cerrado | Web quality, secret scan, GitGuardian y Preview Comments: success en el candidato. Vercel reportó success en `main`; no se confirmó alias de producción. |
+| M | [Móvil · `hu-cierre-movil`](https://github.com/yersonct/SaborExpressMovil/tree/hu-cierre-movil) | `af52bbaf184404bb9f660b9dfa63c66958768bb4`; incluido en `main` `97e34ac270acbef2562e0e34d6fdf677f1b5c4cc` | [#32](https://github.com/yersonct/SaborExpressMovil/pull/32), cerrado | Mobile quality, secret scan y GitGuardian: success en el candidato. No acredita APK de producción ni prueba física. `app.json` quedó fuera del commit. |
+| D | [Docs · `hu-cierre-docs`](https://github.com/yersonct/SaborExpressDocs/tree/hu-cierre-docs) | `480a30f653b49f133296c1a3278136875226aecb`; incluido en `main` `c9f50abfe81b006b61be4b00233490d2098be6b4` | [#9](https://github.com/yersonct/SaborExpressDocs/pull/9), cerrado | `Secret scan` pasó en `480a30f`. |
 
-El SHA del commit que contiene esta matriz se consulta en el HEAD de PR #9 luego del push. Como el documento forma parte de ese mismo commit, su contenido no puede incluir su propio SHA resultante sin cambiarlo; la referencia inmutable es el PR y su historial de commits.
+Esta actualización se publica en la rama no integrada `hu-cierre-docs-estado`. El SHA se consulta en el historial de esa rama después del push; la actualización no se considera integrada ni release.
 
 ## RF y estado de verificación
 
@@ -55,7 +55,7 @@ El SHA del commit que contiene esta matriz se consulta en el HEAD de PR #9 luego
 
 | Evidencia | Ejecución observada | SHA / fecha | Alcance y límite |
 |---|---|---|---|
-| E-BACK | Backend Security 65/65, QA 62/62 e Invoice PDF 11/11 | B · 2026-11-03 | Pruebas locales de unidades/regresión; no son aceptación individual de los 25 RF ni prueba de staging. Rutas de pruebas: [`Security.Tests`](https://github.com/yersonct/SaborExpressBack/tree/hu-cierre-backend/tests/SaborExpressBack.Security.Tests), [`QA.Tests`](https://github.com/yersonct/SaborExpressBack/tree/hu-cierre-backend/tests/SaborExpressBack.QA.Tests), [`InvoicePdf.Tests`](https://github.com/yersonct/SaborExpressBack/tree/hu-cierre-backend/tests/SaborExpressBack.InvoicePdf.Tests). |
+| E-BACK | Backend Security 90/90, QA 62/62 e Invoice PDF 11/11 | B · `17a8ce4` · 2026-11-03 | Build Release con 0 warnings y 0 errores; son pruebas locales de unidades/regresión, no aceptación individual de los RF ni staging. Rutas: [`Security.Tests`](https://github.com/yersonct/SaborExpressBack/tree/hu-cierre-backend/tests/SaborExpressBack.Security.Tests), [`QA.Tests`](https://github.com/yersonct/SaborExpressBack/tree/hu-cierre-backend/tests/SaborExpressBack.QA.Tests), [`InvoicePdf.Tests`](https://github.com/yersonct/SaborExpressBack/tree/hu-cierre-backend/tests/SaborExpressBack.InvoicePdf.Tests). |
 | E-OAS | OpenAPI de B comparada con clientes: Web 92/92 y Móvil 47/47 firmas ruta+método | B/W/M · 2026-11-03 | Comparación estática de rutas; no valida schemas, payloads, errores, permisos ni cargas. [Informe](../6-api/COMPARACION-OPENAPI-CLIENTES-2026-11-03.md). |
 | E-WEB | Web: 7/7 pruebas locales; workflow remoto de calidad pasó en W | W · 2026-11-03 | Suite y build; E2E existentes usan API sintética. No prueba integración de producción/staging. |
 | E-MOB | Móvil: 8/8 pruebas locales; workflow remoto de calidad pasó en M | M · 2026-11-03 | Suite local y artefacto del workflow; no equivale a APK de producción instalado en equipo físico. `app.json` local permanece sin incluir. |
@@ -67,6 +67,6 @@ El SHA del commit que contiene esta matriz se consulta en el HEAD de PR #9 luego
 1. Ejecutar cada CP de aceptación o enlazarlo a un test automatizado con aserciones inequívocas, SHA, resultado, fecha y artefacto.
 2. Completar los recorridos API/cliente con staging y datos de dos sedes; registrar casos de error, autorización, archivos y reconexión.
 3. Validar las asociaciones RF→HU contra el anexo institucional de los 28 hallazgos cuando esté disponible. Esta matriz no sustituye dicho anexo.
-4. Obtener revisión independiente y registrar el PR revisado. Los PR citados siguen en borrador y sin merge.
+4. Obtener revisión independiente y registrar el PR revisado. Los PR Web/Móvil/Docs citados se cerraron y sus SHAs están en `main`; el candidato Backend aún no está integrado y no tiene PR a `main` por el 403 reportado.
 
 La síntesis por HU está en [CIERRE-HU-2026-11-03.md](CIERRE-HU-2026-11-03.md). No usar esta matriz para afirmar cumplimiento del 100 %.
