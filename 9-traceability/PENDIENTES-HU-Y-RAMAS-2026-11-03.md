@@ -7,21 +7,21 @@
 | [Backend](https://github.com/yersonct/SaborExpressBack) | [`hu-cierre-backend`](https://github.com/yersonct/SaborExpressBack/tree/hu-cierre-backend) | `7e6950f009380927ef950402ecb46a5cf5393b9e` | [#86](https://github.com/yersonct/SaborExpressBack/pull/86), borrador | Sigue sin merge. PR incremental sobre la rama de integración existente; PR #85 queda intacto. |
 | [Web](https://github.com/yersonct/SaborExpressWeb) | [`hu-cierre-web`](https://github.com/yersonct/SaborExpressWeb/tree/hu-cierre-web) | `7d1cd20dae022454c70483f78c621a2285c9eaff` | [#43](https://github.com/yersonct/SaborExpressWeb/pull/43), borrador | Sigue sin merge. |
 | [Móvil](https://github.com/yersonct/SaborExpressMovil) | [`hu-cierre-movil`](https://github.com/yersonct/SaborExpressMovil/tree/hu-cierre-movil) | `cbb461dd774b2f239f1d28f4c54a8bc9b91d37a8` | [#32](https://github.com/yersonct/SaborExpressMovil/pull/32), borrador | Sigue sin merge. |
-| [Docs](https://github.com/yersonct/SaborExpressDocs) | [`hu-cierre-docs`](https://github.com/yersonct/SaborExpressDocs/tree/hu-cierre-docs) | HEAD de [PR #9](https://github.com/yersonct/SaborExpressDocs/pull/9) | [#9](https://github.com/yersonct/SaborExpressDocs/pull/9), borrador | Scan y GitGuardian pasaron en `1a14b87`; los commits posteriores requieren observar sus nuevos runs. Rama sin merge. |
+| [Docs](https://github.com/yersonct/SaborExpressDocs) | [`hu-cierre-docs`](https://github.com/yersonct/SaborExpressDocs/tree/hu-cierre-docs) | HEAD de [PR #9](https://github.com/yersonct/SaborExpressDocs/pull/9) | [#9](https://github.com/yersonct/SaborExpressDocs/pull/9), borrador | `scan` y GitGuardian pasaron en `4eee420`; el nuevo commit de este informe requiere observar su propio run. Rama sin merge. |
 
 Los PR borrador permiten ejecutar CI y revisar los cambios sin integrarlos. No se pidió revisión a una cuenta distinta de `yersonct`. GitHub devolvió solo a `yersonct` como colaborador de cada repo y 404 al consultar protección en las ramas por defecto; las protecciones no están configuradas. La gráfica de contribuyentes aún conserva autores históricos: Backend `lozano2303` (3), Web `CristianJPalma` (1), Móvil `CristianJPalma` (6). El usuario confirmó que esas contribuciones son suyas con identidad errónea; no se reescribió la historia porque HU-01/HU-02 requieren rotación, respaldo privado y coordinación previos.
 
 ## Backend
 
-Rama `hu-cierre-backend`; matriz local de roles/sedes, filtro de error HTTP y respuestas de archivos incorporados. Security 65/65, QA 62/62, Invoice PDF 11/11 y build Release (0 warnings/errores). OpenAPI actualizado en Docs. El SHA `7e6950f` se publicó; sus checks remotos aún no se han observado.
+Rama `hu-cierre-backend`; matriz local de roles/sedes, filtro de error HTTP y respuestas de archivos incorporados. Security 65/65, QA 62/62, Invoice PDF 11/11 y build Release (0 warnings/errores). El SHA `7e6950f` se publicó; `verify`, `scan` y GitGuardian pasaron en GitHub.
 
 | HUs | Pendiente restante |
 |---|---|
 | 01–02 | Acceso a proveedores para revocar/rotar credenciales; respaldo privado, coordinación operativa y decisión segura sobre historial. No modificar proveedor ni historia compartida sin esos pasos. |
-| 03, 07 | CI y `Secret scan` pasaron para el SHA anterior `7d8c184`; comprobar los runs de `b48e014`, `7116551`, `7d515ff` y `7e6950f`. Falta evidencia de HU-07 en `main`. Web/Móvil pasaron scan en sus SHAs publicados y Docs en su SHA previo. La prueba negativa local con secreto artificial detectó un hallazgo. Cualquier hallazgo histórico sigue el proceso seguro. |
+| 03, 07 | CI, `Secret scan` y GitGuardian pasaron para el candidato `7e6950f`; la prueba negativa local detectó un secreto artificial. HU-07 aún pide run en `main`; historial completo y rotaciones siguen el proceso seguro de HU-01/02. Web/Móvil pasaron sus checks; Docs pasó en `4eee420`. |
 | 05 | Probar todos los recursos/endpoints con dos sedes y datos integrados; la matriz local incluye sede, pedidos, resúmenes, pagos, historial, mutaciones por sede, notificaciones, estados de mesa y liberación administrativa. |
-| 06, 09 | CI del SHA anterior `7d8c184` pasó; resultados para SHA posteriores y revisión independiente pendientes. Protección de rama ausente. PR #86 sigue en borrador, sin merge. |
-| 10–13 | Smoke limpio `/health`/readiness sin resultado verificable; staging, reversión, migración aplicada en DB aislada y backup/restore medidos pendientes. El daemon Docker no estaba disponible. |
+| 06, 09 | CI del candidato `7e6950f` pasó; revisión independiente pendiente. Protección de rama ausente. PR #86 sigue en borrador, sin merge. |
+| 10–13 | Smoke del workspace: `/health` 200, `/health/ready` 503 por migraciones pendientes. Falta readiness 200 con base preparada, staging/reversión, ensayo en DB aislada y backup/restore medidos. No se aplicó ninguna migración. |
 | 15–17 | OpenAPI del Backend SHA `7e6950f` y comparación estática AST de 92 firmas Web + 47 Móvil (ruta+método) coinciden. Se añadieron pruebas HTTP locales para error 404 y descarga PDF. Falta contrato runtime de schemas, cargas inválidas/clientes y matriz CORS/JWT/privacidad en staging. |
 | 18–23 | Flujos completos de 7 roles × 2 sedes, Wompi/facturas, cocina, caja, domicilios, catálogo y recuperación de red requieren staging/sandbox. |
 
@@ -64,7 +64,7 @@ Rama `hu-cierre-docs`; DER/diccionario/SQL derivados de migraciones, OpenAPI ree
 | 26–27 | Completar RF institucional y manual de usuario; mantener KPIs ligados a fuente y método. No inventar IDs ni resultados. |
 | 28 | Añadir issues y responsables confirmados; revisión independiente pendiente. Los commits nuevos son de `yersonct`; para cambiar las gráficas históricas hace falta cumplir primero la rotación/respaldo/coordinación requeridos por HU-01/HU-02. |
 | 29 | Obtener el anexo institucional que enumera los 28 hallazgos. El resumen actual no permite desglosarlos. |
-| 30 | Los cuatro SHAs y PR están publicados. Los checks conocidos pasaron en SHAs anteriores; faltan runs del Backend `7e6950f` y del HEAD de Docs en PR #9, evaluación institucional, staging, hardware y anexo. |
+| 30 | Los cuatro SHAs y PR están publicados. Backend `7e6950f` y Docs `4eee420` tienen checks remotos success; el nuevo HEAD Docs de este registro requiere su run. Siguen pendientes evaluación institucional, staging, hardware y anexo. |
 
 ## No declarar como cerrado
 
