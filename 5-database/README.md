@@ -11,7 +11,7 @@ Estos artefactos describen el esquema que construirían las migraciones. **No pr
 Desde el directorio de trabajo que contiene ambos repositorios, generar primero el script EF Core de Backend y luego ejecutar el generador documental:
 
 ```powershell
-dotnet ef migrations script --project .\SaborExpressBack\SaborExpressBack.csproj --output .\SaborExpressBack\artifacts\ef-migrations.sql
+dotnet ef migrations script --project .\SaborExpressBack\SaborExpress.csproj --output .\SaborExpressBack\artifacts\ef-migrations.sql
 powershell -ExecutionPolicy Bypass -File .\SaborExpressDocs\scripts\generate-ef-schema-docs.ps1 -InputPath .\SaborExpressBack\artifacts\ef-migrations.sql
 ```
 

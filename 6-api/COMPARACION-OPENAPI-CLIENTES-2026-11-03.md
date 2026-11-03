@@ -12,7 +12,7 @@ El script extrae segmentos literales `/api/<raíz>` de fuentes y comentarios, no
 Para repetir desde la carpeta de este repositorio en el mismo workspace:
 
 ```powershell
-node scripts/compare-api-client-roots.mjs openapi\backend-openapi-2026-11-03.json ..\SaborExpressWeb\src ..\SaborExpressMovil\src
+node scripts/compare-api-client-roots.mjs 6-api\openapi\backend-openapi-2026-11-03.json ..\SaborExpressWeb\src ..\SaborExpressMovil\src
 ```
 
 El resultado es una comprobación estática de nombres de recursos. No valida verbo HTTP, parámetros, modelos, códigos/cuerpos de error, carga de archivos, autorización, despliegue ni comportamiento de servidor. Los comentarios del código también se inspeccionan, por lo que esta salida no equivale a un análisis AST de llamadas activas.
