@@ -1,6 +1,6 @@
 # Matriz de trazabilidad de requisitos, fuente y verificación
 
-**Proyecto:** SaborExpress  |  **Fecha de corte:** 14 de octubre de 2026  |  **Versión:** 2.0  |  **Tipo:** Documento técnico y académico
+**Proyecto:** SaborExpress  |  **Fecha de corte:** 03 de noviembre de 2026  |  **Versión:** 2.1  |  **Tipo:** Documento técnico y académico
 
 **Estado de la evidencia:** inspección documental y estática del código. Las pruebas de ejecución y los datos institucionales no aportados no se presumen realizados.
 
@@ -38,7 +38,7 @@ Cada requisito RF se vincula a evidencia de código (origen) y a casos de prueba
 
 ## Criterio de actualización
 
-El estado observado el 2026-11-03 para las HU propuestas se registra en [CIERRE-HU-2026-11-03.md](CIERRE-HU-2026-11-03.md). Los estados RF de esta matriz no se cambian a PASS sin prueba ejecutada y evidencia con SHA.
+El estado observado el 2026-11-03 para las HU propuestas se registra en [CIERRE-HU-2026-11-03.md](CIERRE-HU-2026-11-03.md). Esta matriz RF no se ha conciliado contra el anexo institucional de hallazgos; ningún RF cambia a PASS sin prueba ejecutada y evidencia con SHA.
 
 Cuando una prueba pase, adjuntar evidencia en carpeta `8-testing/evidencias` con nombre sin datos privados; registrar SHA de back/web/móvil y fecha. Agregar columna de cobertura real al activar pipeline CI.
 

@@ -1,0 +1,408 @@
+erDiagram
+    branches {
+        integer Id PK
+        character_varying_120_ name
+        character_varying_255_ address
+        character_varying_30_ phone
+        boolean status
+        timestamp_with_time_zone created_at
+    }
+    categories {
+        integer id PK
+        character_varying_100_ name
+        character_varying_500_ description
+        boolean status
+        timestamp_with_time_zone created_at
+    }
+    permissions {
+        integer id PK
+        character_varying_100_ name
+        character_varying_50_ module
+        character_varying_255_ description
+        boolean status
+        timestamp_with_time_zone created_at
+    }
+    roles {
+        integer id PK
+        character_varying_50_ name
+        character_varying_255_ description
+        boolean requires_cv
+        boolean status
+        timestamp_with_time_zone created_at
+    }
+    users {
+        integer id PK
+        character_varying_120_ email
+        character_varying_255_ password_hash
+        text token
+        boolean status
+        boolean MustChangePassword
+        timestamp_with_time_zone last_login
+        timestamp_with_time_zone created_at
+        integer FailedLoginAttempts
+        timestamp_with_time_zone LockoutEnd
+        boolean EmailConfirmed
+    }
+    branch_settings {
+        integer id PK
+        integer branch_id
+        character_varying_100_ key
+        text value
+        character_varying_20_ data_type
+        text description
+        timestamp_with_time_zone updated_at
+    }
+    tables {
+        integer id PK
+        integer branch_id
+        integer number
+        character_varying_30_ status
+        timestamp_with_time_zone created_at
+    }
+    products {
+        integer id PK
+        integer category_id
+        character_varying_120_ name
+        text description
+        numeric_10_2_ price
+        character_varying_255_ photo
+        integer preparation_time_in_minutes
+        boolean status
+        timestamp_with_time_zone created_at
+        integer CategoryId1
+    }
+    role_permissions {
+        integer role_id PK
+        integer permission_id PK
+        timestamp_with_time_zone assigned_at
+    }
+    customers {
+        integer id PK
+        integer user_id
+        character_varying_120_ name
+        character_varying_120_ last_name
+        character_varying_30_ phone
+        character_varying_255_ address
+        timestamp_with_time_zone created_at
+    }
+    EmailConfirmationCodes {
+        integer Id PK
+        integer UserId
+        text Code
+        timestamp_with_time_zone CodeExpiresAt
+        boolean IsUsed
+        integer Attempts
+        timestamp_with_time_zone CreatedAt
+    }
+    employee_activation_codes {
+        integer id PK
+        integer user_id
+        character_varying_20_ code
+        timestamp_with_time_zone code_expires_at
+        boolean is_used
+        integer attempts
+        timestamp_with_time_zone created_at
+    }
+    employees {
+        integer id PK
+        integer user_id
+        character_varying_120_ name
+        character_varying_80_ last_name
+        character_varying_20_ document
+        character_varying_20_ phone
+        character_varying_255_ address
+        character_varying_255_ photo
+        integer branch_id
+        character_varying_15_ status
+        numeric_10_2_ base_pay
+        bytea cv_file
+        character_varying_255_ cv_filename
+        character_varying_100_ cv_content_type
+        timestamp_with_time_zone created_at
+    }
+    Notifications {
+        integer Id PK
+        integer UserId
+        character_varying_150_ Title
+        character_varying_500_ Message
+        integer Type
+        text RelatedEntityType
+        integer RelatedEntityId
+        boolean IsRead
+        timestamp_with_time_zone ReadAt
+        timestamp_with_time_zone CreatedAt
+    }
+    password_reset_codes {
+        integer id PK
+        integer user_id
+        character_varying_20_ code
+        timestamp_with_time_zone code_expires_at
+        boolean is_code_used
+        integer Attempts
+        character_varying_255_ reset_token
+        timestamp_with_time_zone reset_token_expires_at
+        boolean is_completed
+        timestamp_with_time_zone created_at
+        integer UserId1
+    }
+    RefreshTokens {
+        integer Id PK
+        integer UserId
+        text Token
+        timestamp_with_time_zone ExpiresAt
+        boolean IsRevoked
+        timestamp_with_time_zone CreatedAt
+    }
+    user_preferences {
+        integer id PK
+        integer user_id
+        character_varying_100_ screen
+        character_varying_100_ key
+        text value
+        character_varying_20_ data_type
+        timestamp_with_time_zone updated_at
+    }
+    user_roles {
+        integer user_id PK
+        integer role_id PK
+        timestamp_with_time_zone assigned_at
+    }
+    DailyMenuItems {
+        integer Id PK
+        integer BranchId
+        integer ProductId
+        timestamp_with_time_zone Date
+        integer MealPeriod
+        boolean IsAvailable
+        timestamp_with_time_zone CreatedAt
+    }
+    addresses {
+        integer id PK
+        integer customer_id
+        character_varying_255_ address_line
+        character_varying_255_ reference
+        numeric_9_6_ latitude
+        numeric_9_6_ longitude
+        boolean is_default
+    }
+    EmployeeSchedules {
+        integer Id PK
+        integer EmployeeId
+        integer BranchId
+        integer RoleId
+        date ShiftDate
+        time StartTime
+        time EndTime
+        boolean ReminderSent
+        integer Status
+        text Notes
+        timestamp_with_time_zone CreatedAt
+        timestamp_with_time_zone UpdatedAt
+    }
+    orders {
+        integer id PK
+        integer customer_id
+        integer employee_id
+        integer table_id
+        integer branch_id
+        character_varying_30_ order_type
+        character_varying_20_ channel
+        character_varying_30_ status
+        numeric_10_2_ sub_total
+        numeric_10_2_ tax
+        numeric_10_2_ total
+        character_varying_500_ notes
+        timestamp_with_time_zone created_at
+        timestamp_with_time_zone updated_at
+    }
+    deliveries {
+        integer id PK
+        integer order_id
+        integer address_id
+        integer delivery_person_id
+        character_varying_30_ status
+        timestamp_with_time_zone assigned_at
+        timestamp_with_time_zone delivered_at
+    }
+    order_details {
+        integer id PK
+        integer order_id
+        integer product_id
+        integer last_modified_by_employee_id
+        integer quantity
+        numeric_10_2_ unit_price
+        numeric_10_2_ sub_total
+        character_varying_255_ notes
+        character_varying_30_ status
+        integer OrderId1
+    }
+    order_status_history {
+        integer id PK
+        integer order_id
+        integer changed_by_employee_id
+        character_varying_30_ status
+        character_varying_255_ notes
+        timestamp_with_time_zone changed_at
+        integer OrderId1
+    }
+    payments {
+        integer id PK
+        integer order_id
+        integer cashier_id
+        character_varying_30_ method
+        numeric_10_2_ amount
+        character_varying_30_ status
+        timestamp_with_time_zone paid_at
+    }
+    reviews {
+        integer id PK
+        integer order_id
+        integer customer_id
+        smallint rating
+        character_varying_500_ comment
+        timestamp_with_time_zone created_at
+    }
+    order_detail_history {
+        integer id PK
+        integer order_detail_id
+        integer changed_by_employee_id
+        character_varying_30_ action
+        text old_value
+        text new_value
+        character_varying_255_ reason
+        timestamp_with_time_zone changed_at
+    }
+    Invoices {
+        integer Id PK
+        integer PaymentId
+        integer OrderId
+        integer BranchId
+        text InvoiceNumber
+        numeric SubTotal
+        numeric Tax
+        numeric Total
+        boolean IsVoided
+        text VoidReason
+        timestamp_with_time_zone IssuedAt
+    }
+    branch_operational_settings {
+        integer id PK
+        integer branch_id
+        time opening_time
+        time closing_time
+        numeric_5_2_ tax_rate
+        numeric_12_2_ delivery_fee
+        numeric_5_2_ suggested_tip_percent
+        numeric_5_2_ delivery_radius_km
+        numeric_12_2_ min_order_amount
+        boolean accepts_delivery
+        boolean accepts_dine_in
+        timestamp_with_time_zone updated_at
+    }
+    user_settings {
+        integer id PK
+        integer user_id
+        character_varying_10_ theme
+        boolean email_notifications
+        boolean push_notifications
+        boolean sound_notifications
+        character_varying_60_ time_zone
+        timestamp_with_time_zone updated_at
+    }
+    push_devices {
+        integer id PK
+        integer user_id
+        character_varying_256_ expo_push_token
+        character_varying_20_ platform
+        boolean sound_enabled
+        boolean vibration_enabled
+        timestamp_with_time_zone created_at
+        timestamp_with_time_zone updated_at
+    }
+    cash_closures {
+        integer id PK
+        integer schedule_id
+        integer cashier_id
+        integer branch_id
+        date shift_date
+        timestamp_with_time_zone shift_started_at_utc
+        timestamp_with_time_zone closed_at_utc
+        decimal_14_2_ cash_expected
+        decimal_14_2_ cash_counted
+        decimal_14_2_ cash_difference
+        decimal_14_2_ card_total
+        decimal_14_2_ transfer_total
+        decimal_14_2_ wompi_total
+        decimal_14_2_ total_sales
+        integer payments_count
+        character_varying_250_ cashier_name
+        character_varying_250_ branch_name
+        character_varying_500_ notes
+        text payments_snapshot_json
+    }
+    table_release_audits {
+        bigint Id PK
+        integer TableId
+        integer TableNumber
+        integer BranchId
+        uuid PreviousSessionId
+        integer ActorUserId
+        boolean Administrative
+        character_varying_500_ Reason
+        text OrderIdsJson
+        numeric_18_2_ OutstandingAmount
+        timestamp_with_time_zone ReleasedAtUtc
+    }
+    branch_settings }o--|| branches : "branch_id"
+    tables }|--|| branches : "branch_id"
+    products }o--|| categories : "CategoryId1"
+    products }|--|| categories : "category_id"
+    role_permissions }|--|| permissions : "permission_id"
+    role_permissions }|--|| roles : "role_id"
+    customers }|--|| users : "user_id"
+    EmailConfirmationCodes }|--|| users : "UserId"
+    employee_activation_codes }|--|| users : "user_id"
+    employees }o--|| branches : "branch_id"
+    employees }|--|| users : "user_id"
+    Notifications }|--|| users : "UserId"
+    password_reset_codes }o--|| users : "UserId1"
+    password_reset_codes }|--|| users : "user_id"
+    RefreshTokens }|--|| users : "UserId"
+    user_preferences }|--|| users : "user_id"
+    user_roles }|--|| roles : "role_id"
+    user_roles }|--|| users : "user_id"
+    DailyMenuItems }|--|| branches : "BranchId"
+    DailyMenuItems }|--|| products : "ProductId"
+    addresses }|--|| customers : "customer_id"
+    EmployeeSchedules }|--|| branches : "BranchId"
+    EmployeeSchedules }|--|| employees : "EmployeeId"
+    EmployeeSchedules }|--|| roles : "RoleId"
+    orders }|--|| branches : "branch_id"
+    orders }o--|| customers : "customer_id"
+    orders }|--|| employees : "employee_id"
+    orders }o--|| tables : "table_id"
+    deliveries }|--|| addresses : "address_id"
+    deliveries }|--|| employees : "delivery_person_id"
+    deliveries }|--|| orders : "order_id"
+    order_details }|--|| employees : "last_modified_by_employee_id"
+    order_details }o--|| orders : "OrderId1"
+    order_details }|--|| orders : "order_id"
+    order_details }|--|| products : "product_id"
+    order_status_history }|--|| employees : "changed_by_employee_id"
+    order_status_history }o--|| orders : "OrderId1"
+    order_status_history }|--|| orders : "order_id"
+    payments }|--|| employees : "cashier_id"
+    payments }|--|| orders : "order_id"
+    reviews }|--|| customers : "customer_id"
+    reviews }|--|| orders : "order_id"
+    order_detail_history }|--|| employees : "changed_by_employee_id"
+    order_detail_history }|--|| order_details : "order_detail_id"
+    Invoices }|--|| branches : "BranchId"
+    Invoices }|--|| orders : "OrderId"
+    Invoices }|--|| payments : "PaymentId"
+    branch_operational_settings }|--|| branches : "branch_id"
+    user_settings }|--|| users : "user_id"
+    push_devices }|--|| users : "user_id"
+    cash_closures }|--|| EmployeeSchedules : "schedule_id"
+    cash_closures }|--|| employees : "cashier_id"
+    cash_closures }|--|| branches : "branch_id"

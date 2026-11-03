@@ -325,6 +325,20 @@ Los directorios siguientes fueron identificados bajo `Modules/` en el backend. L
 
 ## Fuentes primarias de implementación
 
+## Revisión de cierre de fuentes — 2026-11-03
+
+El paquete de cierre conserva contratos y esquema derivados de la fuente actual de código. El [OpenAPI exportado del Backend](../6-api/openapi/backend-openapi-2026-11-03.json) incluye 269 rutas, 346 operaciones y 84 esquemas. La comparación estática detectó 15 raíces Web y 20 raíces Móvil; todas aparecen en OpenAPI. Esto verifica raíces de rutas, no métodos, modelos, códigos de error ni comportamiento de cargas; el contrato integral entre clientes y API sigue pendiente. El [método y sus límites](../6-api/COMPARACION-OPENAPI-CLIENTES-2026-11-03.md) están documentados.
+
+El [esquema PostgreSQL derivado de migraciones](../5-database/README.md) contiene 34 tablas de aplicación, 286 columnas y 53 relaciones FK. La fuente fue EF Core; no hubo conciliación con una base desplegada.
+
+El Backend expone `/health` como liveness independiente de la base y `/health/ready` como readiness que exige conectividad y ausencia de migraciones pendientes. El segundo endpoint no se validó contra un PostgreSQL real durante este corte. Antes de liberar, ejecutar migración, readiness, backup/restore y rollback en un entorno aislado y autorizado.
+
+La evaluación Web del 2026-11-03 usó build de producción, Chromium a 1366×768 y respuestas API sintéticas sobre 11 pantallas. DOMContentLoaded máximo: 36.3 ms; LCP máximo: 400 ms; CLS máximo: 0.0327; controles visibles sin nombre: 0; imágenes visibles sin `alt`: 0; landmark `main`: 1 por pantalla. Son mediciones de esa ejecución local, no métricas de producción, un certificado WCAG ni evaluación Móvil en dispositivos.
+
+La versión de aplicación móvil observada usa Expo 57.0.30 y React Native 0.86.3. La exportación Android local se documenta en [evidencia móvil](https://github.com/yersonct/SaborExpressMovil/blob/hu-cierre-movil/docs/cierre/evidencia-local-hu-2026-11-03.md). No se generó APK firmado para producción ni se verificó hardware físico.
+
+El detalle de pruebas, checks remotos, ramas y decisiones operativas está en [CIERRE-HU-2026-11-03.md](../9-traceability/CIERRE-HU-2026-11-03.md). Las cifras de calidad que no tengan fuente, procedimiento y evidencia enlazada deben permanecer sin declarar.
+
 ## Matriz global de permisos
 
 En la rama de trabajo `codex/hu-cierre-04-06-integracion`, `POST` y `DELETE /api/role-permissions` requieren el rol `GERENTE` tanto en el controlador como en el servicio. La consulta de la matriz conserva el acceso existente de GERENTE y ADMINISTRADOR. La regla es para permisos globales; no acredita por sí sola la autorización de todos los recursos o sedes. Antes de release, revisar la decisión funcional y verificar el SHA de la rama y sus checks.

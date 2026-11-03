@@ -1,76 +1,71 @@
-# HU pendientes y estado de ramas — 2026-11-03
+# Pendientes por repositorio y ramas de cierre — 2026-11-03
 
-## Propósito y alcance
+## Publicación
 
-Este documento resume qué partes del plan de 30 HU de cierre siguen pendientes, dónde ya se publicaron cambios y qué trabajo queda por repositorio. El plan fuente es una propuesta de cierre, no la lista oficial completa de los 28 hallazgos ni una certificación del 100 %. Una HU puede tener código y pruebas locales y seguir pendiente de CI remoto, revisión, staging, dispositivo, operación o aprobación.
+| Repositorio | Rama activa | SHA publicado | PR | Integración |
+|---|---|---|---|---|
+| [Backend](https://github.com/yersonct/SaborExpressBack) | [`hu-cierre-backend`](https://github.com/yersonct/SaborExpressBack/tree/hu-cierre-backend) | `7d8c184efff713a79e51253bbd2f9c2e6d9d4046` | [#86](https://github.com/yersonct/SaborExpressBack/pull/86), borrador | Sigue sin merge. PR incremental sobre la rama de integración existente; PR #85 queda intacto. |
+| [Web](https://github.com/yersonct/SaborExpressWeb) | [`hu-cierre-web`](https://github.com/yersonct/SaborExpressWeb/tree/hu-cierre-web) | `7d1cd20dae022454c70483f78c621a2285c9eaff` | [#43](https://github.com/yersonct/SaborExpressWeb/pull/43), borrador | Sigue sin merge. |
+| [Móvil](https://github.com/yersonct/SaborExpressMovil) | [`hu-cierre-movil`](https://github.com/yersonct/SaborExpressMovil/tree/hu-cierre-movil) | `cbb461dd774b2f239f1d28f4c54a8bc9b91d37a8` | [#32](https://github.com/yersonct/SaborExpressMovil/pull/32), borrador | Sigue sin merge. |
+| [Docs](https://github.com/yersonct/SaborExpressDocs) | `hu-cierre-docs` | SHA posterior al commit de este informe | PR de Docs por abrir | La publicación de documentación sigue en curso. |
 
-Se identificaron cuatro repositorios de trabajo. **Dos ya tienen una rama de cierre publicada (Backend y Docs); Web y Móvil siguen en `main` y no tienen una rama de cierre creada por esta entrega.** Por eso, no hay cuatro ramas nuevas faltantes: hay cuatro frentes de repositorio, con dos ramas publicadas y dos propuestas por crear.
+Los PR borrador permiten ejecutar CI y revisar los cambios sin integrarlos. No se pidió revisión a una cuenta distinta de `yersonct`. GitHub devolvió solo a `yersonct` como colaborador de cada repo y 404 al consultar protección en las ramas por defecto; las protecciones no están configuradas.
 
-## Cambios publicados
+## Backend
 
-| Repositorio | Rama/HEAD publicado | Cambios subidos en este trabajo | Estado de integración |
-|---|---|---|---|
-| [SaborExpressBack](https://github.com/yersonct/SaborExpressBack) | [`codex/hu-cierre-04-06-integracion`](https://github.com/yersonct/SaborExpressBack/tree/codex/hu-cierre-04-06-integracion) · `0f2b1f4` | HU-04: POST/DELETE de la matriz global restringidos a GERENTE en controlador y servicio, con pruebas 401/403/éxito. Ajustes de build para excluir tests/salidas generadas. Limpieza del diff neto que quitaba `.vs` y 48 imágenes existentes. | Push realizado al remoto `yersonct`. No hay PR abierto ni merge a `main`; falta revisión, CI remoto y validación de migración. |
-| [SaborExpressDocs](https://github.com/yersonct/SaborExpressDocs) | [`codex/hu-cierre-documentacion`](https://github.com/yersonct/SaborExpressDocs/tree/codex/hu-cierre-documentacion) · HEAD previo a este documento: `3bb2bb0` | Informe de estado HU y resultados observados; este mapa de pendientes y ramas. Los commits de esta entrega se atribuyen a `yersonct`. | Push realizado al remoto `yersonct`. No hay PR abierto ni merge a `main`. |
-| [SaborExpressWeb](https://github.com/yersonct/SaborExpressWeb) | `main` · `b4e3c93` | No se publicó código de cierre. Se verificaron localmente lint, tipos, 5 pruebas, i18n, build y 144/144 E2E con datos sintéticos. | No hay rama de cierre ni push de HU de esta entrega. Rama sugerida para trabajo futuro: `codex/hu-cierre-web`. |
-| [SaborExpressMovil](https://github.com/yersonct/SaborExpressMovil) | `main` · `09e60c9` | No se publicó código de cierre. Se verificaron localmente lint, tipos, 8 pruebas e i18n. `app.json` tiene un cambio local previo y permanece fuera de los commits; no se probó exportación Android ni dispositivo. | No hay rama de cierre ni push de HU de esta entrega. Rama sugerida para trabajo futuro: `codex/hu-cierre-movil`. |
+Rama `hu-cierre-backend`; matriz local de 7 roles por sede/recurso incorporada. Security 51/51, QA 61/61, Invoice PDF 11/11 y build Release (0 warnings/errores). OpenAPI actualizado en Docs.
 
-Los nombres sugeridos para Web y Móvil son propuestas; no se han creado esas ramas. Los remotos observados para los cuatro proyectos apuntan a repositorios de `yersonct`. No se hicieron commits ni pushes de esta entrega bajo `jsgh1`. No se deben aplicar cambios directamente a `main`.
-
-## Pendientes por repositorio
-
-El estado “parcial” significa que existe alguna implementación o prueba, pero falta al menos uno de los criterios de aceptación del plan. No implica que toda la HU carezca de código.
-
-### Backend — continuar en `codex/hu-cierre-04-06-integracion`
-
-| HU | Pendiente principal |
+| HUs | Pendiente restante |
 |---|---|
-| 01–02 | Revocar/rotar credenciales comprometidas y decidir el saneamiento del historial con respaldo y coordinación operativa. No hacer cambios en proveedores ni reescribir historial sin el proceso seguro descrito en el plan. |
-| 03, 07 | Ejecutar CI/secret-scan de forma remota en SHA candidato y prueba negativa con secreto artificial. |
-| 05 | Completar matriz de acceso por recurso, rol y sede; probar usuario de sede A contra datos de sede B. |
-| 06, 09 | Abrir PR, conseguir revisión, comprobar protecciones y documentar checks requeridos. El cambio está en rama, no integrado. |
-| 10–13 | Probar arranque limpio y health/readiness; despliegue/reversión en staging; ensayo de migración en base aislada; backup y restore medidos. |
-| 15–17 | Comparar OpenAPI con clientes; completar pruebas contractuales de errores/archivos; ejecutar matriz CORS/JWT/privacidad en staging. |
-| 18–23 | Completar flujos integrados de siete roles y dos sedes para pedidos, cocina, caja, Wompi/facturas, domicilios y catálogo, incluidos casos de red/recuperación. |
+| 01–02 | Acceso a proveedores para revocar/rotar credenciales; respaldo privado, coordinación operativa y decisión segura sobre historial. No modificar proveedor ni historia compartida sin esos pasos. |
+| 03, 07 | CI y `Secret scan` remotos pasaron en PR #86; Web/Móvil también pasaron scan. La prueba negativa local con secreto artificial detectó un hallazgo. Docs necesita su scan tras abrir PR. Cualquier hallazgo histórico sigue el proceso seguro. |
+| 05 | Probar todos los recursos/endpoints con dos sedes y datos integrados; la matriz local cubre sede, pedidos, resúmenes y pagos. |
+| 06, 09 | Checks de PR #86 pasaron. Revisión independiente pendiente; protección de rama ausente. PR #86 está en borrador y no se integra. |
+| 10–13 | Smoke limpio `/health`/readiness sin resultado verificable; staging, reversión, migración aplicada en DB aislada y backup/restore medidos pendientes. El daemon Docker no estaba disponible. |
+| 15–17 | OpenAPI y comparación estática parcial listos; falta contrato en ejecución para errores/archivos y matriz completa CORS/JWT/privacidad en staging. |
+| 18–23 | Flujos completos de 7 roles × 2 sedes, Wompi/facturas, cocina, caja, domicilios, catálogo y recuperación de red requieren staging/sandbox. |
 
-### Web — rama propuesta `codex/hu-cierre-web`
+## Web
 
-| HU | Pendiente principal |
+Rama `hu-cierre-web`; lint, TypeScript, 5/5 pruebas, i18n y build pasan. Auditoría Playwright local: 11 pantallas, 1/1 prueba; LCP máximo 400 ms, CLS máximo 0.0327 y cero controles visibles sin etiqueta. Usa build local y API sintética.
+
+| HUs | Pendiente restante |
 |---|---|
-| 08 | Publicar/observar CI remoto en el SHA candidato y asociar resultados a la rama/PR. La suite local pasó, pero no equivale a CI. |
-| 09–11 | PR y revisión, rama protegida, clon/arranque reproducible y prueba de despliegue/smoke/reversión en staging. |
-| 15–16 | Probar compatibilidad real con el contrato API y respuestas/errores de carga, junto con Backend y Móvil. |
-| 18–23 | Completar recorridos integrados de roles y operaciones; los E2E locales existentes usan datos sintéticos y no prueban integración de backend/staging. |
-| 25 | Medir accesibilidad y rendimiento con criterios y resultados reproducibles. |
-| 30 | Incluir el SHA Web definitivo en release candidato, CI, smoke y evaluación institucional. |
+| 08 | `Web quality` y `Secret scan` del PR #43 pasaron; staging y revisión siguen pendientes. |
+| 09–11 | Revisión independiente, configurar protección, clon limpio completo y smoke/reversión en staging. |
+| 15–16 | Comparar firmas, respuestas, errores y archivos reales de API con Backend/Móvil. El chequeo actual solo cubre las 15 raíces Web y 20 raíces Móvil. |
+| 18–23 | Flujos integrados por rol, sede, pago, red y recuperación contra backend/staging. |
+| 25 | Auditoría Web local registrada; faltan laboratorio reproducible en ambiente objetivo, criterio institucional y auditoría WCAG completa. |
+| 30 | Añadir SHA final de los cuatro repos, checks CI y evaluación al paquete institucional. |
 
-### Móvil — rama propuesta `codex/hu-cierre-movil`
+## Móvil
 
-| HU | Pendiente principal |
+Rama `hu-cierre-movil`; lint, TypeScript, 8/8 pruebas e i18n pasan. Export Android limpio desde el SHA fuente `09e60c9d749ef1e4b1f2a0c18313792374580cc3`; evidencia en `docs/cierre/evidencia-local-hu-2026-11-03.md`.
+
+| HUs | Pendiente restante |
 |---|---|
-| 08 | Obtener CI remoto y build/export Android asociado al SHA candidato. Las pruebas locales pasaron, pero no se verificó la exportación. |
-| 09–11 | PR/revisión, protección de rama, instalación desde clon reproducible y flujo de release/EAS, smoke y reversión en staging. |
-| 15–16 | Verificar compatibilidad de API, manejo de errores y archivos con Backend/Web. |
-| 18–23 | Ejecutar recorridos integrados por rol para pedidos, cocina, caja, pagos, domicilios y catálogo; incluir desconexión y sincronización. |
-| 24 | Generar APK de producción e instalarla en dispositivo físico; probar BLE, impresora térmica, QR, sesión y reconexión. |
-| 25 | Medir accesibilidad y rendimiento en dispositivos definidos. |
-| 30 | Incluir el SHA móvil y evidencia de build/dispositivo en la evaluación final. |
+| 08 | CI, `Secret scan` y export Android del PR #32 pasaron; dispositivo/staging siguen pendientes. |
+| 09–11 | Revisión independiente, protección, clon reproducible, EAS/release, smoke y reversión en staging. |
+| 15–16 | Compatibilidad de operación, respuesta, error y archivo con Backend/Web en ejecución. |
+| 18–23 | Flujos reales por rol para pedidos/cocina/caja/pagos/domicilios/catálogo, desconexión y sincronización. |
+| 24 | APK de producción y hardware físico (BLE, impresora, QR, sesión y reconexión): no hay keystore/EAS productivo, `adb` ni dispositivo en el entorno. |
+| 25 | Medición reproducible de accesibilidad/rendimiento en los dispositivos definidos. |
+| 30 | SHA final, evidencia CI y evidencia de dispositivo para evaluación. |
 
-El `app.json` local preexistente debe revisarse por su responsable antes de incluirlo en una rama o commit. Este documento no lo añade ni lo modifica.
+`app.json` tenía un diff local previo. Quedó sin stage ni commit y requiere revisión de su responsable. No forma parte del PR #32.
 
-### Docs — continuar en `codex/hu-cierre-documentacion`
+## Docs
 
-| HU | Pendiente principal |
+Rama `hu-cierre-docs`; DER/diccionario/SQL derivados de migraciones, OpenAPI exportado, guía técnica y matriz HU actualizados. La evidencia generada representa el código/migraciones y no confirma un esquema desplegado.
+
+| HUs | Pendiente restante |
 |---|---|
-| 14 | Derivar DER/diccionario desde EF Core y migraciones y conciliarlos con un esquema desplegado verificable. |
-| 26 | Completar matriz RF → HU → repositorio/SHA → PR → prueba ejecutada → evidencia/fecha; no registrar PASS sin ejecución. |
-| 27 | Actualizar manuales y arquitectura contra versión vigente; calcular KPIs con fuente y método, sin cifras inventadas. |
-| 28 | Registrar issues, responsables y PR revisados; mantener autoría real y SHAs de los cuatro repositorios. |
-| 29 | Conseguir el anexo institucional que enumera los 28 hallazgos y registrar cada uno. El resumen disponible no permite inventariarlos individualmente. |
-| 30 | Preparar el paquete de evidencias para reevaluación, con los SHAs finales de Backend/Web/Móvil/Docs. |
+| 14 | Conciliar migraciones, DER y diccionario con esquema de base desplegada. |
+| 26–27 | Completar RF institucional y manual de usuario; mantener KPIs ligados a fuente y método. No inventar IDs ni resultados. |
+| 28 | Añadir issues y responsables confirmados; revisión independiente pendiente. Mantener commits nuevos con autor `yersonct`; no reescribir historia sin el proceso seguro. |
+| 29 | Obtener el anexo institucional que enumera los 28 hallazgos. El resumen actual no permite desglosarlos. |
+| 30 | Publicar esta rama, registrar su SHA y PR, incorporar estados CI de los cuatro repos y solicitar evaluación. |
 
-## Cierre transversal
+## No declarar como cerrado
 
-Las HU 04, 06 y parte de 07/08 tienen evidencia de código o pruebas locales, pero falta completar aceptación y revisión. HU 01–03, 05, 09–30 conservan acciones pendientes descritas arriba; varias requieren acceso operativo, entorno aislado, dispositivo, anexo faltante o aprobación. No declarar las 30 cerradas ni el proyecto al 100 % hasta completar sus criterios.
-
-Secuencia recomendada: trabajar en ramas de feature de cada repositorio, ejecutar sus checks, publicar commits atribuidos a `yersonct`, abrir PR y dejar revisión/checks antes de integrar. Mantener los cambios de Backend y Docs en sus ramas publicadas actuales; crear las ramas Web/Móvil solo cuando se vaya a implementar su contenido. Toda migración, rotación de secreto, saneamiento de historial o despliegue debe seguir las salvaguardas del plan fuente.
+Las pruebas locales no sustituyen CI, revisión independiente, base aislada, staging, dispositivo o aprobación. El [informe por HU](CIERRE-HU-2026-11-03.md) registra los 30 estados, comandos, evidencia y límites observados. Ninguna rama fue mergeada.
