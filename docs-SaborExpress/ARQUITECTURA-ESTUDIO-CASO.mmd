@@ -1,0 +1,8 @@
+flowchart LR
+ Web[Next.js] -->|REST JWT| API[ASP.NET Core 8]
+ Mov[Expo React Native] -->|REST JWT| API
+ API --> MOD[Modulos de negocio]
+ MOD --> DB[Entity Framework Core]
+ DB --> REL[(MySQL / PostgreSQL / SQL Server)]
+ MOD --> Wompi[Wompi externo]
+ API --> HUB[SignalR]

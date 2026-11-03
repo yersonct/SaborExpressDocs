@@ -1,0 +1,9 @@
+flowchart LR
+  WEB[Portal web Next.js] -->|REST / JWT| API[API ASP.NET Core 8]
+  MOV[App Expo / React Native] -->|REST / JWT| API
+  API --> S[Modulos Controllers Services Repositories]
+  S --> EF[Entity Framework Core]
+  EF --> DB[(MySQL o PostgreSQL o SQL Server)]
+  API -->|SignalR| WEB
+  API -->|SignalR| MOV
+  S --> WOMPI[Wompi: integracion de pagos]
