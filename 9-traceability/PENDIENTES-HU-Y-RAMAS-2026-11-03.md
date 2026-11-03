@@ -9,7 +9,7 @@
 | [Móvil](https://github.com/yersonct/SaborExpressMovil) | [`hu-cierre-movil`](https://github.com/yersonct/SaborExpressMovil/tree/hu-cierre-movil) | `cbb461dd774b2f239f1d28f4c54a8bc9b91d37a8` | [#32](https://github.com/yersonct/SaborExpressMovil/pull/32), borrador | Sigue sin merge. |
 | [Docs](https://github.com/yersonct/SaborExpressDocs) | [`hu-cierre-docs`](https://github.com/yersonct/SaborExpressDocs/tree/hu-cierre-docs) | HEAD de [PR #9](https://github.com/yersonct/SaborExpressDocs/pull/9); paquete base `25298a7efc70b216e64e6bc242a609752b8268a3` | [#9](https://github.com/yersonct/SaborExpressDocs/pull/9), borrador | Secret-scan y GitGuardian pasaron en el commit base; rama sin merge. |
 
-Los PR borrador permiten ejecutar CI y revisar los cambios sin integrarlos. No se pidió revisión a una cuenta distinta de `yersonct`. GitHub devolvió solo a `yersonct` como colaborador de cada repo y 404 al consultar protección en las ramas por defecto; las protecciones no están configuradas.
+Los PR borrador permiten ejecutar CI y revisar los cambios sin integrarlos. No se pidió revisión a una cuenta distinta de `yersonct`. GitHub devolvió solo a `yersonct` como colaborador de cada repo y 404 al consultar protección en las ramas por defecto; las protecciones no están configuradas. La gráfica de contribuyentes aún conserva autores históricos: Backend `lozano2303` (3), Web `CristianJPalma` (1), Móvil `CristianJPalma` (6). El usuario confirmó que esas contribuciones son suyas con identidad errónea; no se reescribió la historia porque HU-01/HU-02 requieren rotación, respaldo privado y coordinación previos.
 
 ## Backend
 
@@ -62,7 +62,7 @@ Rama `hu-cierre-docs`; DER/diccionario/SQL derivados de migraciones, OpenAPI exp
 |---|---|
 | 14 | Conciliar migraciones, DER y diccionario con esquema de base desplegada. |
 | 26–27 | Completar RF institucional y manual de usuario; mantener KPIs ligados a fuente y método. No inventar IDs ni resultados. |
-| 28 | Añadir issues y responsables confirmados; revisión independiente pendiente. Mantener commits nuevos con autor `yersonct`; no reescribir historia sin el proceso seguro. |
+| 28 | Añadir issues y responsables confirmados; revisión independiente pendiente. Los commits nuevos son de `yersonct`; para cambiar las gráficas históricas hace falta cumplir primero la rotación/respaldo/coordinación requeridos por HU-01/HU-02. |
 | 29 | Obtener el anexo institucional que enumera los 28 hallazgos. El resumen actual no permite desglosarlos. |
 | 30 | Los cuatro SHAs y PR están publicados y los checks enumerados pasaron. La evaluación institucional, staging, el hardware y el anexo siguen pendientes. |
 
