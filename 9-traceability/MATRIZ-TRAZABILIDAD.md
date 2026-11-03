@@ -38,6 +38,8 @@ Cada requisito RF se vincula a evidencia de código (origen) y a casos de prueba
 
 ## Criterio de actualización
 
+El estado observado el 2026-11-03 para las HU propuestas se registra en [CIERRE-HU-2026-11-03.md](CIERRE-HU-2026-11-03.md). Los estados RF de esta matriz no se cambian a PASS sin prueba ejecutada y evidencia con SHA.
+
 Cuando una prueba pase, adjuntar evidencia en carpeta `8-testing/evidencias` con nombre sin datos privados; registrar SHA de back/web/móvil y fecha. Agregar columna de cobertura real al activar pipeline CI.
 
 ## Fuentes primarias de implementación

@@ -325,6 +325,10 @@ Los directorios siguientes fueron identificados bajo `Modules/` en el backend. L
 
 ## Fuentes primarias de implementación
 
+## Matriz global de permisos
+
+En la rama de trabajo `codex/hu-cierre-04-06-integracion`, `POST` y `DELETE /api/role-permissions` requieren el rol `GERENTE` tanto en el controlador como en el servicio. La consulta de la matriz conserva el acceso existente de GERENTE y ADMINISTRADOR. La regla es para permisos globales; no acredita por sí sola la autorización de todos los recursos o sedes. Antes de release, revisar la decisión funcional y verificar el SHA de la rama y sus checks.
+
 - API: https://github.com/yersonct/SaborExpressBack/tree/main
 - Web: https://github.com/yersonct/SaborExpressWeb/tree/main
 - Móvil: https://github.com/yersonct/SaborExpressMovil/tree/main

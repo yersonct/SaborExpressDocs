@@ -39,6 +39,8 @@ SaborExpress es una plataforma de apoyo a operaciones gastronómicas, organizada
 
 ## Estado y limitaciones
 
+El estado de ejecución de las 30 HU propuestas en el plan de cierre, con evidencia y pendientes separados, se registra en [CIERRE-HU-2026-11-03.md](9-traceability/CIERRE-HU-2026-11-03.md).
+
 **Producción, autorización docente, tiempos de respuesta, ejecución de pruebas, seguridad certificada y migraciones multi-proveedor:** NO verificados en este proceso. La documentación describe el código consultado y lo separa de decisiones recomendadas. Los cuatro PDF históricos del repositorio deben conservarse, no eliminarse por sustitución automática.
 
 Para material de presentación consulte `MATRIZ-ENTREGA-PROFESIONAL.md`, `NORMAS-APA7-Y-ALCANCE.md` y `COMO-INTEGRAR-Y-SUBIR.md`. La autoría editorial debe revisarse si hubo más colaboradores; aquí se incluye el integrante informado por el usuario.

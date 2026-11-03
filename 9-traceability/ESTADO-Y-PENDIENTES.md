@@ -1,5 +1,7 @@
 # Trazabilidad, correcciones y mejora continua
 
+Para el corte de cierre del 2026-11-03, consultar [CIERRE-HU-2026-11-03.md](CIERRE-HU-2026-11-03.md), que separa cambios locales, pruebas observadas y validaciones externas pendientes.
+
 ## Estados para registrar
 
 `Identificado` → `En implementación` → `En pruebas` → `Aceptado` / `Rechazado`.
