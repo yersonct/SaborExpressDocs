@@ -34,6 +34,61 @@ Unit and CI tests establish bounded behavior, not complete production workflows.
 
 A field pilot should recruit an authorized operational representative and users with informed consent. The researcher should record branch, role, task, version, observation date and anticipated result; apply a semi-structured interview and a task observation sheet; anonymize responses and preserve failures. A separate isolated test environment should cover seven roles across two branches, forbidden object access, duplicate or modified payment webhook events in sandbox, network reconnection, declared load-test thresholds, migration rollback, recovery and physical-device/printing validation. Companion templates are ready for use but have not been applied.
 
+
+### Scope and scientific contribution
+
+The operational concern identified in repository documentation must be distinguished from the research problem. Restaurant orders, kitchens, payments and deliveries may require close coordination, but no incident rate has been measured at a specific establishment. The research problem is instead to establish which claims about a multi-client implementation can be supported by traceable evidence. The contribution is a reproducible triangulation method joining code artefacts, API contracts and versioned test records, not a causal experiment or commercial benchmark.
+
+Three analytical propositions guide evidence collection: P1, shared routes and domain models can document an integration architecture; P2, a test executed on one version supports only the behavior covered in that version; and P3, user satisfaction, productivity and production readiness cannot be inferred without integrated workflows and participant evidence. These propositions are not presented as statistically tested hypotheses.
+
+### Literature selection and appraisal
+
+The technology-surveillance matrix includes fifteen references relevant to restaurant operations, software architecture, research methods, requirements and security. It separates empirical studies and reviews, theoretical models, methodological guidance and standards. Selection was based on thematic relevance, a public DOI or stable URL, and applicability to a research decision. No exhaustive search string, PRISMA flow, independent risk-of-bias assessment or repeatable exclusion count was documented. This is therefore a *targeted review*, not a systematic review. Vendor material may document integration interfaces but cannot replace empirical studies of outcomes.
+
+Food-delivery research [1]–[5] suggests constructs for a future study; TAM and UTAUT [6], [7] support questions about usefulness and ease of use. Architectural views [8] and pattern comparisons [9] caution against calling a modular backend a proven microservices deployment. ISO/IEC 25010 [12] is adopted as a quality taxonomy, while OWASP [13] and the HTTP/JWT specifications [14], [15] inform controls without certifying the analysed system.
+
+### Extraction protocol and bias management
+
+The bounded case comprises SaborExpressBack, SaborExpressWeb, SaborExpressMovil and SaborExpressDocs. A reproducible evidence row records repository, path or test URL, complete commit SHA, date, environment, examined artefact, observation and scope limit. E1 denotes a reported executed check with an identifiable result; E2 a reproducible static inspection; and E3 an unexecuted proposal. Outcomes taken from existing documentation are explicitly *reported*, not re-run by the present manuscript editor.
+
+Four safeguards were adopted: never aggregate test counts from different versions into one quality percentage; include failures and blocked checks; separate local runs from CI checks and deployments; and distinguish system evidence from assumptions about restaurant operations. No probabilistic sampling or on-site restaurant observation has occurred. Some metrics depend on a project evidence report and should be checked against original execution artefacts by an independent reviewer.
+
+### Interpretation by evaluation dimension
+
+**Architecture and contracts.** The OpenAPI inventory contains 269 paths, 346 operations and 84 schemas as reported for an earlier backend SHA. This describes a generated specification, not successful execution of every operation. The 92 web and 47 mobile route-and-method matches verify static signatures but not JSON payloads, authorization, error handling or concurrent transactions. Registered JWT or SignalR components alone do not demonstrate effective access control or guaranteed event delivery.
+
+**Security.** Ninety local security tests reportedly passed on backend candidate `17a8ce4`. This is bounded regression evidence rather than an exhaustive penetration test: cross-branch journeys across seven roles, rotation of historical secrets and staging-level object authorization still require attention. For payments, the existence of Wompi endpoints must be separated from cryptographic event verification and transactional reconciliation; both latter behaviors require specific evidence.
+
+**Reliability and deployment.** The backend candidate returned `/health` HTTP 200 but `/health/ready` HTTP 503 owing to pending migrations. Liveness and operational readiness must therefore be distinguished. The satisfactory staging smoke of an earlier SHA does not invalidate or resolve the current local readiness outcome. Historical k6 runs yielded one threshold-compliant execution and two runs that failed the `Server-Timing` requirement; this mixed evidence cannot be presented as uniformly successful load validation on the latest candidate.
+
+**Usability.** One Playwright test against synthetic API data across eleven screens is not equivalent to an evaluation with actual restaurant staff or customers. No observed participant task-completion rates, operator timings or acceptance scores are available. These measures remain reserved for the planned field pilot, and external validity remains limited.
+
+### Findings-to-acceptance traceability
+
+| Dimension | Reported evidence | Supported conclusion | Outstanding validation |
+|---|---|---|---|
+| API contracts | OpenAPI; web 92/92; mobile 47/47 | Static route/method correspondence | Runtime payloads, errors and sessions |
+| Backend | Security 90/90, QA 62/62, PDF 11/11 | Bounded local suites passed for a SHA | Candidate CI and integrated journeys |
+| Web/mobile | 7/7 and 8/8 at their SHAs | Client-specific test suites passed | Physical devices and all roles |
+| Readiness | Local 503; previous staging smoke passed | Different status across versions/environments | Controlled migration and repeat smoke |
+| Performance | One k6 pass, two failed checks | Mixed historical evidence | Controlled repeated runs |
+| Field context | Interview template only | No empirical restaurant diagnosis | Authorized participant interview |
+
+### Reproducible follow-up evaluation
+
+The proposed field pilot must specify an authorized restaurant, participant role, task, date, consent and data-handling rules before recruitment. The workflow from catalogue through delivery can then be observed for elapsed time, errors, retries and comments without recording identifying information. Responses should be anonymized and analyzed descriptively. No sample size, score or participant quotation is fabricated in this article.
+
+Technical validation requires an isolated environment, synthetic data, two branches and seven role accounts. Every test should log preconditions, method, expected/observed outcomes, evidence, full SHA and blocking causes. Priorities include branch-level authorization, idempotent Wompi webhook handling, network recovery, cashier closures, kitchen state synchronization, reversible migrations and physical mobile-printing tests. Passing a local test does not substitute for reproducing that test on the same version in staging.
+
+
+### Explicit mapping to the SENA learning guide GFPI-F-135 V04
+
+The guide defines four research stages. Stage one requires three cases (one provided by the instructor, a literature-based case and an actual product-context case), interviews with three real users, and a problem tree revised in light of their accounts. At this point only a documentary analysis of SaborExpress and relevant published research is available. Neither the instructor's case nor field interviews and a verified restaurant case have been supplied. The current problem tree is therefore preliminary, not evidence of participants' needs.
+
+Stage two requires a consistency matrix connecting research question, objective, activity, output and verification; a pilot involving at least two users is planned but no execution or participant outcomes are claimed. Stage three separates at least six academic studies, three official technical references and three existing solutions. Stage four reports versioned technical test evidence without extrapolation to users or production. Companion annexes contain case, consistency and technology-surveillance matrices, a search strategy, and fieldwork forms awaiting genuine data.
+
+**Verifiable objective mapping.** Architecture is assessed against files and specifications in the four repositories; quality evidence against versioned QA reports; and the real productive context can only be assessed after interviews and the pilot have been conducted. The documentary objective is therefore partially supported while claims regarding restaurant needs and acceptance remain open.
+
 ## VIII. CONCLUSIONS
 
 The study documents a multi-client restaurant platform and a traceability chain linking source code, standards and versioned validation outcomes. Local tests and CI artefacts offer real evidence beyond static inspection, but are insufficient for claims of user acceptance, complete production readiness, or closure of every user story. The research contribution is a reproducible distinction between observed implementation, bounded verification and the field and technical evaluation needed to test the remaining hypotheses.
@@ -77,7 +132,7 @@ Manuscript author named: Yerson Stiven Cuéllar Rubiano, subject to personal con
 
 Sources and traceability / Fuentes y trazabilidad:
 - https://github.com/yersonct/SaborExpressDocs/blob/main/9-traceability/CIERRE-HU-2026-11-03.md
-- https://github.com/yersonct/SaborExpressDocs/blob/main/docs-SaborExpress/07_Articulo_investigacion_SaborExpress_ES.md
+- https://github.com/yersonct/SaborExpressDocs/blob/f77625c469fe21f0e660e946c9741474817a524b/docs-SaborExpress/07_Articulo_investigacion_SaborExpress_ES.md
 - https://github.com/yersonct/SaborExpressBack
 - https://github.com/yersonct/SaborExpressWeb
 - https://github.com/yersonct/SaborExpressMovil
