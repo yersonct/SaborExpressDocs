@@ -1,12 +1,12 @@
 # Manual de instalación y configuración
 
-**Proyecto:** SaborExpress | **Autor / integrante:** Yerson Stiven Cuellar Rubiano | **Ficha:** 3145555 | **Fecha:** 14 de octubre de 2026 | **Versión documental:** 4.0
+**Proyecto:** SaborExpress | **Autor / integrante:** Yerson Stiven Cuellar Rubiano | **Ficha:** 3145555 | **Fecha:** 3 de noviembre de 2026 | **Versión documental:** 4.1
 
-**Estado de la evidencia:** inspección documental y estática del código. Las pruebas de ejecución y los datos institucionales no aportados no se presumen realizados.
+**Estado de la evidencia:** pasos revisados contra las ramas de cierre publicadas. La guía no presupone credenciales, disponibilidad de proveedores, staging ni dispositivos físicos.
 
 ## 1. Requisitos mínimos de entorno de desarrollo
 
-Windows, macOS o Linux compatible, Git, .NET SDK 8, Node.js LTS compatible con Next.js 16 y Expo 57, npm, acceso a un gestor relacional soportado por la configuración .NET y una cuenta de pruebas para las integraciones externas. La capacidad de RAM/CPU y versiones exactas de emuladores se deben ajustar y medir según hardware real; no se promete un mínimo productivo universal.
+Windows, macOS o Linux compatible, Git, .NET SDK 8, Node.js LTS compatible con Next.js 16 y Expo 57, npm, acceso a un gestor relacional soportado por la configuración .NET y una cuenta de pruebas para integraciones externas. En los lockfiles revisados: Next.js 16.4.2, React 19.2.4, Expo ~57.0.30 y React Native 0.86.3. La capacidad de RAM/CPU y versiones exactas de emuladores se deben ajustar y medir según hardware real; no se promete un mínimo productivo universal.
 
 ## 2. Descarga y ramas
 
@@ -189,7 +189,7 @@ Los comandos de ejecución se dejan comentados por seguridad hasta configurar un
 - Móvil: https://github.com/yersonct/SaborExpressMovil/tree/main
 - Referencia de presentación: https://github.com/jsgh1/SRD-v1/tree/dev/docs/docs-SRD
 
-**Control documental:** documento elaborado a partir del estado observado en octubre de 2026. Antes de entregar, verificar el commit exacto, responsable, revisión del instructor y cualquier cambio posterior del código.
+**Control documental:** revisado el 3 de noviembre de 2026 contra los lockfiles Web/Móvil del corte. Los DOCX/PDF derivados no se actualizaron en este entorno.
 
 
 ## 12. Topología y requisitos técnicos
