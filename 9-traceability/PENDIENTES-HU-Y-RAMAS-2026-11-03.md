@@ -22,7 +22,7 @@ Rama `hu-cierre-backend`; matriz local de 7 roles por sede/recurso incorporada. 
 | 05 | Probar todos los recursos/endpoints con dos sedes y datos integrados; la matriz local incluye sede, pedidos, resúmenes, pagos, historial, mutaciones por sede, notificaciones, estados de mesa y liberación administrativa. |
 | 06, 09 | CI del SHA anterior `7d8c184` pasó; resultados para SHA posteriores y revisión independiente pendientes. Protección de rama ausente. PR #86 sigue en borrador, sin merge. |
 | 10–13 | Smoke limpio `/health`/readiness sin resultado verificable; staging, reversión, migración aplicada en DB aislada y backup/restore medidos pendientes. El daemon Docker no estaba disponible. |
-| 15–17 | OpenAPI y comparación estática parcial listos; falta contrato en ejecución para errores/archivos y matriz completa CORS/JWT/privacidad en staging. |
+| 15–17 | OpenAPI del Backend SHA `7d515ff` y comparación estática AST de 92 firmas Web + 47 Móvil (ruta+método) coinciden. Falta contrato runtime de schemas, payloads, errores/archivos y matriz CORS/JWT/privacidad en staging. |
 | 18–23 | Flujos completos de 7 roles × 2 sedes, Wompi/facturas, cocina, caja, domicilios, catálogo y recuperación de red requieren staging/sandbox. |
 
 ## Web
@@ -33,7 +33,7 @@ Rama `hu-cierre-web`; lint, TypeScript, 5/5 pruebas, i18n y build pasan. Auditor
 |---|---|
 | 08 | `Web quality` y `Secret scan` del PR #43 pasaron; staging y revisión siguen pendientes. |
 | 09–11 | Revisión independiente, configurar protección, clon limpio completo y smoke/reversión en staging. |
-| 15–16 | Comparar firmas, respuestas, errores y archivos reales de API con Backend/Móvil. El chequeo actual solo cubre las 15 raíces Web y 20 raíces Móvil. |
+| 15–16 | Las 92 firmas Web y 47 Móvil de ruta+método coinciden con OpenAPI del Backend `7d515ff`. Faltan schemas, payloads, respuestas, errores y archivos reales verificados contra Backend/Móvil en ejecución. |
 | 18–23 | Flujos integrados por rol, sede, pago, red y recuperación contra backend/staging. |
 | 25 | Auditoría Web local registrada; faltan laboratorio reproducible en ambiente objetivo, criterio institucional y auditoría WCAG completa. |
 | 30 | Añadir SHA final de los cuatro repos, checks CI y evaluación al paquete institucional. |
@@ -46,7 +46,7 @@ Rama `hu-cierre-movil`; lint, TypeScript, 8/8 pruebas e i18n pasan. Export Andro
 |---|---|
 | 08 | CI, `Secret scan` y export Android del PR #32 pasaron; dispositivo/staging siguen pendientes. |
 | 09–11 | Revisión independiente, protección, clon reproducible, EAS/release, smoke y reversión en staging. |
-| 15–16 | Compatibilidad de operación, respuesta, error y archivo con Backend/Web en ejecución. |
+| 15–16 | Las 47 firmas Móvil de ruta+método coinciden con OpenAPI del Backend `7d515ff`; faltan schemas, payloads, respuestas, errores y archivos reales verificados en ejecución con Backend/Web. |
 | 18–23 | Flujos reales por rol para pedidos/cocina/caja/pagos/domicilios/catálogo, desconexión y sincronización. |
 | 24 | APK de producción y hardware físico (BLE, impresora, QR, sesión y reconexión): no hay keystore/EAS productivo, `adb` ni dispositivo en el entorno. |
 | 25 | Medición reproducible de accesibilidad/rendimiento en los dispositivos definidos. |
@@ -56,7 +56,7 @@ Rama `hu-cierre-movil`; lint, TypeScript, 8/8 pruebas e i18n pasan. Export Andro
 
 ## Docs
 
-Rama `hu-cierre-docs`; DER/diccionario/SQL derivados de migraciones, OpenAPI exportado, guía técnica y matriz HU actualizados. La evidencia generada representa el código/migraciones y no confirma un esquema desplegado.
+Rama `hu-cierre-docs`; DER/diccionario/SQL derivados de migraciones, OpenAPI reexportado desde Backend SHA `7d515ff`, comparación AST de métodos/rutas de clientes, guía técnica y matriz HU actualizados. La evidencia generada representa el código/migraciones y no confirma un esquema desplegado.
 
 | HUs | Pendiente restante |
 |---|---|

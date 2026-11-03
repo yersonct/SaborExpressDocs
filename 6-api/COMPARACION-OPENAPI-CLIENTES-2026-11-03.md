@@ -1,29 +1,34 @@
-# Comparación estática de rutas de clientes y OpenAPI — 2026-11-03
+# Comparación estática de rutas y métodos de clientes con OpenAPI — 2026-11-03
 
-## Fuentes y método
+## Fuentes
 
-- OpenAPI exportado desde Backend, rama `hu-cierre-backend`, SHA fuente `7d8c184efff713a79e51253bbd2f9c2e6d9d4046`: [`openapi/backend-openapi-2026-11-03.json`](openapi/backend-openapi-2026-11-03.json).
-- Web: fuente `.ts`, `.tsx`, `.js`, `.jsx` y `.mjs` bajo `src`.
-- Móvil: mismos tipos de archivo bajo `src`.
-- Script: [`compare-api-client-roots.mjs`](../scripts/compare-api-client-roots.mjs).
+- OpenAPI generado desde Backend `hu-cierre-backend`, SHA `7d515ff1be30e4561b2135450f55a296e6945054`: [`openapi/backend-openapi-2026-11-03.json`](openapi/backend-openapi-2026-11-03.json).
+- Web, rama `hu-cierre-web`, SHA `7d1cd20dae022454c70483f78c621a2285c9eaff`, archivos `.ts`, `.tsx`, `.js`, `.jsx` y `.mjs` bajo `src`.
+- Móvil, rama `hu-cierre-movil`, SHA `cbb461dd774b2f239f1d28f4c54a8bc9b91d37a8`, mismos tipos de archivo bajo `src`.
+- Comparador con parser AST de TypeScript: [`compare-api-client-roots.mjs`](../scripts/compare-api-client-roots.mjs).
 
-El script extrae segmentos literales `/api/<raíz>` de fuentes y comentarios, normaliza mayúsculas/minúsculas y compara cada raíz con la primera parte del path OpenAPI. La comparación comprobó 15/15 raíces únicas de Web y 20/20 de Móvil; no encontró raíz sin correspondencia. El OpenAPI contiene 269 paths, 346 operaciones, 84 esquemas y 28 raíces de Backend.
+## Resultado reproducible
 
-Para repetir desde la carpeta de este repositorio en el mismo workspace:
+Desde la carpeta raíz de Docs:
 
 ```powershell
-node scripts/compare-api-client-roots.mjs 6-api\openapi\backend-openapi-2026-11-03.json ..\SaborExpressWeb\src ..\SaborExpressMovil\src
+node scripts/compare-api-client-roots.mjs 6-api/openapi/backend-openapi-2026-11-03.json ../SaborExpressWeb/src ../SaborExpressMovil/src
 ```
 
-El resultado es una comprobación estática de nombres de recursos. No valida verbo HTTP, parámetros, modelos, códigos/cuerpos de error, carga de archivos, autorización, despliegue ni comportamiento de servidor. Los comentarios del código también se inspeccionan, por lo que esta salida no equivale a un análisis AST de llamadas activas.
+Salida para estos SHAs:
 
-## Raíces detectadas
+```text
+../SaborExpressWeb/src: 19/19 API roots found in OpenAPI
+Resolved client operations: 92
+Operations found in OpenAPI: 92/92
+../SaborExpressMovil/src: 16/16 API roots found in OpenAPI
+Resolved client operations: 47
+Operations found in OpenAPI: 47/47
+Backend OpenAPI roots: 28
+```
 
-| Cliente | Raíces detectadas | Correspondencia |
-|---|---|---:|
-| Web | `auth`, `branch-settings`, `branches`, `categories`, `deliveries`, `employees`, `notifications`, `order-details`, `orders`, `payments`, `products`, `reviews`, `tables`, `telemetry`, `v1` | 15/15 |
-| Móvil | `addresses`, `auth`, `branch-settings`, `branches`, `cashclosures`, `customers`, `deliveries`, `employee-schedules`, `employees`, `invoices`, `notifications`, `order-details`, `orders`, `payments`, `products`, `public`, `reviews`, `tables`, `user-preferences`, `user-settings` | 20/20 |
+El comparador analiza llamadas HTTP en el AST de los clientes, resuelve rutas literales, plantillas y constantes/fábricas de endpoints que puede seguir, y compara verbo y ruta con OpenAPI. Compara rutas sin distinguir mayúsculas y minúsculas y normaliza los nombres de parámetros (`{id}` y `{orderId}`); por eso prueba que existe la misma forma de ruta y verbo, no que los parámetros o payloads sean compatibles. Los conteos son firmas distintas, no solicitudes ejecutadas.
 
-## Pendiente contractual
+## Límite de la evidencia
 
-Para aceptar compatibilidad hay que generar/validar tests de operación, payloads, multipart, errores de validación/autorización, descargas y recuperación de red contra una instancia de API candidata. La prueba integrada debe ejecutarse junto a Backend y Móvil en staging o ambiente aislado autorizado.
+La coincidencia estática no valida query/path parameter schemas, modelos ni cuerpos de solicitud/respuesta, códigos y cuerpos de error, multipart, autorización, archivos descargados, conexión, comportamiento del servidor o integración entre repositorios. No reemplaza pruebas contractuales contra una API candidata ni recorridos en staging. Las rutas calculadas dinámicamente que el analizador no puede resolver tampoco quedan certificadas. HU-15 avanza con esta comparación; HU-15/16 siguen parciales hasta ejecutar el contrato real de errores y archivos con Backend, Web y Móvil.
