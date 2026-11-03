@@ -7,7 +7,7 @@
 | [Backend](https://github.com/yersonct/SaborExpressBack) | [`hu-cierre-backend`](https://github.com/yersonct/SaborExpressBack/tree/hu-cierre-backend) | `7e6950f009380927ef950402ecb46a5cf5393b9e` | [#86](https://github.com/yersonct/SaborExpressBack/pull/86), borrador | Sigue sin merge. PR incremental sobre la rama de integración existente; PR #85 queda intacto. |
 | [Web](https://github.com/yersonct/SaborExpressWeb) | [`hu-cierre-web`](https://github.com/yersonct/SaborExpressWeb/tree/hu-cierre-web) | `7d1cd20dae022454c70483f78c621a2285c9eaff` | [#43](https://github.com/yersonct/SaborExpressWeb/pull/43), borrador | Sigue sin merge. |
 | [Móvil](https://github.com/yersonct/SaborExpressMovil) | [`hu-cierre-movil`](https://github.com/yersonct/SaborExpressMovil/tree/hu-cierre-movil) | `cbb461dd774b2f239f1d28f4c54a8bc9b91d37a8` | [#32](https://github.com/yersonct/SaborExpressMovil/pull/32), borrador | Sigue sin merge. |
-| [Docs](https://github.com/yersonct/SaborExpressDocs) | [`hu-cierre-docs`](https://github.com/yersonct/SaborExpressDocs/tree/hu-cierre-docs) | HEAD de [PR #9](https://github.com/yersonct/SaborExpressDocs/pull/9) | [#9](https://github.com/yersonct/SaborExpressDocs/pull/9), borrador | `scan` y GitGuardian pasaron en `4eee420`; el nuevo commit de este informe requiere observar su propio run. Rama sin merge. |
+| [Docs](https://github.com/yersonct/SaborExpressDocs) | [`hu-cierre-docs`](https://github.com/yersonct/SaborExpressDocs/tree/hu-cierre-docs) | HEAD de [PR #9](https://github.com/yersonct/SaborExpressDocs/pull/9) | [#9](https://github.com/yersonct/SaborExpressDocs/pull/9), borrador | `scan` y GitGuardian pasaron en `37b340f`; el check del HEAD posterior se consulta en el PR. Rama sin merge. |
 
 Los PR borrador permiten ejecutar CI y revisar los cambios sin integrarlos. No se pidió revisión a una cuenta distinta de `yersonct`. GitHub devolvió solo a `yersonct` como colaborador de cada repo y 404 al consultar protección en las ramas por defecto; las protecciones no están configuradas. La gráfica de contribuyentes aún conserva autores históricos: Backend `lozano2303` (3), Web `CristianJPalma` (1), Móvil `CristianJPalma` (6). El usuario confirmó que esas contribuciones son suyas con identidad errónea; no se reescribió la historia porque HU-01/HU-02 requieren rotación, respaldo privado y coordinación previos.
 
@@ -64,7 +64,7 @@ Rama `hu-cierre-docs`; DER/diccionario/SQL derivados de migraciones, OpenAPI ree
 | 26–27 | Completar RF institucional y manual de usuario; mantener KPIs ligados a fuente y método. No inventar IDs ni resultados. |
 | 28 | Añadir issues y responsables confirmados; revisión independiente pendiente. Los commits nuevos son de `yersonct`; para cambiar las gráficas históricas hace falta cumplir primero la rotación/respaldo/coordinación requeridos por HU-01/HU-02. |
 | 29 | Obtener el anexo institucional que enumera los 28 hallazgos. El resumen actual no permite desglosarlos. |
-| 30 | Los cuatro SHAs y PR están publicados. Backend `7e6950f` y Docs `4eee420` tienen checks remotos success; el nuevo HEAD Docs de este registro requiere su run. Siguen pendientes evaluación institucional, staging, hardware y anexo. |
+| 30 | Los cuatro SHAs y PR están publicados. Backend `7e6950f` y Docs `37b340f` tienen checks remotos success; cualquier SHA posterior requiere su run. Siguen pendientes evaluación institucional, staging, hardware y anexo. |
 
 ## No declarar como cerrado
 
