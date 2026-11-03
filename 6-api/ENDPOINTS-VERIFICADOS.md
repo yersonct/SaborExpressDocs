@@ -10,6 +10,12 @@ Inventario verificado leyendo controladores seleccionados de la rama `main` de S
 
 **Swagger:** según `SwaggerConfiguration.cs`, interfaz en `/` y JSON en `/swagger/v1/swagger.json` si el backend está levantado; cambiar según reverse proxy. **SignalR:** `/hubs/notifications` en `Program.cs`. La respuesta y esquema completos se deben exportar del OpenAPI ejecutado.
 
+## Actualización de cierre — 2026-11-03
+
+La rama Backend `hu-cierre-backend` (SHA `7d8c184efff713a79e51253bbd2f9c2e6d9d4046`) exportó [`openapi/backend-openapi-2026-11-03.json`](openapi/backend-openapi-2026-11-03.json), con 269 paths, 346 operaciones y 84 esquemas. La comparación estática de fuentes registró 15/15 raíces Web y 20/20 raíces Móvil presentes en la especificación; el procedimiento y las limitaciones están en [COMPARACION-OPENAPI-CLIENTES-2026-11-03.md](COMPARACION-OPENAPI-CLIENTES-2026-11-03.md).
+
+Es una comparación de nombres de recursos. No verifica cada verbo, tipo de dato, archivo, error, autorización ni respuesta de un servidor desplegado. No sustituye los contratos de integración pendientes.
+
 ## 2. Endpoints corroborados
 
 ### Auth

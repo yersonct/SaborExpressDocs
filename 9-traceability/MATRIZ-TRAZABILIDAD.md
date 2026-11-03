@@ -1,50 +1,72 @@
-# Matriz de trazabilidad de requisitos, fuente y verificación
+# Matriz de trazabilidad RF → HU → repositorio → prueba → evidencia
 
-**Proyecto:** SaborExpress  |  **Fecha de corte:** 14 de octubre de 2026  |  **Versión:** 2.0  |  **Tipo:** Documento técnico y académico
+**Proyecto:** SaborExpress · **Corte:** 3 de noviembre de 2026 · **Responsable del cambio:** yersonct
 
-**Estado de la evidencia:** inspección documental y estática del código. Las pruebas de ejecución y los datos institucionales no aportados no se presumen realizados.
+## Regla de aceptación
 
-## Método
+Esta matriz separa la existencia del código, la ejecución de suites y la aceptación de cada requisito. Los casos `CP-*` son los casos definidos en la especificación; no se consideran ejecutados por aparecer aquí. Las suites descritas abajo sí se ejecutaron, pero sus resultados agregados no prueban por sí solos cada criterio de cada RF. Por esa razón, ningún RF se declara `PASS` o aceptado en este corte. La asociación RF→HU es una propuesta funcional para organizar la evidencia y debe conciliarse con el anexo institucional de los 28 hallazgos, que no está disponible.
 
-Cada requisito RF se vincula a evidencia de código (origen) y a casos de pruebas diseñados. Estado de ejecución: **pendiente**. La falta de caso específico se indica como necesidad de cobertura adicional; no se presume aprobación.
+## Líneas base y PR
 
-| Req | Fuente de código | Casos sugeridos | Estado |
-| --- | --- | --- | --- |
-| RF-01 | POST /api/Auth/login | CP-01, CP-02 | Pruebas pendientes |
-| RF-02 | AuthController | CP-03 | Pruebas pendientes |
-| RF-03 | Controllers/Roles,Permissions,UserRoles | CP-05 | Pruebas pendientes |
-| RF-04 | BranchesController | CP-05 | Pruebas pendientes |
-| RF-05 | GET /api/Branches/mine | CP-05 | Pruebas pendientes |
-| RF-06 | EmployeesController | CP-05 | Pruebas pendientes |
-| RF-07 | EmployeeSchedulesController | CP-22 | Pruebas pendientes |
-| RF-08 | ProductsController/CategoriesController | CP-06, CP-07 | Pruebas pendientes |
-| RF-09 | GET /api/Products | CP-06 | Pruebas pendientes |
-| RF-10 | POST /api/Orders | CP-08, CP-09, CP-10 | Pruebas pendientes |
-| RF-11 | GET /api/Orders/... | CP-08 | Pruebas pendientes |
-| RF-12 | PATCH /api/Orders/{id}/status | CP-13 | Pruebas pendientes |
-| RF-13 | PATCH /api/Orders/{id}/cancel-mine | CP-11, CP-12 | Pruebas pendientes |
-| RF-14 | PaymentsController | CP-19 | Pruebas pendientes |
-| RF-15 | POST /api/Payments/wompi/init | CP-14, CP-17 | Pruebas pendientes |
-| RF-16 | POST /api/Payments/wompi/webhook | CP-15, CP-16 | Pruebas pendientes |
-| RF-17 | POST /api/Payments/wompi/cashier-init | CP-18 | Pruebas pendientes |
-| RF-18 | POST /api/Deliveries | CP-20 | Pruebas pendientes |
-| RF-19 | PATCH /api/Deliveries/{id}/status | CP-20 | Pruebas pendientes |
-| RF-20 | POST /api/Deliveries/{id}/rating | CP-21 | Pruebas pendientes |
-| RF-21 | NotificationsController | CP-22 | Pruebas pendientes |
-| RF-22 | PublicKitchenController y componente KitchenBoardPublic | CP-22 | Pruebas pendientes |
-| RF-23 | GET /api/Branches/nearest | CP-05 | Pruebas pendientes |
-| RF-24 | Tables,Orders,DailyMenu Controllers | CP-08 | Pruebas pendientes |
-| RF-25 | src/app/reports/page.tsx | CP-27 | Pruebas pendientes |
+Los códigos B/W/M/D remiten a los candidatos probados. Actualización: Web, Móvil y Docs quedaron incluidos en `main` y sus PR #43, #32 y #9 están cerrados. Backend permanece separado de `main`; su último candidato es `17a8ce474832818c9216f00cd6c1174074a2d442`. La inclusión en `main` no acredita por sí sola producción ni aceptación de todas las HU.
 
-## Criterio de actualización
+| Clave | Repositorio / rama | SHA candidato publicado | PR | Checks observados |
+|---|---|---|---|---|
+| B | [Backend · `hu-cierre-backend`](https://github.com/yersonct/SaborExpressBack/tree/hu-cierre-backend) | `17a8ce474832818c9216f00cd6c1174074a2d442` | [#86](https://github.com/yersonct/SaborExpressBack/pull/86), cerrado en rama de integración; [#85](https://github.com/yersonct/SaborExpressBack/pull/85) abierto con head `codex/*` | `verify`, `scan`, GitGuardian pasaron en `7e6950f`; `17a8ce4` pasó build y pruebas locales, pero no tiene check remoto visible. Crear PR a `main` devolvió 403. |
+| W | [Web · `hu-cierre-web`](https://github.com/yersonct/SaborExpressWeb/tree/hu-cierre-web) | `aa5cb8d04d5af03e91e250bee227ea9c7c190e13`; incluido en `main` `f807d414585015fac454c6d597096382d28aeb08` | [#43](https://github.com/yersonct/SaborExpressWeb/pull/43), cerrado | Web quality, secret scan, GitGuardian y Preview Comments: success en el candidato. Vercel reportó success en `main`; no se confirmó alias de producción. |
+| M | [Móvil · `hu-cierre-movil`](https://github.com/yersonct/SaborExpressMovil/tree/hu-cierre-movil) | `af52bbaf184404bb9f660b9dfa63c66958768bb4`; incluido en `main` `97e34ac270acbef2562e0e34d6fdf677f1b5c4cc` | [#32](https://github.com/yersonct/SaborExpressMovil/pull/32), cerrado | Mobile quality, secret scan y GitGuardian: success en el candidato. No acredita APK de producción ni prueba física. `app.json` quedó fuera del commit. |
+| D | [Docs · `hu-cierre-docs`](https://github.com/yersonct/SaborExpressDocs/tree/hu-cierre-docs) | `480a30f653b49f133296c1a3278136875226aecb`; incluido en `main` `c9f50abfe81b006b61be4b00233490d2098be6b4` | [#9](https://github.com/yersonct/SaborExpressDocs/pull/9), cerrado | `Secret scan` pasó en `480a30f`. |
 
-Cuando una prueba pase, adjuntar evidencia en carpeta `8-testing/evidencias` con nombre sin datos privados; registrar SHA de back/web/móvil y fecha. Agregar columna de cobertura real al activar pipeline CI.
+Esta actualización se publica en la rama no integrada `hu-cierre-docs-estado`. El SHA se consulta en el historial de esa rama después del push; la actualización no se considera integrada ni release.
 
-## Fuentes primarias de implementación
+## RF y estado de verificación
 
-- API: https://github.com/yersonct/SaborExpressBack/tree/main
-- Web: https://github.com/yersonct/SaborExpressWeb/tree/main
-- Móvil: https://github.com/yersonct/SaborExpressMovil/tree/main
-- Referencia de presentación: https://github.com/jsgh1/SRD-v1/tree/dev/docs/docs-SRD
+`HU relacionadas` es una agrupación por área funcional, no una afirmación de aceptación ni una relación aprobada por el anexo. `CP-*` identifica el caso de la especificación. En `Verificación` se indica el alcance ejecutado y la brecha que impide cerrar el RF.
 
-**Control documental:** documento elaborado a partir del estado observado en octubre de 2026. Antes de entregar, verificar el commit exacto, responsable, revisión del instructor y cualquier cambio posterior del código.
+| RF | Fuente y repositorio | HU relacionadas (propuesta) | CP definido | Verificación al corte / evidencia | Estado |
+|---|---|---|---|---|---|
+| RF-01 Inicio de sesión | `AuthController`, API B; clientes W/M | 15–18 | CP-01, CP-02, CP-03 | Suites locales Backend y Web/Móvil pasaron en sus SHA de línea base; no hay resultado de aceptación CP-01/02/03 ligado a una sesión real. Ver E-BACK, E-WEB, E-MOB. | Parcial |
+| RF-02 Recuperación de contraseña | `AuthController`, API B; cliente W/M | 15–17 | CP-02, CP-28 | No se encontró evidencia por requisito de envío, expiración, uso único y restablecimiento. La suite agregada no cierra el flujo de correo real. Ver E-BACK. | Parcial |
+| RF-03 Roles y permisos | Controllers/servicios Roles, Permissions y UserRoles, B; interfaz W | 04–05 | CP-05, CP-29 | QA y Security Backend pasaron; sí existe prueba local de escrituras globales reservadas a GERENTE. Falta matriz completa de endpoints, roles y dos sedes. Ver E-BACK. | Parcial |
+| RF-04 Crear/actualizar sedes | `BranchesController`, B; interfaz W | 05, 18–23 | CP-05 | Hay cobertura en suites agregadas, pero no evidencia de aceptación por operación ni comparación entre dos sedes. Ver E-BACK. | Parcial |
+| RF-05 Consultar sede asignada | `GET /api/Branches/mine`, B; selector W/M | 05, 18–23 | CP-05 | La matriz Security cubre acceso por sede en escenarios locales; falta la prueba integrada de usuario A contra datos de B. Ver E-BACK. | Parcial |
+| RF-06 Gestionar empleados | `EmployeesController`, B; equipo W | 05, 18–23 | CP-05 | Suites Backend pasaron; falta una matriz completa de roles/sedes y un recorrido integrado en staging. Ver E-BACK. | Parcial |
+| RF-07 Horarios y turnos | `EmployeeSchedulesController`, B; vistas W/M | 18–23 | CP-22, CP-30 | El caso está definido; no hay reporte de ejecución aislada por rol/sede. Ver E-BACK y E-WEB/E-MOB como suites generales. | Parcial |
+| RF-08 Gestionar categorías/productos | `ProductsController` y `CategoriesController`, B; catálogo W/M | 22–23 | CP-06, CP-07 | Suites pasaron; no hay recorrido integrado de edición y lectura desde Web/Móvil en dos sedes. Ver E-BACK, E-WEB, E-MOB. | Parcial |
+| RF-09 Consultar productos por sede/categoría | `GET /api/Products`, B; catálogo W/M | 22–23 | CP-06 | Export OpenAPI y comparación de rutas no prueban el contenido por sede; falta ejecución de aceptación con datos de dos sedes. Ver E-OAS. | Parcial |
+| RF-10 Crear pedidos | `POST /api/Orders`, B; flujos cliente/mesero W/M | 18, 23 | CP-08, CP-09, CP-10 | Hay pruebas locales del dominio y clientes con API sintética; no se ejecutó la transacción integrada con Backend/staging. Ver E-BACK, E-WEB, E-MOB. | Parcial |
+| RF-11 Filtrar pedidos | Rutas `GET /api/Orders`, B; vistas de pedidos W/M | 18–23 | CP-05, CP-08, CP-12 | Rutas coinciden en análisis estático; falta validar filtros, autorización y respuesta contra el servicio real. Ver E-OAS. | Parcial |
+| RF-12 Actualizar estado de pedido | `PATCH /api/Orders/{id}/status`, B; cocina/mesero W/M | 19, 23 | CP-13 | Suites agregadas y flujo local disponibles; no hay recorrido integrado de preparación con dos sedes ni recuperación de red. Ver E-BACK, E-WEB, E-MOB. | Parcial |
+| RF-13 Cancelar pedido propio | `PATCH /api/Orders/{id}/cancel-mine`, B; cliente W/M | 18, 23 | CP-11, CP-12 | La suite local no se asocia aquí a todos los estados, pago y propiedad exigidos por el CP. Falta la matriz ejecutada en servicio integrado. Ver E-BACK. | Parcial |
+| RF-14 Registrar/consultar pagos por turno | `PaymentsController`, B; caja W/M | 20, 23 | CP-19 | Pruebas locales de pagos/facturas existen; falta flujo de caja real con conciliación y turno en sandbox/staging. Ver E-BACK. | Parcial |
+| RF-15 Iniciar pago Wompi | `POST /api/Payments/wompi/init`, B; checkout W/M | 20 | CP-14, CP-17 | Pruebas locales no equivalen a pago externo; no hay evidencia de sandbox/credenciales renovadas ni conciliación. Ver E-BACK. | Parcial |
+| RF-16 Webhook autenticado | `POST /api/Payments/wompi/webhook`, B | 20 | CP-14, CP-15, CP-16 | No se adjunta ejecución contractual de firma válida/inválida contra sandbox en este corte. Ver E-BACK. | Parcial |
+| RF-17 Cobro QR desde caja | `POST /api/Payments/wompi/cashier-init`, B; caja M/W | 20 | CP-18 | Falta QR de sandbox, ciclo de conciliación y respuesta de error del proveedor, ejecutados con el cliente. Ver E-BACK y E-MOB/E-WEB. | Parcial |
+| RF-18 Asignar repartidor | `POST /api/Deliveries`, B; despacho W/M | 21, 23 | CP-20 | Cobertura local parcial; falta recorrido integrado de asignación por rol y sede. Ver E-BACK, E-WEB, E-MOB. | Parcial |
+| RF-19 Cambiar estado de entrega | `PATCH /api/Deliveries/{id}/status`, B; repartidor M/W | 21, 23 | CP-20 | Falta verificar permisos, estados permitidos y reconexión en entorno integrado. Ver E-BACK, E-MOB. | Parcial |
+| RF-20 Calificar entrega | `POST /api/Deliveries/{id}/rating`, B; cliente M/W | 21 | CP-21 | No se adjunta corrida de aceptación que pruebe propiedad de la entrega, duplicado y respuesta de error. Ver E-BACK, E-MOB. | Parcial |
+| RF-21 Consultar notificaciones | `NotificationsController`, B; centro de notificaciones W/M | 19, 23 | CP-22, CP-31 | Pruebas locales/código no cubren entrega real, lectura, reconexión y visibilidad entre usuarios. Ver E-BACK, E-WEB, E-MOB. | Parcial |
+| RF-22 Tablero de cocina | `PublicKitchenController`, B; tablero W/M | 19, 23 | CP-22 | Falta recorrido integrado del tablero con actualización y recuperación de conexión en la sede. Ver E-BACK, E-MOB. | Parcial |
+| RF-23 Sede cercana | `GET /api/Branches/nearest`, B; ubicación W/M | 18, 22 | CP-05, CP-32 | La firma de ruta se compara estáticamente; no se reporta prueba con ubicación/resultado y errores reales. Ver E-OAS. | Parcial |
+| RF-24 Mesas, pedidos y menú diario | Controllers de Tables/Orders/DailyMenu, B; vistas W/M | 18, 22–23 | CP-08, CP-33 | Suites locales cubren partes; falta recorrido por rol y sede a través de API y clientes. Ver E-BACK, E-WEB, E-MOB. | Parcial |
+| RF-25 Reportes operativos | `/reports`, W; API B | 05, 25, 27 | CP-27, CP-34 | Auditoría local de 11 pantallas Web aprobó accesibilidad básica y tiempos del navegador con API sintética. No acredita exactitud de indicadores ni datos de producción. Ver E-A11Y. | Parcial |
+
+## Registro de ejecuciones y límites
+
+| Evidencia | Ejecución observada | SHA / fecha | Alcance y límite |
+|---|---|---|---|
+| E-BACK | Backend Security 90/90, QA 62/62 e Invoice PDF 11/11 | B · `17a8ce4` · 2026-11-03 | Build Release con 0 warnings y 0 errores; son pruebas locales de unidades/regresión, no aceptación individual de los RF ni staging. Rutas: [`Security.Tests`](https://github.com/yersonct/SaborExpressBack/tree/hu-cierre-backend/tests/SaborExpressBack.Security.Tests), [`QA.Tests`](https://github.com/yersonct/SaborExpressBack/tree/hu-cierre-backend/tests/SaborExpressBack.QA.Tests), [`InvoicePdf.Tests`](https://github.com/yersonct/SaborExpressBack/tree/hu-cierre-backend/tests/SaborExpressBack.InvoicePdf.Tests). |
+| E-OAS | OpenAPI de B comparada con clientes: Web 92/92 y Móvil 47/47 firmas ruta+método | B/W/M · 2026-11-03 | Comparación estática de rutas; no valida schemas, payloads, errores, permisos ni cargas. [Informe](../6-api/COMPARACION-OPENAPI-CLIENTES-2026-11-03.md). |
+| E-WEB | Web: 7/7 pruebas locales; workflow remoto de calidad pasó en W | W · 2026-11-03 | Suite y build; E2E existentes usan API sintética. No prueba integración de producción/staging. |
+| E-MOB | Móvil: 8/8 pruebas locales; workflow remoto de calidad pasó en M | M · 2026-11-03 | Suite local y artefacto del workflow; no equivale a APK de producción instalado en equipo físico. `app.json` local permanece sin incluir. |
+| E-A11Y | Playwright en 11 pantallas, 1/1 prueba | SHA `7d1cd20dae022454c70483f78c621a2285c9eaff` · 2026-11-03 | API sintética y Chromium local. [Criterios, resultados y límites](../8-testing/evidencias/HU25-Web-2026-11-03.md). Este SHA es el usado para esa medición, no el SHA final W. |
+| E-STG | Smoke remoto y k6: una corrida aprobó thresholds; dos fallaron el threshold de `Server-Timing` ausente | SHA histórico `ac2b39e1a971c05998cb8dd0dd5a5e2f3295ba22` · 2026-10-29 | No es el candidato B; no cierra despliegue/reversión actual. [Detalle](../8-testing/evidencias/HU-STG-01-Backend-2026-10-29.md). |
+
+## Trabajo restante para aceptar RF
+
+1. Ejecutar cada CP de aceptación o enlazarlo a un test automatizado con aserciones inequívocas, SHA, resultado, fecha y artefacto.
+2. Completar los recorridos API/cliente con staging y datos de dos sedes; registrar casos de error, autorización, archivos y reconexión.
+3. Validar las asociaciones RF→HU contra el anexo institucional de los 28 hallazgos cuando esté disponible. Esta matriz no sustituye dicho anexo.
+4. Obtener revisión independiente y registrar el PR revisado. Los PR Web/Móvil/Docs citados se cerraron y sus SHAs están en `main`; el candidato Backend aún no está integrado y no tiene PR a `main` por el 403 reportado.
+
+La síntesis por HU está en [CIERRE-HU-2026-11-03.md](CIERRE-HU-2026-11-03.md). No usar esta matriz para afirmar cumplimiento del 100 %.

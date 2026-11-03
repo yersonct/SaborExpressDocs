@@ -1,8 +1,8 @@
 # Manual técnico y operación del sistema
 
-**Proyecto:** SaborExpress  |  **Fecha de corte:** 14 de octubre de 2026  |  **Versión:** 2.0  |  **Tipo:** Documento técnico y académico
+**Proyecto:** SaborExpress  |  **Fecha de corte:** 3 de noviembre de 2026  |  **Versión:** 2.1  |  **Tipo:** Documento técnico y académico
 
-**Estado de la evidencia:** inspección documental y estática del código. Las pruebas de ejecución y los datos institucionales no aportados no se presumen realizados.
+**Estado de la evidencia:** revisado contra los SHAs de cierre publicados y sus resultados locales/remotos. La evidencia de integración, staging, hardware y anexos institucionales se identifica por separado; no se presumen resultados ausentes.
 
 ## 1. Visión operativa
 
@@ -325,9 +325,29 @@ Los directorios siguientes fueron identificados bajo `Modules/` en el backend. L
 
 ## Fuentes primarias de implementación
 
+## Revisión de cierre de fuentes — 2026-11-03
+
+El [OpenAPI exportado](../6-api/openapi/backend-openapi-2026-11-03.json) desde Backend `7e6950f009380927ef950402ecb46a5cf5393b9e` contiene 269 rutas, 346 operaciones y 84 esquemas. La comparación AST con Web `aa5cb8d04d5af03e91e250bee227ea9c7c190e13` encontró 19/19 raíces y 92/92 firmas distintas de ruta+método; con Móvil `af52bbaf184404bb9f660b9dfa63c66958768bb4`, 16/16 raíces y 47/47 firmas. Esto comprueba presencia estática de rutas y verbos, no schemas, payloads, autorización ni respuestas runtime. El [método y sus límites](../6-api/COMPARACION-OPENAPI-CLIENTES-2026-11-03.md) están documentados.
+
+El [esquema PostgreSQL derivado de migraciones](../5-database/README.md) contiene 34 tablas de aplicación, 286 columnas y 53 relaciones FK. La fuente fue EF Core; no hubo conciliación con una base desplegada.
+
+El Backend expone `/health` como liveness y `/health/ready` como readiness que exige conectividad y ausencia de migraciones pendientes. En el workspace del SHA `7e6950f`, `/health` respondió 200 y `/health/ready` respondió 503 por migraciones pendientes. Un smoke remoto de Render staging sí pasó el 2026-10-29 para el SHA antecesor `ac2b39e`: comprobó readiness y lecturas con usuario sintético y mantuvo el mismo deployment antes/después. Ese run no valida el candidato actual ni una reversión. El [registro de staging y carga](../8-testing/evidencias/HU-STG-01-Backend-2026-10-29.md) conserva el alcance exacto.
+
+Tres mediciones k6 históricas de staging para `ac2b39e` registraron p95 API de servidor entre 58,5325 y 60,711 ms. En el resumen JSON de k6 `v2.3.0`, `false` indica que el threshold no se cruzó. Una corrida pasó sus thresholds y checks; las otras dos cruzaron `server_timing_missing_rate rate==0` y tuvieron checks fallidos. Esta evidencia no corresponde al candidato actual. No había resultados Web ni dispositivo Móvil en esos artefactos. [Detalle y alcance](../8-testing/evidencias/HU-STG-01-Backend-2026-10-29.md).
+
+La evaluación Web del 2026-11-03 usó build de producción, Chromium a 1366×768 y respuestas API sintéticas sobre 11 pantallas. DOMContentLoaded máximo: 36.3 ms; LCP máximo: 400 ms; CLS máximo: 0.0327; controles visibles sin nombre: 0; imágenes visibles sin `alt`: 0; landmark `main`: 1 por pantalla. Son mediciones de esa ejecución local, no métricas de producción, un certificado WCAG ni evaluación Móvil en dispositivos.
+
+Las dependencias declaradas en el corte son Web Next.js 16.4.2/React 19.2.4 y Móvil Expo 57.0.30/React Native 0.86.3. La exportación Android local se documenta en [evidencia móvil](https://github.com/yersonct/SaborExpressMovil/blob/hu-cierre-movil/docs/cierre/evidencia-local-hu-2026-11-03.md). No se generó APK firmado para producción ni se verificó hardware físico.
+
+El detalle de pruebas, checks remotos, ramas y decisiones operativas está en [CIERRE-HU-2026-11-03.md](../9-traceability/CIERRE-HU-2026-11-03.md). Las cifras de calidad que no tengan fuente, procedimiento y evidencia enlazada deben permanecer sin declarar.
+
+## Matriz global de permisos
+
+En la rama publicada `hu-cierre-backend`, SHA `7e6950f009380927ef950402ecb46a5cf5393b9e`, `POST` y `DELETE /api/role-permissions` requieren el rol `GERENTE` tanto en el controlador como en el servicio. Security (65/65) y QA (62/62) pasaron localmente; los checks remotos `verify`, `scan` y GitGuardian también pasaron en ese SHA. La consulta de matriz conserva el acceso existente de GERENTE y ADMINISTRADOR. La regla aplica a permisos globales y no acredita por sí sola autorización de todos los recursos o sedes. El PR #86 sigue abierto y sin merge.
+
 - API: https://github.com/yersonct/SaborExpressBack/tree/main
 - Web: https://github.com/yersonct/SaborExpressWeb/tree/main
 - Móvil: https://github.com/yersonct/SaborExpressMovil/tree/main
 - Referencia de presentación: https://github.com/jsgh1/SRD-v1/tree/dev/docs/docs-SRD
 
-**Control documental:** documento elaborado a partir del estado observado en octubre de 2026. Antes de entregar, verificar el commit exacto, responsable, revisión del instructor y cualquier cambio posterior del código.
+**Control documental:** revisado el 3 de noviembre de 2026 contra los SHAs indicados. Sigue pendiente la revisión independiente y la actualización de los archivos DOCX/PDF derivados; las mediciones no marcadas como aprobadas requieren su ejecución descrita.
