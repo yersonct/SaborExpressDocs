@@ -3,8 +3,8 @@
 ## Fuentes
 
 - OpenAPI generado desde Backend `hu-cierre-backend`, SHA `7e6950f009380927ef950402ecb46a5cf5393b9e` (cambios de contrato sin nuevas rutas): [`openapi/backend-openapi-2026-11-03.json`](openapi/backend-openapi-2026-11-03.json).
-- Web, rama `hu-cierre-web`, SHA `7d1cd20dae022454c70483f78c621a2285c9eaff`, archivos `.ts`, `.tsx`, `.js`, `.jsx` y `.mjs` bajo `src`.
-- Móvil, rama `hu-cierre-movil`, SHA `cbb461dd774b2f239f1d28f4c54a8bc9b91d37a8`, mismos tipos de archivo bajo `src`.
+- Web, rama `hu-cierre-web`, SHA `aa5cb8d04d5af03e91e250bee227ea9c7c190e13`, archivos `.ts`, `.tsx`, `.js`, `.jsx` y `.mjs` bajo `src`.
+- Móvil, rama `hu-cierre-movil`, SHA `af52bbaf184404bb9f660b9dfa63c66958768bb4`, mismos tipos de archivo bajo `src`.
 - Comparador con parser AST de TypeScript: [`compare-api-client-roots.mjs`](../scripts/compare-api-client-roots.mjs).
 
 ## Resultado reproducible
