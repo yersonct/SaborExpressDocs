@@ -1,8 +1,8 @@
 # Manual técnico y operación del sistema
 
-**Proyecto:** SaborExpress | **Autor / integrante:** Yerson Stiven Cuellar Rubiano | **Ficha:** 3145555 | **Fecha:** 14 de octubre de 2026 | **Versión documental:** 4.0
+**Proyecto:** SaborExpress | **Autor / integrante:** Yerson Stiven Cuellar Rubiano | **Ficha:** 3145555 | **Fecha:** 3 de noviembre de 2026 | **Versión documental:** 4.1
 
-**Estado de la evidencia:** inspección documental y estática del código. Las pruebas de ejecución y los datos institucionales no aportados no se presumen realizados.
+**Estado de la evidencia:** revisado contra los SHAs de cierre publicados y sus resultados locales/remotos. La evidencia de integración, staging, hardware y anexos institucionales se identifica por separado; no se presumen resultados ausentes.
 
 ## 1. Visión operativa
 
@@ -330,7 +330,17 @@ Los directorios siguientes fueron identificados bajo `Modules/` en el backend. L
 - Móvil: https://github.com/yersonct/SaborExpressMovil/tree/main
 - Referencia de presentación: https://github.com/jsgh1/SRD-v1/tree/dev/docs/docs-SRD
 
-**Control documental:** documento elaborado a partir del estado observado en octubre de 2026. Antes de entregar, verificar el commit exacto, responsable, revisión del instructor y cualquier cambio posterior del código.
+## Revisión técnica del cierre — 2026-11-03
+
+El [OpenAPI exportado](../6-api/openapi/backend-openapi-2026-11-03.json) desde Backend `7e6950f009380927ef950402ecb46a5cf5393b9e` contiene 269 rutas, 346 operaciones y 84 esquemas. La comparación AST con Web `aa5cb8d04d5af03e91e250bee227ea9c7c190e13` encontró 19/19 raíces y 92/92 firmas distintas de ruta+método; con Móvil `af52bbaf184404bb9f660b9dfa63c66958768bb4`, 16/16 raíces y 47/47 firmas. Esto comprueba presencia estática de rutas y verbos, no schemas, payloads, autorización ni respuestas runtime. El [método y sus límites](../6-api/COMPARACION-OPENAPI-CLIENTES-2026-11-03.md) están documentados.
+
+El esquema PostgreSQL derivado de EF Core contiene 34 tablas, 286 columnas y 53 relaciones FK; no se ha conciliado con un esquema desplegado verificable. En el workspace, `/health` respondió 200 y `/health/ready` 503 por migraciones pendientes. El smoke remoto de Render staging pasó el 2026-10-29 para el SHA antecesor `ac2b39e`, verificó liveness/readiness y lecturas con una cuenta sintética, y confirmó el mismo deployment antes/después. No prueba el candidato actual `7e6950f` ni una reversión. [Detalle de staging y k6](../8-testing/evidencias/HU-STG-01-Backend-2026-10-29.md).
+
+Tres resúmenes k6 históricos de API registraron p95 de servidor entre 58,5325 y 60,711 ms bajo 15 VUs. En el JSON de k6 `v2.3.0`, `false` indica que el threshold no se cruzó: una corrida pasó sus thresholds y checks; dos cruzaron `server_timing_missing_rate rate==0` y tuvieron checks fallidos. No corresponde al candidato actual. No se encontró `web-summary.json` ni medición física Móvil. [Detalle y alcance](../8-testing/evidencias/HU-STG-01-Backend-2026-10-29.md).
+
+La comparación de contratos sigue siendo estática. Los runs remotos de Web `aa5cb8d` y Móvil `af52bba` pasaron sus CI/secret scans; Backend `7e6950f` pasó `verify`, `scan` y GitGuardian. Las ramas `hu-cierre-backend`, `hu-cierre-web`, `hu-cierre-movil` y `hu-cierre-docs` permanecen sin merge. El estado HU por HU, sus límites y la lista de operaciones externas están en [CIERRE-HU](../9-traceability/CIERRE-HU-2026-11-03.md).
+
+**Control documental:** revisado el 3 de noviembre de 2026 contra los SHAs indicados. Sigue pendiente la revisión independiente y la actualización de los archivos DOCX/PDF derivados; las mediciones no marcadas como aprobadas requieren su ejecución descrita.
 
 
 ## 14. Extractos de código verificados y explicación de responsabilidades
