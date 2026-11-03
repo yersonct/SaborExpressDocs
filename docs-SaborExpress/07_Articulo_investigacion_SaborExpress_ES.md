@@ -34,6 +34,61 @@ Las pruebas de código y CI demuestran comprobaciones delimitadas, no la ejecuci
 
 Se propone un piloto con un responsable operativo y, sujeto a consentimiento, uno o más usuarios reales. Antes de ejecutar se debe capturar sede, rol, escenario, versión, fecha y autorización; aplicar entrevista semiestructurada y tarea observada; anonimizar respuestas; y registrar discrepancias entre resultado esperado y observado. En entorno de pruebas aislado: (a) pedidos/cocina/caja/domicilios por siete roles y dos sedes; (b) rechazo de accesos horizontales y verticales; (c) webhooks duplicados y alterados con proveedor sandbox; (d) pérdida de conexión y recuperación; (e) pruebas de carga con dataset y umbrales explícitos; (f) migraciones, rollback y copias de seguridad; (g) prueba en dispositivo e impresora. Los formatos anexos son instrumentos preparados, no aplicados.
 
+
+### Delimitación y contribución científica
+
+Se diferencia el problema de gestión observado documentalmente del problema de investigación evaluable. El primero concierne a la necesidad potencial de coordinar pedidos, cocina, cobros y domicilios; no se ha demostrado su incidencia en un negocio específico. El segundo consiste en determinar hasta qué punto la evidencia trazable permite sostener afirmaciones sobre una implementación multicliente. La contribución es un procedimiento replicable de triangulación entre artefactos, contratos y pruebas versionadas, no el diseño de un experimento causal ni una comparación comercial.
+
+Se plantean tres proposiciones analíticas que orientan la recolección de evidencias: P1, la existencia de rutas y modelos compartidos permite documentar una arquitectura de integración; P2, una prueba automatizada aislada de una versión respalda únicamente el comportamiento cubierto en esa versión; P3, sin evidencia con usuarios y flujos integrados no es válido inferir satisfacción, productividad o preparación de producción. Estas proposiciones no se presentan como hipótesis estadísticas confirmadas.
+
+### Selección y tratamiento de fuentes
+
+La vigilancia tecnológica utiliza quince referencias seleccionadas por pertinencia al dominio gastronómico, arquitectura, métodos de investigación, requisitos y seguridad. La matriz distingue artículos empíricos y revisiones, modelos teóricos, guías metodológicas y estándares. Se consideró la relevancia temática, la disponibilidad de DOI o URL y la aplicabilidad a alguna decisión del estudio. No se registró una cadena de búsqueda exhaustiva, criterios formales PRISMA, evaluación independiente de sesgo ni conteo reproducible de exclusiones; por ello la revisión se denomina *dirigida*. La literatura comercial o de proveedores puede servir para describir interfaces, pero no se utiliza como sustituto de estudios empíricos sobre impacto.
+
+Los trabajos sobre satisfacción en plataformas de entrega [1]–[5] informan posibles variables de un estudio futuro. Los marcos TAM y UTAUT [6], [7] orientan preguntas sobre utilidad y facilidad percibidas. La arquitectura mediante vistas [8] y la discusión de patrones [9] ayudan a evitar la atribución errónea de microservicios a un backend modular. Para estudiar la calidad del producto se adopta ISO/IEC 25010 [12] como marco conceptual; OWASP [13] y los RFC [14], [15] guían revisión de controles, pero ninguna de estas fuentes acredita certificación.
+
+### Protocolo de extracción y control de sesgos
+
+La unidad de análisis es el conjunto SaborExpressBack, SaborExpressWeb, SaborExpressMovil y SaborExpressDocs. Cada registro de evidencia debe contener: repositorio, ruta del archivo o ejecución, SHA completo, fecha, ambiente, objeto examinado, observación y límite de inferencia. La clasificación es: E1, prueba ejecutada reportada con identificador y resultado; E2, inspección estática reproducible; E3, actividad propuesta sin ejecución. Para un resultado extraído de un informe ajeno a esta edición se añade la etiqueta *reportado*; no se confunde con prueba reejecutada por el investigador.
+
+Se reducen sesgos mediante cuatro reglas: (a) no sumar pruebas de versiones distintas como porcentaje único de calidad; (b) registrar tanto resultados exitosos como fallos y bloqueos; (c) distinguir resultados locales de checks CI y despliegues; (d) separar evidencia del sistema de supuestos del contexto productivo. No se dispone de muestreo probabilístico ni observación directa de un restaurante. La trazabilidad de algunas cifras depende del expediente técnico y requiere contraste de sus artefactos originales por un evaluador independiente.
+
+### Análisis de resultados por dimensiones
+
+**Arquitectura y contratos.** El inventario OpenAPI con 269 rutas, 346 operaciones y 84 esquemas es una descripción del documento generado desde un SHA anterior, no una prueba de que todas las operaciones respondan correctamente. La coincidencia estática de 92 firmas web y 47 móviles con dicho inventario verifica rutas y métodos, pero no cuerpos JSON, códigos de error, permisos o transacciones concurrentes. La exposición de JWT y SignalR en la configuración tampoco demuestra, por sí misma, control de acceso efectivo o entrega garantizada de eventos.
+
+**Seguridad.** La suite local de seguridad reporta 90 casos aprobados en el candidato `17a8ce4`. Esto es evidencia de regresión limitada, no de auditoría de penetración completa, porque faltan recorridos integrados entre siete perfiles y dos sedes, rotación de credenciales históricas y revisión de autorización por objeto en staging. En materia de pagos se distinguen existencia de endpoints de Wompi, validación criptográfica de eventos y conciliación con transacciones reales o de sandbox: estas últimas dos requieren evidencia adicional.
+
+**Fiabilidad y despliegue.** El mismo candidato respondió `200` en `/health` pero `503` en `/health/ready` por migraciones pendientes. El resultado es una discrepancia verificable entre vivacidad y preparación operativa, y debe mantenerse como hallazgo, sin ocultarse detrás del smoke exitoso de staging de un SHA anterior. El ensayo histórico k6 contiene una corrida aceptada y dos que incumplieron la condición sobre el encabezado `Server-Timing`; por tanto no se puede declarar cumplimiento consistente de todos los umbrales ni generalizar la medición al candidato reciente.
+
+**Usabilidad.** Una prueba Playwright con API sintética sobre once pantallas no equivale a una evaluación con comensales, meseros o cajeros. No se dispone de tasas de tarea completada por participantes ni tiempos de operación observados; esos indicadores se reservan al protocolo piloto. La cobertura actual del estudio es predominantemente técnica, con validez externa restringida.
+
+### Tabla de correspondencia entre hallazgos y criterios de aceptación
+
+| Dimensión | Evidencia reportada | Inferencia admitida | Evidencia todavía necesaria |
+|---|---|---|---|
+| Contratos | OpenAPI y 92/92 web, 47/47 móvil | Coincidencia estática de rutas y métodos | Pruebas de payloads, errores y sesiones reales |
+| Backend | Security 90/90, QA 62/62, PDF 11/11 | Suites locales aprobadas en SHA indicado | CI del candidato y recorridos integrados |
+| Web/móvil | 7/7 y 8/8 en sus respectivos SHA | Suites limitadas en cada cliente | Dispositivo real y operación multirrol |
+| Disponibilidad | Readiness local 503; staging anterior satisfactorio | Estados diferentes según entorno y versión | Migraciones controladas y nuevo smoke |
+| Rendimiento | Una corrida k6 aceptada y dos no | Evidencia mixta histórica | Repeticiones con configuración declarada |
+| Contexto real | Instrumento de entrevista sin aplicar | No hay diagnóstico empírico del negocio | Entrevista, consentimiento y registro |
+
+### Plan verificable de validación posterior
+
+El piloto de campo deberá definir previamente establecimiento autorizado, perfil, fecha, tarea, consentimiento, condiciones de observación y manejo de datos. Se propone observar el recorrido de pedido desde catálogo hasta entrega, registrando tiempo, errores, reintentos y comentarios sin identificar personas. Las respuestas deben anonimizarse, conservarse con autorización y analizarse de manera descriptiva. No se asignan tamaños de muestra, porcentajes o puntuaciones ficticias.
+
+La fase técnica requiere un entorno aislado con datos sintéticos, dos sedes y cuentas de siete roles. Para cada caso se documentarán precondiciones, método, resultado esperado, resultado observado, evidencia, SHA y causa de bloqueo. Deben priorizarse la prevención de acceso entre sedes, el manejo idempotente de webhooks Wompi, la recuperación de red, los cierres de caja, la sincronización de estados de cocina, las migraciones reversibles y la prueba física de impresión móvil. Una corrida local no reemplaza la reproducción en staging de la misma versión.
+
+
+### Correspondencia explícita con la guía GFPI-F-135 V04
+
+La guía del SENA organiza el estudio en cuatro momentos. En el primero se requieren tres casos (uno facilitado por el instructor, otro de literatura y otro del contexto productivo), entrevistas a tres usuarios reales y un árbol de problemas ajustado a esas respuestas. En este corte solo se dispone de un análisis documental de SaborExpress y antecedentes de literatura; los casos del instructor y del restaurante real, al igual que las entrevistas, **no están verificados**. El árbol presentado es provisional, no una necesidad demostrada por participantes.
+
+En el segundo momento, la matriz de consistencia enlaza pregunta, objetivo, actividad, producto y verificación. Se plantea un piloto con al menos dos usuarios para ajustar los instrumentos; no se registran participantes ni resultados porque no se ejecutó. En el tercero, se distinguen seis o más fuentes académicas, tres referentes técnicos y tres soluciones existentes. En el cuarto, los resultados son los registros técnicos versionados publicados por el proyecto, sin extrapolarlos a usuarios o producción. Los anexos contienen las matrices de casos, consistencia, vigilancia, estrategia de búsqueda y formatos de campo que deben completarse con evidencia real.
+
+**Objetivo y contraste verificable.** La caracterización arquitectónica se contrasta con los archivos y especificaciones de los cuatro repositorios; el análisis de calidad con los resultados por SHA del expediente QA; y el estudio del contexto productivo solo podrá contrastarse cuando se apliquen las entrevistas y el piloto. Por tanto, el objetivo documental presenta evidencia parcial y las afirmaciones sobre necesidades y aceptación del restaurante siguen abiertas.
+
 ## VIII. CONCLUSIONES
 
 El estudio caracteriza una solución gastronómica web y móvil basada en backend modular y establece una cadena de trazabilidad entre código, documentación, estándares y validaciones con SHA. La evidencia de pruebas locales y CI representa avance verificable respecto de la versión exclusivamente documental, pero es insuficiente para afirmar aceptación de usuarios, disponibilidad en producción o cierre total de historias de usuario. La contribución investigativa es delimitar qué puede concluirse y cómo repetir las verificaciones, y proponer un piloto de campo y un protocolo técnico que permitirían contrastar los riesgos identificados.
@@ -77,7 +132,7 @@ Autor declarado del manuscrito: Yerson Stiven Cuéllar Rubiano (sujeto a confirm
 
 Sources and traceability / Fuentes y trazabilidad:
 - https://github.com/yersonct/SaborExpressDocs/blob/main/9-traceability/CIERRE-HU-2026-11-03.md
-- https://github.com/yersonct/SaborExpressDocs/blob/main/docs-SaborExpress/07_Articulo_investigacion_SaborExpress_ES.md
+- https://github.com/yersonct/SaborExpressDocs/blob/f77625c469fe21f0e660e946c9741474817a524b/docs-SaborExpress/07_Articulo_investigacion_SaborExpress_ES.md
 - https://github.com/yersonct/SaborExpressBack
 - https://github.com/yersonct/SaborExpressWeb
 - https://github.com/yersonct/SaborExpressMovil
