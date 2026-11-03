@@ -7,7 +7,7 @@
 | [Backend](https://github.com/yersonct/SaborExpressBack) | [`hu-cierre-backend`](https://github.com/yersonct/SaborExpressBack/tree/hu-cierre-backend) | `7d8c184efff713a79e51253bbd2f9c2e6d9d4046` | [#86](https://github.com/yersonct/SaborExpressBack/pull/86), borrador | Sigue sin merge. PR incremental sobre la rama de integración existente; PR #85 queda intacto. |
 | [Web](https://github.com/yersonct/SaborExpressWeb) | [`hu-cierre-web`](https://github.com/yersonct/SaborExpressWeb/tree/hu-cierre-web) | `7d1cd20dae022454c70483f78c621a2285c9eaff` | [#43](https://github.com/yersonct/SaborExpressWeb/pull/43), borrador | Sigue sin merge. |
 | [Móvil](https://github.com/yersonct/SaborExpressMovil) | [`hu-cierre-movil`](https://github.com/yersonct/SaborExpressMovil/tree/hu-cierre-movil) | `cbb461dd774b2f239f1d28f4c54a8bc9b91d37a8` | [#32](https://github.com/yersonct/SaborExpressMovil/pull/32), borrador | Sigue sin merge. |
-| [Docs](https://github.com/yersonct/SaborExpressDocs) | `hu-cierre-docs` | SHA posterior al commit de este informe | PR de Docs por abrir | La publicación de documentación sigue en curso. |
+| [Docs](https://github.com/yersonct/SaborExpressDocs) | [`hu-cierre-docs`](https://github.com/yersonct/SaborExpressDocs/tree/hu-cierre-docs) | HEAD de [PR #9](https://github.com/yersonct/SaborExpressDocs/pull/9); paquete base `25298a7efc70b216e64e6bc242a609752b8268a3` | [#9](https://github.com/yersonct/SaborExpressDocs/pull/9), borrador | Secret-scan y GitGuardian pasaron en el commit base; rama sin merge. |
 
 Los PR borrador permiten ejecutar CI y revisar los cambios sin integrarlos. No se pidió revisión a una cuenta distinta de `yersonct`. GitHub devolvió solo a `yersonct` como colaborador de cada repo y 404 al consultar protección en las ramas por defecto; las protecciones no están configuradas.
 
@@ -64,7 +64,7 @@ Rama `hu-cierre-docs`; DER/diccionario/SQL derivados de migraciones, OpenAPI exp
 | 26–27 | Completar RF institucional y manual de usuario; mantener KPIs ligados a fuente y método. No inventar IDs ni resultados. |
 | 28 | Añadir issues y responsables confirmados; revisión independiente pendiente. Mantener commits nuevos con autor `yersonct`; no reescribir historia sin el proceso seguro. |
 | 29 | Obtener el anexo institucional que enumera los 28 hallazgos. El resumen actual no permite desglosarlos. |
-| 30 | Publicar esta rama, registrar su SHA y PR, incorporar estados CI de los cuatro repos y solicitar evaluación. |
+| 30 | Los cuatro SHAs y PR están publicados y los checks enumerados pasaron. La evaluación institucional, staging, el hardware y el anexo siguen pendientes. |
 
 ## No declarar como cerrado
 
