@@ -4,8 +4,8 @@
 
 **Integrante documentado:** Yerson Stiven Cuellar Rubiano  
 **Ficha:** 3145555  
-**Fecha de preparación:** 14 de octubre de 2026  
-**Versión documental:** 4.0 (estudio de caso con pruebas pendientes)
+**Fecha de preparación:** 8 de noviembre de 2026
+**Versión documental:** 4.1 (cierre de rúbrica con evidencia separada)
 
 ## Resumen ejecutivo
 
@@ -40,6 +40,8 @@ SaborExpress es una plataforma de apoyo a operaciones gastronómicas, organizada
 ## Estado y limitaciones
 
 El estado de ejecución de las 30 HU propuestas en el plan de cierre, con evidencia y pendientes separados, se registra en [CIERRE-HU-2026-11-03.md](9-traceability/CIERRE-HU-2026-11-03.md).
+
+El control específico de la entrega final y sus correcciones se registra en [FINAL-RUBRIC-CLOSURE-2026-11-08.md](9-traceability/FINAL-RUBRIC-CLOSURE-2026-11-08.md).
 
 **Producción, autorización docente, tiempos de respuesta, ejecución de pruebas, seguridad certificada y migraciones multi-proveedor:** NO verificados en este proceso. La documentación describe el código consultado y lo separa de decisiones recomendadas. Los cuatro PDF históricos del repositorio deben conservarse, no eliminarse por sustitución automática.
 
